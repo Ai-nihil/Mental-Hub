@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "425386658654",
+    "project_id": "mentalhub-4fd78",
+    "storage_bucket": "mentalhub-4fd78.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:425386658654:android:0f3d3b47bf5ddf5a249dcf",
+        "android_client_info": {
+          "package_name": "com.example.mentalhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "425386658654-hi8ukpj921gfusc8hb5e0g47qqskfq6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeLudnCC9NodRy8F_BmfsxLVMDEhEV8_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "425386658654-hi8ukpj921gfusc8hb5e0g47qqskfq6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
