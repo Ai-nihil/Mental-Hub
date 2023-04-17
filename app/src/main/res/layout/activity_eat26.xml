@@ -15,16 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="EAT26"
+            android:text="@string/eat26"
             android:textStyle="bold"
             android:textSize="32sp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/question1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="I am terrified of being overweight"
+            android:text="@string/question1"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -35,67 +35,1869 @@
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/always"
+                android:id="@+id/always1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Always"
-                android:layout_marginRight="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
                 android:drawableBottom="@android:drawable/btn_radio"
                 android:button="@null"
                 android:gravity="center" />
 
             <RadioButton
-                android:id="@+id/usually"
+                android:id="@+id/usually1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:drawableBottom="@android:drawable/btn_radio"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Usually" />
+                android:text="@string/usually" />
             <RadioButton
-                android:id="@+id/often"
+                android:id="@+id/often1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:drawableBottom="@android:drawable/btn_radio"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Often" />
+                android:text="@string/often" />
             <RadioButton
-                android:id="@+id/sometimes"
+                android:id="@+id/sometimes1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:drawableBottom="@android:drawable/btn_radio"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Sometimes" />
+                android:text="@string/sometimes" />
             <RadioButton
-                android:id="@+id/rarely"
+                android:id="@+id/rarely1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:drawableBottom="@android:drawable/btn_radio"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Rarely" />
+                android:text="@string/rarely" />
             <RadioButton
-                android:id="@+id/never"
+                android:id="@+id/never1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:drawableBottom="@android:drawable/btn_radio"
                 android:button="@null"
                 android:gravity="center"
-                android:text="Never" />
+                android:text="@string/never" />
         </RadioGroup>
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:id="@+id/question2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="@string/question2"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question3"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question4"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question5"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question6"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question7"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question8"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question9"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question10"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question11"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/question12"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question13"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question14"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question15"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question16"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question17"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question18"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question19"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question20"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question21"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question22"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question23"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question24"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question25"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/question26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question26"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <RadioGroup
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/always26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/always"
+                android:layout_marginEnd="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/usually26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/usually" />
+            <RadioButton
+                android:id="@+id/often26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/often" />
+            <RadioButton
+                android:id="@+id/sometimes26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/sometimes" />
+            <RadioButton
+                android:id="@+id/rarely26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/rarely" />
+            <RadioButton
+                android:id="@+id/never26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:drawableBottom="@android:drawable/btn_radio"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/never" />
+        </RadioGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submitButton"
+            android:backgroundTint="@color/pink_100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit" />
+
     </LinearLayout>
 </ScrollView>

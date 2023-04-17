@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">Mental Hub</string>
+    <string name="eat26">Eat-26</string>
+    <string name="submit">submit</string>
+    <string name="always">Always</string>
+    <string name="usually">Usually</string>
+    <string name="often">Often</string>
+    <string name="sometimes">Sometimes</string>
+    <string name="rarely">Rarely</string>
+    <string name="never">Never</string>
+    <string name="askUser">How are you feeling today?</string>
+    <string name="question1">I am terrified of being overweight</string>
+    <string name="question2">Avoid eating when I am hungry</string>
+    <string name="question3">Find myself preoccupied with food</string>
+    <string name="question4">Have gone on eating binges where I felt that I may not be able to stop</string>
+    <string name="question5">Cut my food into small pieces</string>
+    <string name="question6">Aware of the calorie content of foods that I eat</string>
+    <string name="question7">Particularly avoid food with a high carbohydrates content (i.e. bread, rice, potatoes, etc.)</string>
+    <string name="question8">Feel that others would prefer if I ate more</string>
+    <string name="question9">Vomit after I have eaten</string>
+    <string name="question10">Feel extremely guilty after eating</string>
+    <string name="question11">Am preoccupied with a desire to be thinner</string>
+    <string name="question12">Think about burning calories when I exercise</string>
+    <string name="question13">Other people think that I am too thin</string>
+    <string name="question14">Am preoccupied with the thought of having fat on my body</string>
+    <string name="question15">Take longer than others to eat my meals</string>
+    <string name="question16">Avoid foods with sugar in them</string>
+    <string name="question17">Eat diet foods</string>
+    <string name="question18">Feel that food controls my life</string>
+    <string name="question19">Display self-control around food</string>
+    <string name="question20">Feel that others pressure me to eat</string>
+    <string name="question21">Give too much time and thought about food</string>
+    <string name="question22">Feel uncomfortable eating sweets</string>
+    <string name="question23">Engage in dieting behaviour</string>
+    <string name="question24">Like my stomach to be empty</string>
+    <string name="question25">Have the impulse to vomit after meals</string>
+    <string name="question26">Enjoy trying new rich foods</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
