@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Mental Hub</string>
+    <string name="title">Give your journal a title</string>
+    <string name="journaltitle">Journal Title</string>
+    <string name="timestamp">Date Created</string>
+    <string name="journalhint">This can be journal content that can be long</string>
+    <string name="date">What is the date today?</string>
+    <string name="content">How are you? Write everything that happened to you here today.</string>
     <string name="eat26">Eat-26</string>
     <string name="submit">submit</string>
     <string name="always">Always</string>
@@ -18,6 +24,7 @@
     <string name="checkProgress">Check Progress</string>
     <string name="playNow">Play Now</string>
     <string name="AddNewNote">Add New Journal Entry:</string>
+    <string name="myJournal">My Journal</string>
     <string name="psychoeducation">Psycho education</string>
     <string name="askUser">How are you feeling today?</string>
     <string name="question1">I am terrified of being overweight</string>

@@ -12,33 +12,85 @@
         android:id="@+id/title_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignLeft="@id/page_title"
+            android:layout_above="@id/page_title"
+            android:layout_alignParentRight="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_done_24"
+            app:tint="@color/white"/>
+
         <TextView
             android:id="@+id/page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster_regular"
             android:text="@string/AddNewNote"
             android:textColor="@color/white"
             android:textSize="32sp"
-            android:fontFamily="@font/lobster_regular"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <ImageButton
             android:id="@+id/save_note_btn"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_baseline_done_24"
             android:layout_alignParentRight="true"
-            app:tint="@color/white"
-            android:background="?attr/selectableItemBackgroundBorderless"/>
-    </RelativeLayout>
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_done_24"
+            app:tint="@color/white" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title_bar_layout"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginVertical="26dp"
-        android:backgroundTint="@color/logo_color"
-        android:background="@drawable/rounded_corner"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/page_title"
+            android:layout_marginVertical="36dp"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/logo_color"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/note_title_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/title"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/note_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="@string/date"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/notes_content_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginVertical="8dp"
+                android:hint="@string/content"
+                android:gravity="top"
+                android:minLines="15"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </RelativeLayout>
