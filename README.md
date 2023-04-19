@@ -1,4 +1,4 @@
-# '#FFC0CB' **Mental-Hub**
+# `#FFC0CB` **Mental-Hub**
 This is CCR's thesis project.
 This application is made for those who are suffering maladaptive eating disorder.
 This application features:
