@@ -16,11 +16,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Global declaration of variables
     FirebaseAuth mAuth;
-    Button logoutButton;
+    Button logoutButton, playNowBtn, eat26, psychoeducationBtn, checkProgressBtn;
     TextView textView;
     FirebaseUser user;
-    ConstraintLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         logoutButton = findViewById(R.id.logout);
+        eat26 = findViewById(R.id.eat26assessment);
+        psychoeducationBtn = findViewById(R.id.psychoeducation);
+        checkProgressBtn = findViewById(R.id.checkProgress);
         textView = findViewById(R.id.user_details);
+        playNowBtn = findViewById(R.id.playNow);
         user = mAuth.getCurrentUser();
         // Sends user to login page if there is no session for user
         if (user == null) {
@@ -38,26 +42,26 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         else {
-            textView.setText(user.getDisplayName());
+            // TODO: Implement google OAuth to easily get the user's name
+            textView.setText(user.getEmail());
 
-            layout = findViewById(R.id.relativeLayout);
-            layout.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
-                @Override
-                public void onSwipeLeft() {
-                    super.onSwipeLeft();
-                    Toast.makeText(MainActivity.this, "Swipe Left gesture detected", Toast.LENGTH_SHORT).show();
+            playNowBtn.setOnClickListener((View v) -> {
+                {
+                    Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                    startActivity(intent);
                 }
-                @Override
-                public void onSwipeRight() {
-                    super.onSwipeRight();
-                    Toast.makeText(MainActivity.this, "Swipe Right gesture detected", Toast.LENGTH_SHORT).show();
+            });
+
+            eat26.setOnClickListener((View v) -> {
+                {
+                    Intent intent = new Intent(getApplicationContext(), Eat26.class);
+                    startActivity(intent);
                 }
             });
         }
         // Button to log out the user
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        logoutButton.setOnClickListener((View v) -> {
+            {
                 FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);

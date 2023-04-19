@@ -8,6 +8,58 @@
     android:id="@+id/relativeLayout"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/eat26assessment"
+        android:layout_width="150dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/eat26Assessment"
+        android:drawableTop="@drawable/form"
+        android:background="@drawable/mybutton"
+        app:layout_constraintBottom_toTopOf="@+id/psychoeducation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/checkProgress"
+        android:layout_width="150dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/moodtracker"
+        android:text="@string/checkProgress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintStart_toStartOf="@+id/psychoeducation" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/psychoeducation"
+        android:layout_width="150dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="172dp"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/psychoeducation"
+        android:text="@string/psychoeducation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/playNow"
+        android:layout_width="150dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/psychoeducation"
+        android:text="@string/playNow"
+        app:layout_constraintBottom_toTopOf="@+id/checkProgress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.682"
+        app:layout_constraintStart_toEndOf="@+id/eat26assessment" />
+
     <TextView
         android:id="@+id/user_details"
         android:layout_width="wrap_content"
@@ -15,18 +67,18 @@
         android:hint="[Username]"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.452" />
+        app:layout_constraintVertical_bias="0.325" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:text="@string/askUser"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_details" />
 
@@ -34,11 +86,32 @@
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="780dp"
         android:text="Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Your Results Are Ready!"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/psychoeducation" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:text="Tutorial"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.288"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

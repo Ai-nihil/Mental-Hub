@@ -15,8 +15,30 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
-            android:name=".Eat26"
+            android:name=".GameActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".JournalDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".journaling"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Eat26"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -30,15 +52,19 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Login"
+            android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
+        </activity>
+        <activity
+            android:name=".Login"
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

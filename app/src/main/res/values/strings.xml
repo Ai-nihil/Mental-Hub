@@ -8,6 +8,17 @@
     <string name="sometimes">Sometimes</string>
     <string name="rarely">Rarely</string>
     <string name="never">Never</string>
+    <string name="relax">Relax and Play...</string>
+    <string name="journaling">Journaling</string>
+    <string name="cognitive_Restruc">Cognitive Restructuring</string>
+    <string name="breathing">Breathing Exercise</string>
+    <string name="mindfulness">Mindfulness and Relaxation</string>
+    <string name="problem_solving">Problem Solving</string>
+    <string name="eat26Assessment">EAT26 Assessment</string>
+    <string name="checkProgress">Check Progress</string>
+    <string name="playNow">Play Now</string>
+    <string name="AddNewNote">Add New Journal Entry:</string>
+    <string name="psychoeducation">Psycho education</string>
     <string name="askUser">How are you feeling today?</string>
     <string name="question1">I am terrified of being overweight</string>
     <string name="question2">Avoid eating when I am hungry</string>
