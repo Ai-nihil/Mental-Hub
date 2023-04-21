@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mental Hub</string>
     <string name="title">Give your journal a title</string>
+    <string name="delete">Delete</string>
     <string name="journaltitle">Journal Title</string>
     <string name="timestamp">Date Created</string>
     <string name="journalhint">This can be journal content that can be long</string>

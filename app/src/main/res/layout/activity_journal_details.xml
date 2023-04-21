@@ -42,10 +42,12 @@
             android:src="@drawable/ic_baseline_done_24"
             app:tint="@color/white" />
 
+    </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/page_title"
+            android:layout_below="@id/title_bar_layout"
             android:layout_marginVertical="36dp"
             android:background="@drawable/rounded_corner"
             android:backgroundTint="@color/logo_color"
@@ -91,6 +93,17 @@
                 android:textSize="20sp" />
         </LinearLayout>
 
-    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/delete_note_text_view_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/segoe_ui_bold"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/ic_baseline_delete_24"
+        android:text="@string/delete"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
 </RelativeLayout>

@@ -5,10 +5,14 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -32,6 +36,7 @@ public class JournalDetailsActivity extends AppCompatActivity {
     TextView pageTitleTextView;
     String title, content, docId;
     boolean isEditMode = false;
+    Button deleteJournalBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,7 @@ public class JournalDetailsActivity extends AppCompatActivity {
         titleEditText = findViewById(R.id.note_title_text);
         contentEditText = findViewById(R.id.notes_content_text);
         saveNoteBtn = findViewById(R.id.save_note_btn);
+        deleteJournalBtn = findViewById(R.id.delete_note_text_view_btn);
 
         // receive data
         title = getIntent().getStringExtra("title");
@@ -57,14 +63,41 @@ public class JournalDetailsActivity extends AppCompatActivity {
         titleEditText.setText(title);
         contentEditText.setText(content);
 
+        // If user is not in editmode they cannot see the delete button
         if (isEditMode) {
             pageTitleTextView.setText("Update Your Journal");
+            deleteJournalBtn.setVisibility(View.VISIBLE);
         }
 
         // Sets the date to current time when creating or updating journal
         datePht.setText(Utility.timeStampToString(Timestamp.now()));
 
+        // OnClickListener for save button
         saveNoteBtn.setOnClickListener((v) -> saveNote());
+
+        // OnClickListener for delete button, asks user first before deleting
+        deleteJournalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Confirmation message for deleting the journal entry
+                AlertDialog.Builder builder = new AlertDialog.Builder(JournalDetailsActivity.this);
+                builder.setMessage("Do you want to delete your journal?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                deleteNoteFromFirebase();
+                            }
+                        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO Add something here
+                    }
+                });
+                AlertDialog mDialog = builder.create();
+                mDialog.show();
+                mDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED);
+            }
+        });
 
         // for our pick date button
         datePht.setOnClickListener(new View.OnClickListener() {
@@ -102,21 +135,21 @@ public class JournalDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
     void saveNote() {
         String date = datePht.getText().toString();
         String noteTitle = titleEditText.getText().toString();
         String noteContent = contentEditText.getText().toString();
 
-        if(noteTitle == null || noteTitle.isEmpty() ) {
+        if (noteTitle == null || noteTitle.isEmpty()) {
             Log.w(TAG, "saveNote:failure");
             titleEditText.setError("Title is required");
             return;
-        }  else if (date == null || date.isEmpty()) {
+        } else if (date == null || date.isEmpty()) {
             Log.w(TAG, "saveNote:failure");
             datePht.setError("Correct Date is required");
             return;
         }
-
 
         Journal journal = new Journal();
         journal.setTitle(noteTitle);
@@ -138,14 +171,43 @@ public class JournalDetailsActivity extends AppCompatActivity {
         documentReference.set(journal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()) {
+                if (task.isSuccessful()) {
                     //journal is added
                     Toast.makeText(JournalDetailsActivity.this,
                             "Journal Added Successfully!", Toast.LENGTH_SHORT).show();
+                    if (isEditMode) {
+                        Toast.makeText(JournalDetailsActivity.this,
+                                "Journal Updated Successfully!", Toast.LENGTH_SHORT).show();
+                    }
                     finish();
                 } else {
                     Toast.makeText(JournalDetailsActivity.this,
                             "Journal Not Added.", Toast.LENGTH_SHORT).show();
+                    if (isEditMode) {
+                        Toast.makeText(JournalDetailsActivity.this,
+                                "Journal Update Failed!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+    }
+
+    void deleteNoteFromFirebase() {
+        DocumentReference documentReference;
+
+        documentReference = Utility.getCollectionReferenceForJournal().document(docId);
+
+        documentReference.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    //journal is added
+                    Toast.makeText(JournalDetailsActivity.this,
+                            "Journal Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(JournalDetailsActivity.this,
+                            "Journal Not Deleted.", Toast.LENGTH_SHORT).show();
                 }
             }
         });

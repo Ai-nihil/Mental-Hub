@@ -1,5 +1,6 @@
 package com.example.mentalhub;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -11,8 +12,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +48,19 @@ public class MainActivity extends AppCompatActivity {
         else {
             // TODO: Implement google OAuth to easily get the user's name
             textView.setText(user.getEmail());
+
+            // When user opens the MainActivity they will instantly subscribe to the notification
+            FirebaseMessaging.getInstance().subscribeToTopic("MentalHubNotification")
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            String msg = "Done";
+                            if (!task.isSuccessful()) {
+                                msg = "Failed";
+                            }
+
+                        }
+                    });
 
             playNowBtn.setOnClickListener((View v) -> {
                 {
