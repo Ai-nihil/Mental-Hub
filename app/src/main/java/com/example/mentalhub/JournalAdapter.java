@@ -1,6 +1,7 @@
 package com.example.mentalhub;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,17 @@ public class JournalAdapter extends FirestoreRecyclerAdapter<Journal, JournalAda
         holder.titleTextView.setText(journal.title);
         holder.contentTextView.setText(journal.content);
         holder.dateTextView.setText(journal.date);
+
+        holder.itemView.setOnClickListener((v) -> {
+            Intent intent = new Intent(context, JournalDetailsActivity.class);
+            intent.putExtra("title", journal.title);
+            intent.putExtra("content", journal.content);
+
+            // Gets the snapshot of the current position of what was clicked
+            String docId = this.getSnapshots().getSnapshot(position).getId();
+            intent.putExtra("docId", docId);
+            context.startActivity(intent);
+        });
     }
 
     @NonNull

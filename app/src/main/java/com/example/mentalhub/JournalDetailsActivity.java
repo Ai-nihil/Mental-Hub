@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,9 @@ public class JournalDetailsActivity extends AppCompatActivity {
     private EditText datePht;
     EditText titleEditText, contentEditText;
     ImageButton saveNoteBtn;
+    TextView pageTitleTextView;
+    String title, content, docId;
+    boolean isEditMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +40,29 @@ public class JournalDetailsActivity extends AppCompatActivity {
 
         // Initializing variables
         datePht = findViewById(R.id.note_date);
+        pageTitleTextView = findViewById(R.id.page_title);
         titleEditText = findViewById(R.id.note_title_text);
         contentEditText = findViewById(R.id.notes_content_text);
         saveNoteBtn = findViewById(R.id.save_note_btn);
+
+        // receive data
+        title = getIntent().getStringExtra("title");
+        content = getIntent().getStringExtra("content");
+        docId = getIntent().getStringExtra("docId");
+
+        if (docId != null && !docId.isEmpty()) {
+            isEditMode = true;
+        }
+
+        titleEditText.setText(title);
+        contentEditText.setText(content);
+
+        if (isEditMode) {
+            pageTitleTextView.setText("Update Your Journal");
+        }
+
+        // Sets the date to current time when creating or updating journal
+        datePht.setText(Utility.timeStampToString(Timestamp.now()));
 
         saveNoteBtn.setOnClickListener((v) -> saveNote());
 
@@ -90,7 +114,6 @@ public class JournalDetailsActivity extends AppCompatActivity {
         }  else if (date == null || date.isEmpty()) {
             Log.w(TAG, "saveNote:failure");
             datePht.setError("Correct Date is required");
-            datePht.setText(Utility.timeStampToString(Timestamp.now()));
             return;
         }
 
@@ -106,7 +129,11 @@ public class JournalDetailsActivity extends AppCompatActivity {
 
     void saveJournalToFirebase(Journal journal) {
         DocumentReference documentReference;
-        documentReference = Utility.getCollectionReferenceForJournal().document();
+        if (isEditMode) {
+            documentReference = Utility.getCollectionReferenceForJournal().document(docId);
+        } else {
+            documentReference = Utility.getCollectionReferenceForJournal().document();
+        }
 
         documentReference.set(journal).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
