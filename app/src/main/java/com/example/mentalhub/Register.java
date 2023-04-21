@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Register extends AppCompatActivity {
 
-    TextInputEditText editTextName, editTextUsername, editTextEmail, editTextPassword;
+    EditText editTextName, editTextUsername, editTextEmail, editTextPassword;
     Button registerButton;
     FirebaseAuth mAuth;
     ProgressBar progressBar;
@@ -52,14 +53,12 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent);
-                finish();
             }
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
                 String name, username, email, password;
                 name = String.valueOf(editTextName.getText());
                 username = String.valueOf(editTextUsername.getText());
@@ -67,44 +66,35 @@ public class Register extends AppCompatActivity {
                 password = String.valueOf(editTextPassword.getText());
 
                 if (TextUtils.isEmpty(name)) {
-                    Toast.makeText(Register.this, "Enter your name", Toast.LENGTH_SHORT
-                    ).show();
-                }
-
-                if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(Register.this, "Enter your username",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(Register.this, "Enter your email", Toast.LENGTH_SHORT
-                    ).show();
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(Register.this, "Enter your password",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                progressBar.setVisibility(View.GONE);
-                                if (task.isSuccessful()) {
-                                    // If sign in succeeds, display a message to the user.
-                                    Log.d(TAG, "createUserWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Toast.makeText(Register.this, "Authentication Successful.",
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                    Toast.makeText(Register.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
+                    editTextName.setError("Enter your name");
+                } else if (TextUtils.isEmpty(username)) {
+                    editTextUsername.setError("Enter your username");
+                } else if (TextUtils.isEmpty(email)) {
+                    editTextEmail.setError("Enter your email");
+                } else if (TextUtils.isEmpty(password)) {
+                    editTextPassword.setError("Enter your password");
+                } else {
+                    progressBar.setVisibility(View.VISIBLE);
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    progressBar.setVisibility(View.GONE);
+                                    if (task.isSuccessful()) {
+                                        // If sign in succeeds, display a message to the user.
+                                        Log.d(TAG, "createUserWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Toast.makeText(Register.this, "Authentication Successful.",
+                                                Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        Toast.makeText(Register.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
 
             }
         });
