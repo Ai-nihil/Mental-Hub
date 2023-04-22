@@ -21,14 +21,14 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
+
         android:textSize="22dp"
         android:text="NAME:" />
 
         <EditText
             android:id="@+id/name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:gravity="center"
             android:layout_margin="10dp"
@@ -42,14 +42,14 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
+
         android:textSize="22dp"
         android:text="USERNAME:" />
 
         <EditText
             android:id="@+id/username"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:gravity="center"
             android:layout_margin="10dp"
@@ -63,14 +63,14 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
+
         android:textSize="22dp"
         android:text="EMAIL ADDRESS:" />
 
         <EditText
             android:id="@+id/emailAdd"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:ems="10"
             android:gravity="center"
             android:layout_margin="10dp"
@@ -84,14 +84,13 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="10dp"
         android:textSize="22dp"
         android:text="PASSWORD:" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="10dp"
             android:background="@drawable/customizededittext"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
@@ -114,16 +113,6 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/mybutton"
         android:text="Register" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/googleRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:padding="4dp"
-        android:text=" Register using google"
-        android:background="@drawable/mybutton"
-        android:drawableLeft="@drawable/google"/>
 
     <TextView
         android:id="@+id/loginNow"

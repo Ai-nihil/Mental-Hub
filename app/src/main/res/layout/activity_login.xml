@@ -21,7 +21,6 @@
         android:id="@+id/textView"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="EMAIL ADDRESS:"
         android:textSize="22dp" />
@@ -29,12 +28,13 @@
     <EditText
         android:id="@+id/emailAdd"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="10dp"
         android:background="@drawable/customizededittext"
         android:ems="10"
         android:gravity="center"
         android:hint="E-mail"
+        android:autofillHints="emailAddress"
         android:drawableLeft="@drawable/ic_baseline_email_24"
         android:inputType="textPersonName" />
 
@@ -42,7 +42,6 @@
         android:id="@+id/textView3"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="PASSWORD:"
         android:textSize="22dp" />
@@ -50,7 +49,7 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_margin="10dp"
         android:background="@drawable/customizededittext"
         android:drawableLeft="@drawable/ic_baseline_lock_24"
@@ -59,15 +58,17 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"></ProgressBar>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+        </ProgressBar>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginButton"
-        android:layout_width="223dp"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/mybutton"
@@ -78,10 +79,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:padding="4dp"
-        android:drawableLeft="@drawable/google"
-        android:text=" Login using google"
         android:background="@drawable/mybutton"
+        android:drawableLeft="@drawable/google"
+        android:padding="4dp"
+        android:text=" Sign in with google"
         android:textSize="16sp" />
 
     <TextView
