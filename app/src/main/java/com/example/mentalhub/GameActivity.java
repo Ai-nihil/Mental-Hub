@@ -46,6 +46,16 @@ public class GameActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), journaling.class);
                 startActivity(intent);
             });
+
+            // Button to log out the user
+            logoutBtn.setOnClickListener((View v) -> {
+                {
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
     }
 }

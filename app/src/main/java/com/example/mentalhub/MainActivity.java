@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         else {
-            // TODO: Implement google OAuth to easily get the user's name
-            textView.setText(user.getEmail());
+            // Gets display name of the user
+            textView.setText(user.getDisplayName());
 
             // When user opens the MainActivity they will instantly subscribe to the notification
             FirebaseMessaging.getInstance().subscribeToTopic("MentalHubNotification")

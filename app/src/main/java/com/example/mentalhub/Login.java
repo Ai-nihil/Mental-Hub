@@ -136,6 +136,7 @@ public class Login extends AppCompatActivity {
         startActivityForResult(intent, RC_SIGN_IN);
     }
 
+    // Google SSO
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -150,6 +151,7 @@ public class Login extends AppCompatActivity {
         }
     }
 
+    // Authentication in firebase
     private void firebaseAuth(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
