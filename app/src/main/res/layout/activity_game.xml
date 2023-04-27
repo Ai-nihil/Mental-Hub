@@ -5,49 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background"
+    android:background="@drawable/bgmaingame"
     tools:context=".GameActivity">
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cognitiveRestructuring"
-        android:layout_width="130dp"
-        android:layout_height="113dp"
-        android:layout_marginBottom="28dp"
-        android:text="@string/cognitive_Restruc"
-        android:drawableTop="@drawable/form"
-        android:background="@drawable/mybutton"
-        app:layout_constraintBottom_toTopOf="@+id/problemSolving"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/journaling"
-        android:layout_width="130dp"
-        android:layout_height="113dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/mybutton"
-        android:drawableTop="@drawable/journal"
-        android:text="@string/journaling"
-        app:layout_constraintBottom_toTopOf="@+id/cognitiveRestructuring"
-        app:layout_constraintEnd_toStartOf="@+id/mindfulnessRelaxation"
-        app:layout_constraintHorizontal_bias="0.036"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/breathingExercise"
-        android:layout_width="130dp"
-        android:layout_height="113dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/mybutton"
-        android:drawableTop="@drawable/breath"
-        android:text="@string/breathing"
-        app:layout_constraintBottom_toTopOf="@+id/problemSolving"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/cognitiveRestructuring" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mindfulnessRelaxation"
@@ -63,13 +22,54 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/breathingExercise"
+        android:layout_width="130dp"
+        android:layout_height="113dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/breath"
+        android:text="@string/breathing"
+        app:layout_constraintBottom_toTopOf="@+id/problemSolving"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cognitiveRestructuring" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cognitiveRestructuring"
+        android:layout_width="130dp"
+        android:layout_height="113dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/form"
+        android:text="@string/cognitive_Restruc"
+        app:layout_constraintBottom_toTopOf="@+id/problemSolving"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/journaling"
+        android:layout_width="130dp"
+        android:layout_height="113dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/mybutton"
+        android:drawableTop="@drawable/journal"
+        android:text="@string/journaling"
+        app:layout_constraintBottom_toTopOf="@+id/cognitiveRestructuring"
+        app:layout_constraintEnd_toStartOf="@+id/mindfulnessRelaxation"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/problemSolving"
         android:layout_width="346dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="92dp"
         android:background="@drawable/mybutton"
-        android:paddingLeft="10dp"
         android:drawableLeft="@drawable/problemsolve"
+        android:paddingLeft="10dp"
         android:text="@string/problem_solving"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,27 +77,29 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/relax"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_details" />
-
-    <TextView
         android:id="@+id/user_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="[Username]"
+        android:textSize="28sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.358" />
+        app:layout_constraintVertical_bias="0.266" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/relax"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.103"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_details" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logout"

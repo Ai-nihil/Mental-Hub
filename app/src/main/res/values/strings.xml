@@ -4,6 +4,7 @@
     <string name="delete">Delete</string>
     <string name="journaltitle">Journal Title</string>
     <string name="timestamp">Date Created</string>
+    <string name="tutorialText">Mental Hub is here to guide you through the application. If you are having a hard time navigating the application click the tutorial image.</string>
     <string name="journalhint">This can be journal content that can be long</string>
     <string name="date">What is the date today?</string>
     <string name="content">How are you? Write everything that happened to you here today.</string>

@@ -40,7 +40,7 @@ public class GameActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            userDetails.setText(user.getEmail());
+            userDetails.setText(user.getDisplayName());
 
             journalingButton.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), journaling.class);
