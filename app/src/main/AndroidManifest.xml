@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
+            android:name=".QuizDetailsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".GameActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar">
@@ -81,10 +88,11 @@
                 android:value="" />
         </activity>
 
-        <service android:name=".MyFirebaseMessagingService"
+        <service
+            android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGE_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGE_EVENT" />
             </intent-filter>
         </service>
     </application>

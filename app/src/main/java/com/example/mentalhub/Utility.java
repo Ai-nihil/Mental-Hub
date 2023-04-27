@@ -16,6 +16,12 @@ public class Utility {
                 .document(currentUser.getUid()).collection("my_journal");
     }
 
+    static CollectionReference getCollectionReferenceForQuiz() {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        return FirebaseFirestore.getInstance().collection("quiz")
+                .document(currentUser.getUid()).collection("my_quiz");
+    }
+
     static String timeStampToString(Timestamp timestamp) {
         return new SimpleDateFormat("MM/dd/yyyy").format(timestamp.toDate());
     }

@@ -2,14 +2,11 @@ package com.example.mentalhub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -62,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
+            eat26.setOnClickListener((View v) -> {
+                {
+                    Intent intent = new Intent(getApplicationContext(), Eat26.class);
+                    startActivity(intent);
+                }
+            });
+
             playNowBtn.setOnClickListener((View v) -> {
                 {
                     Intent intent = new Intent(getApplicationContext(), GameActivity.class);
@@ -69,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            eat26.setOnClickListener((View v) -> {
+            psychoeducationBtn.setOnClickListener((View v) -> {
                 {
-                    Intent intent = new Intent(getApplicationContext(), Eat26.class);
+                    Intent intent = new Intent(getApplicationContext(), QuizDetailsActivity.class);
                     startActivity(intent);
                 }
             });
