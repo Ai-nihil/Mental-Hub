@@ -1,4 +1,4 @@
-package com.example.mentalhub;
+package com.example.mentalhub.quiz;
 
 import static android.content.ContentValues.TAG;
 
@@ -8,10 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mentalhub.R;
+import com.example.mentalhub.journal.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;

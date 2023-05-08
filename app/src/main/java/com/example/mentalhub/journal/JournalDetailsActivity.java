@@ -1,4 +1,4 @@
-package com.example.mentalhub;
+package com.example.mentalhub.journal;
 
 import static android.content.ContentValues.TAG;
 
@@ -19,12 +19,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mentalhub.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
-import java.lang.annotation.Documented;
 import java.util.Calendar;
 
 public class JournalDetailsActivity extends AppCompatActivity {

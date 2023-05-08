@@ -2,6 +2,8 @@
     <string name="app_name">Mental Hub</string>
     <string name="title">Give your journal a title</string>
     <string name="delete">Delete</string>
+    <string name="cbtTitle">Intro to CBT: Why Thoughts Matter</string>
+    <string name="mindfulnessTitle">The Benefits of Mindfulness</string>
     <string name="journaltitle">Journal Title</string>
     <string name="timestamp">Date Created</string>
     <string name="tutorialText">Mental Hub is here to guide you through the application. If you are having a hard time navigating the application click the tutorial image.</string>
@@ -19,7 +21,7 @@
     <string name="relax">Relax and Play...</string>
     <string name="journaling">Journaling</string>
     <string name="cognitive_Restruc">Cognitive Restructuring</string>
-    <string name="breathing">Breathing Exercise</string>
+    <string name="breathing">Breathing</string>
     <string name="mindfulness">Mindfulness and Relaxation</string>
     <string name="problem_solving">Problem Solving</string>
     <string name="eat26Assessment">EAT26 Assessment</string>

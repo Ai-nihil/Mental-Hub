@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mentalhub.journal.journaling;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -15,10 +16,11 @@ public class GameActivity extends AppCompatActivity {
 
     // Global declaration of variables
     FirebaseAuth mAuth;
+    FirebaseUser user;
     Button logoutBtn, journalingButton, cognitiveRestructuringButton,
             mindfulnessRelaxationButton, breathingExerciseButton;
     TextView userDetails;
-    FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

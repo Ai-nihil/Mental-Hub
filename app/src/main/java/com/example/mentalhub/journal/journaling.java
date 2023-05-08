@@ -1,4 +1,4 @@
-package com.example.mentalhub;
+package com.example.mentalhub.journal;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,12 +8,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.example.mentalhub.R;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.Query;
-
-import java.util.Queue;
 
 public class journaling extends AppCompatActivity {
 

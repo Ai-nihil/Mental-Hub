@@ -1,4 +1,4 @@
-package com.example.mentalhub;
+package com.example.mentalhub.journal;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,7 +16,7 @@ public class Utility {
                 .document(currentUser.getUid()).collection("my_journal");
     }
 
-    static CollectionReference getCollectionReferenceForQuiz() {
+    public static CollectionReference getCollectionReferenceForQuiz() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         return FirebaseFirestore.getInstance().collection("quiz")
                 .document(currentUser.getUid()).collection("my_quiz");

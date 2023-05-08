@@ -1,4 +1,4 @@
-package com.example.mentalhub;
+package com.example.mentalhub.quiz;
 
 import com.google.firebase.Timestamp;
 
