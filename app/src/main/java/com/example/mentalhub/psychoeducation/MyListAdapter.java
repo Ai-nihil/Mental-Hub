@@ -1,6 +1,5 @@
-package com.example.mentalhub;
+package com.example.mentalhub.psychoeducation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -9,12 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import com.example.mentalhub.R;
+
 import java.util.List;
 
 import io.reactivex.rxjava3.annotations.NonNull;

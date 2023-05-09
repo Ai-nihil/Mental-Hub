@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mentalhub.quiz.QuizDetailsActivity;
+import com.example.mentalhub.psychoeducation.LessonActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             psychoeducationBtn.setOnClickListener((View v) -> {
                 {
-                    Intent intent = new Intent(getApplicationContext(), LessonActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), QuizOrLesson.class);
                     startActivity(intent);
                 }
             });
