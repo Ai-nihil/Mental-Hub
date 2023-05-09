@@ -102,7 +102,7 @@
     <TextView
         android:id="@+id/textView12"
         android:layout_width="265dp"
-        android:layout_height="74dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="@string/tutorialText"

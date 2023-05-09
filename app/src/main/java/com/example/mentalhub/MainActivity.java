@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Global declaration of variables
     FirebaseAuth mAuth;
+    FirebaseUser user;
     Button logoutButton, playNowBtn, eat26, psychoeducationBtn, checkProgressBtn;
     TextView textView;
-    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         logoutButton = findViewById(R.id.logout);
         eat26 = findViewById(R.id.eat26assessment);
         psychoeducationBtn = findViewById(R.id.psychoeducation);
         checkProgressBtn = findViewById(R.id.checkProgress);
         textView = findViewById(R.id.user_details);
         playNowBtn = findViewById(R.id.playNow);
-        user = mAuth.getCurrentUser();
         // Sends user to login page if there is no session for user
         if (user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -45,7 +45,11 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             // Gets display name of the user
-            textView.setText(user.getDisplayName());
+            if (user.getDisplayName() != null) {
+                textView.setText(user.getDisplayName());
+            } else {
+                textView.setText(user.getEmail());
+            }
 
             // When user opens the MainActivity they will instantly subscribe to the notification
             FirebaseMessaging.getInstance().subscribeToTopic("MentalHubNotification")
