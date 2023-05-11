@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mentalhub.journal.journaling;
+import com.example.mentalhub.journal.Journaling;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -45,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
             userDetails.setText(user.getDisplayName());
 
             journalingButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), journaling.class);
+                Intent intent = new Intent(getApplicationContext(), Journaling.class);
                 startActivity(intent);
             });
 

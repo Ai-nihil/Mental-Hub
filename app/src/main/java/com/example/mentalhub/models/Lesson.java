@@ -1,12 +1,12 @@
-package com.example.mentalhub.psychoeducation;
+package com.example.mentalhub.models;
 
-public class MyListData{
+public class Lesson {
 
     private String description;
     private int imgId;
     private String url;
 
-    public MyListData(String description, int imgId, String url) {
+    public Lesson(String description, int imgId, String url) {
         this.description = description;
         this.imgId = imgId;
         this.url = url;

@@ -1,4 +1,4 @@
-package com.example.mentalhub.journal;
+package com.example.mentalhub.models;
 
 import com.google.firebase.Timestamp;
 

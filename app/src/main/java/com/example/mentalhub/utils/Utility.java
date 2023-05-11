@@ -1,4 +1,4 @@
-package com.example.mentalhub.journal;
+package com.example.mentalhub.utils;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 
 public class Utility {
 
-    static CollectionReference getCollectionReferenceForJournal() {
+    public static CollectionReference getCollectionReferenceForJournal() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         return FirebaseFirestore.getInstance().collection("journal")
                 .document(currentUser.getUid()).collection("my_journal");
@@ -22,7 +22,7 @@ public class Utility {
                 .document(currentUser.getUid()).collection("my_quiz");
     }
 
-    static String timeStampToString(Timestamp timestamp) {
+    public static String timeStampToString(Timestamp timestamp) {
         return new SimpleDateFormat("MM/dd/yyyy").format(timestamp.toDate());
     }
 }

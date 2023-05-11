@@ -1,4 +1,4 @@
-package com.example.mentalhub.journal;
+package com.example.mentalhub.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mentalhub.R;
+import com.example.mentalhub.journal.JournalDetailsActivity;
+import com.example.mentalhub.models.Journal;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
@@ -25,14 +27,14 @@ public class JournalAdapter extends FirestoreRecyclerAdapter<Journal, JournalAda
 
     @Override
     protected void onBindViewHolder(@NonNull JournalViewHolder holder, int position, @NonNull Journal journal) {
-        holder.titleTextView.setText(journal.title);
-        holder.contentTextView.setText(journal.content);
-        holder.dateTextView.setText(journal.date);
+        holder.titleTextView.setText(journal.getTitle());
+        holder.contentTextView.setText(journal.getContent());
+        holder.dateTextView.setText(journal.getDate());
 
         holder.itemView.setOnClickListener((v) -> {
             Intent intent = new Intent(context, JournalDetailsActivity.class);
-            intent.putExtra("title", journal.title);
-            intent.putExtra("content", journal.content);
+            intent.putExtra("title", journal.getTitle());
+            intent.putExtra("content", journal.getContent());
 
             // Gets the snapshot of the current position of what was clicked
             String docId = this.getSnapshots().getSnapshot(position).getId();

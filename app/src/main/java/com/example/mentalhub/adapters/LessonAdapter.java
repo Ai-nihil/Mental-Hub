@@ -1,4 +1,4 @@
-package com.example.mentalhub.psychoeducation;
+package com.example.mentalhub.adapters;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,23 +12,24 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mentalhub.R;
+import com.example.mentalhub.models.Lesson;
 
 import java.util.List;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 
 
-public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder> {
+public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder> {
 
     // creating a variable for array list and context.
-    private List<MyListData> myListDataArrayList;
+    private List<Lesson> myListDataArrayList;
 
     // creating a constructor for our variables.
-    public MyListAdapter(List<MyListData> myListDataArrayList) {
+    public LessonAdapter(List<Lesson> myListDataArrayList) {
         this.myListDataArrayList = myListDataArrayList;
     }
 
-    public void setFilteredList(List<MyListData> filteredList) {
+    public void setFilteredList(List<Lesson> filteredList) {
         // below line is to add our filtered
         // list in our course array list.
         this.myListDataArrayList = filteredList;
@@ -39,7 +40,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     @NonNull
     @Override
-    public MyListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public LessonAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // below line is to inflate our layout.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.education_item, parent, false);
         return new ViewHolder(view);
@@ -48,7 +49,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // setting data to our views of recycler view.
-        MyListData model = myListDataArrayList.get(position);
+        Lesson model = myListDataArrayList.get(position);
         holder.textView.setText(model.getDescription());
         holder.imageView.setImageResource(model.getImgId());
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {

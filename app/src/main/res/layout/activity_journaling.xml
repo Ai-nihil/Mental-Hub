@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/journalBG"
-    tools:context=".journal.journaling">
+    tools:context=".journal.Journaling">
 
     <RelativeLayout
         android:id="@+id/title_bar_layout"

@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Material3.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Quizzing"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".QuizOrLesson"
             android:exported="false">
             <meta-data
@@ -23,14 +30,6 @@
         </activity>
         <activity
             android:name=".psychoeducation.LessonActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".quiz.QuizDetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar">
             <meta-data
@@ -54,7 +53,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".journal.journaling"
+            android:name=".journal.Journaling"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar">
             <meta-data

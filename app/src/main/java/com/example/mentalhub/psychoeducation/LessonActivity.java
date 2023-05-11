@@ -9,6 +9,8 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.mentalhub.R;
+import com.example.mentalhub.adapters.LessonAdapter;
+import com.example.mentalhub.models.Lesson;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,8 +26,8 @@ public class LessonActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     // variable for our adapter
     // class and array list
-    private MyListAdapter myListAdapter;
-    private ArrayList<MyListData> myListDataArrayList;
+    private LessonAdapter lessonAdapter;
+    private ArrayList<Lesson> myListDataArrayList;
     private SearchView searchView;
 
         @Override
@@ -54,39 +56,39 @@ public class LessonActivity extends AppCompatActivity {
 
             // No need to store this into firebase
             myListDataArrayList = new ArrayList<>();
-            myListDataArrayList.add(new MyListData("Intro to CBT: Why Thoughts Matter",
+            myListDataArrayList.add(new Lesson("Intro to CBT: Why Thoughts Matter",
                     R.drawable.cbt,
                     "https://www.therapistaid.com/therapy-article/cbt-why-thoughts-matter/cbt/adolescents"));
-            myListDataArrayList.add(new MyListData("The Benefits of Mindfulness",
+            myListDataArrayList.add(new Lesson("The Benefits of Mindfulness",
                     R.drawable.mindfullness,
                     "https://www.therapistaid.com/therapy-article/benefits-of-mindfulness/dbt/adolescents"));
-            myListDataArrayList.add(new MyListData("How to do Deep Breathing",
+            myListDataArrayList.add(new Lesson("How to do Deep Breathing",
                     R.drawable.breathrelax,
                     "https://www.therapistaid.com/therapy-video/deep-breathing-exercise/relaxation/none"));
-            myListDataArrayList.add(new MyListData("Positive Psychology Techniques",
+            myListDataArrayList.add(new Lesson("Positive Psychology Techniques",
                     R.drawable.positivepsych,
                     "https://www.therapistaid.com/therapy-guide/positive-psychology-techniques/self-esteem/none"));
-            myListDataArrayList.add(new MyListData("Relaxation Techniques",
+            myListDataArrayList.add(new Lesson("Relaxation Techniques",
                     R.drawable.relaxation,
                     "https://www.therapistaid.com/therapy-guide/relaxation-skills-guide/emotions/none#visualization"));
 
-            myListAdapter = new MyListAdapter(myListDataArrayList);
-            recyclerView.setAdapter(myListAdapter);
+            lessonAdapter = new LessonAdapter(myListDataArrayList);
+            recyclerView.setAdapter(lessonAdapter);
 
         }
 
     private void filterList(String text) {
-        List<MyListData> filteredList = new ArrayList<>();
-        for (MyListData myListData : myListDataArrayList) {
-            if (myListData.getDescription().toLowerCase().contains(text.toLowerCase())) {
-                filteredList.add(myListData);
+        List<Lesson> filteredList = new ArrayList<>();
+        for (Lesson lesson : myListDataArrayList) {
+            if (lesson.getDescription().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(lesson);
             }
         }
 
         if (filteredList.isEmpty()) {
             Toast.makeText(this, "Not found", Toast.LENGTH_SHORT).show();
         } else {
-            myListAdapter.setFilteredList(filteredList);
+            lessonAdapter.setFilteredList(filteredList);
         }
 
     }

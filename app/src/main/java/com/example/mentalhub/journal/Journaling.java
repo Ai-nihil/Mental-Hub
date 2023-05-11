@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 
 import com.example.mentalhub.R;
+import com.example.mentalhub.adapters.JournalAdapter;
+import com.example.mentalhub.models.Journal;
+import com.example.mentalhub.utils.Utility;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.Query;
 
-public class journaling extends AppCompatActivity {
+public class Journaling extends AppCompatActivity {
 
     JournalAdapter journalAdapter;
     FloatingActionButton addNoteBtn;
@@ -30,7 +33,7 @@ public class journaling extends AppCompatActivity {
         menuBtn = findViewById(R.id.menu_btn);
 
         addNoteBtn.setOnClickListener((v)
-                -> startActivity(new Intent(journaling.this,
+                -> startActivity(new Intent(Journaling.this,
                 JournalDetailsActivity.class)));
         menuBtn.setOnClickListener((v) -> showMenu());
         setupRecyclerView();

@@ -1,6 +1,5 @@
 package com.example.mentalhub;
 
-import com.example.mentalhub.quiz.*;
 import com.example.mentalhub.psychoeducation.*;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -46,7 +45,7 @@ public class QuizOrLesson extends AppCompatActivity {
 
             quizImg.setOnClickListener((View v) -> {
                 {
-                    Intent intent = new Intent(getApplicationContext(), QuizDetailsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LessonActivity.class);
                     startActivity(intent);
                 }
             });
