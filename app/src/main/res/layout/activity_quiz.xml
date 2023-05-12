@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".quiz.Quiz">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/quizIcon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="80dp"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:id="@+id/quizTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quizIcon"
+        android:layout_marginTop="37dp"
+        android:layout_marginStart="100dp"
+        android:fontFamily="@font/monsterratalternates_black"
+        android:text="Choose a topic"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizIcon" />
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_below="@id/quizTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizTitle">
+
+        <LinearLayout
+            android:id="@+id/cbtLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/gradient_background"
+            android:elevation="8dp"
+            android:orientation="vertical">
+            
+            <ImageView
+                android:id="@+id/cbtIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="5dp"/>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Cognitive Behavioral Therapy (CBT)"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:fontFamily="@font/proxima_nova_front"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mindfulnessLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/gradient_background"
+            android:elevation="8dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mindfulnessIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mindfulness"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:elevation="5dp"
+                android:fontFamily="@font/proxima_nova_front"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_below="@id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quizTitle">
+
+        <LinearLayout
+            android:id="@+id/positivepsychLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/gradient_background"
+            android:elevation="8dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/positivepsychIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Positive Psychology Technique"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:elevation="8dp"
+                android:fontFamily="@font/proxima_nova_front"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/relaxationLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/gradient_background"
+            android:elevation="8dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/relaxationIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:elevation="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Relaxation Technique"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:elevation="5dp"
+                android:fontFamily="@font/proxima_nova_front"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Quiz"
+            android:layout_below="@+id/linear2"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/mybutton"/>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -59,4 +59,9 @@
     <string name="question26">Enjoy trying new rich foods</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="option_1">Option 1</string>
+    <string name="questions_will_be_shown_here">Questions will be shown here</string>
+    <string name="option_2">option 2</string>
+    <string name="option_3">option 3</string>
+    <string name="option_4">option 4</string>
 </resources>
