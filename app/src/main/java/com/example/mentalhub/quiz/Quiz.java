@@ -74,7 +74,7 @@ public class Quiz extends AppCompatActivity {
         });
 
         positivepsychLayout.setOnClickListener((v) -> {
-            selectedTopicName = "cbtLayout";
+            selectedTopicName = "positivepsychLayout";
 
             positivepsychLayout.setBackgroundResource(R.drawable.round_back_white_stroke);
             mindfulnessLayout.setBackgroundResource(drawable.gradient_background);
@@ -83,7 +83,7 @@ public class Quiz extends AppCompatActivity {
         });
 
         relaxationLayout.setOnClickListener((v) -> {
-            selectedTopicName = "mindfulnessLayout";
+            selectedTopicName = "relaxationLayout";
 
             relaxationLayout.setBackgroundResource(R.drawable.round_back_white_stroke);
             positivepsychLayout.setBackgroundResource(drawable.gradient_background);
@@ -95,9 +95,10 @@ public class Quiz extends AppCompatActivity {
             if(selectedTopicName.isEmpty()) {
                 Toast.makeText(Quiz.this, "Please choose a topic", Toast.LENGTH_SHORT).show();
             } else {
-                Intent intent = new Intent(Quiz.this, QuizTest.class);
+                Intent intent = new Intent(Quiz.this, QuizActivity.class);
                 intent.putExtra("selectedTopic", selectedTopicName);
                 startActivity(intent);
+                finish();
             }
         });
     }

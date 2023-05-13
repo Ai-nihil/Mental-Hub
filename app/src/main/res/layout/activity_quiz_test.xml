@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/background"
-    tools:context=".quiz.QuizTest">
+    tools:context=".quiz.QuizActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -67,11 +67,11 @@
         android:elevation="3dp"
         android:gravity="center"
         android:padding="15dp"
-        android:text="Questions"
+        android:text="1 / 10"
         android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/question"
+        android:id="@+id/questionsLists"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
