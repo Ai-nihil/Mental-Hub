@@ -5,6 +5,7 @@
     <string name="cbtTitle">Intro to CBT: Why Thoughts Matter</string>
     <string name="mindfulnessTitle">The Benefits of Mindfulness</string>
     <string name="journaltitle">Journal Title</string>
+    <string name="firebase_database_url">https://mentalhub-4fd78-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
     <string name="timestamp">Date Created</string>
     <string name="tutorialText">Mental Hub is here to guide you through the application. If you are having a hard time navigating the application click the tutorial image.</string>
     <string name="journalhint">This can be journal content that can be long</string>

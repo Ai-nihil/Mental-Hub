@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -56,39 +57,19 @@ public class Quiz extends AppCompatActivity {
         Glide.with(Quiz.this).load(relaxationIconImage).centerCrop().into(relaxationIcon);
 
         cbtLayout.setOnClickListener((v) -> {
-            selectedTopicName = "cbtLayout";
-
-            cbtLayout.setBackgroundResource(R.drawable.round_back_white_stroke);
-            mindfulnessLayout.setBackgroundResource(R.drawable.gradient_background);
-            positivepsychLayout.setBackgroundResource(R.drawable.gradient_background);
-            relaxationLayout.setBackgroundResource(R.drawable.gradient_background);
+            chooseTopic("cbtLayout", v);
         });
 
         mindfulnessLayout.setOnClickListener((v) -> {
-            selectedTopicName = "mindfulnessLayout";
-
-            mindfulnessLayout.setBackgroundResource(R.drawable.round_back_white_stroke);
-            cbtLayout.setBackgroundResource(drawable.gradient_background);
-            positivepsychLayout.setBackgroundResource(R.drawable.gradient_background);
-            relaxationLayout.setBackgroundResource(R.drawable.gradient_background);
+            chooseTopic("mindfulnessLayout", v);
         });
 
         positivepsychLayout.setOnClickListener((v) -> {
-            selectedTopicName = "positivepsychLayout";
-
-            positivepsychLayout.setBackgroundResource(R.drawable.round_back_white_stroke);
-            mindfulnessLayout.setBackgroundResource(drawable.gradient_background);
-            cbtLayout.setBackgroundResource(drawable.gradient_background);
-            relaxationLayout.setBackgroundResource(R.drawable.gradient_background);
+            chooseTopic("positivepsychLayout", v);
         });
 
         relaxationLayout.setOnClickListener((v) -> {
-            selectedTopicName = "relaxationLayout";
-
-            relaxationLayout.setBackgroundResource(R.drawable.round_back_white_stroke);
-            positivepsychLayout.setBackgroundResource(drawable.gradient_background);
-            mindfulnessLayout.setBackgroundResource(drawable.gradient_background);
-            cbtLayout.setBackgroundResource(drawable.gradient_background);
+                chooseTopic("relaxationLayout", v);
         });
 
         startButton.setOnClickListener((v)-> {
@@ -101,5 +82,25 @@ public class Quiz extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private void chooseTopic(String topicName, View topicLayout) {
+
+        // assign java to selectedTopicName
+        selectedTopicName = topicName;
+
+        // de-select other layouts
+        deSelectAllLayouts();
+
+        // select java layout
+        topicLayout.setBackgroundResource(drawable.round_back_white_stroke);
+    }
+
+    private void deSelectAllLayouts() {
+
+        cbtLayout.setBackgroundResource(drawable.gradient_background);
+        relaxationLayout.setBackgroundResource(drawable.gradient_background);
+        mindfulnessLayout.setBackgroundResource(drawable.gradient_background);
+        positivepsychLayout.setBackgroundResource(drawable.gradient_background);
+        // TODO topics must be added here
     }
 }
