@@ -275,7 +275,7 @@ public class QuizActivity extends AppCompatActivity {
                 // Open result activity along with correct and incorrect answers
                 Intent intent = new Intent(QuizActivity.this, QuizResults.class);
                 intent.putExtra("correct", getCorrectAnswers());
-                intent.putExtra("incorrect", getIncorrectAnswers());
+                intent.putExtra("numberOfQuestions", questionsLists.size());
                 startActivity(intent);
             }
         };
@@ -338,10 +338,10 @@ public class QuizActivity extends AppCompatActivity {
             option4.setText(questionsLists.get(currentQuestionPosition).getOption4());
         } else {
 
-            // Open result activity along with correct and incorrect answers
+            // Open result activity along with correct and size of questions list
             Intent intent = new Intent(QuizActivity.this, QuizResults.class);
             intent.putExtra("correct", getCorrectAnswers());
-            intent.putExtra("incorrect", getIncorrectAnswers());
+            intent.putExtra("numberOfQuestions", questionsLists.size());
             startActivity(intent);
 
             // finish(destroy) this activity
@@ -363,22 +363,6 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
         return correctAnswers;
-    }
-
-    private int getIncorrectAnswers() {
-
-        int incorrectAnswers = 0;
-
-        for (int i = 0; i < questionsLists.size(); i++) {
-            final String getUserSelectedOption = questionsLists.get(i).getUserSelectedAnswer();
-            final String getAnswer = questionsLists.get(i).getAnswer();
-
-            // compare user selected option with original answer
-            if (!getUserSelectedOption.equals(getAnswer)) {
-                incorrectAnswers++;
-            }
-        }
-        return incorrectAnswers;
     }
 
     @Override
