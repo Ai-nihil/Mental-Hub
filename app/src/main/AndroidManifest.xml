@@ -75,7 +75,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Eat26"
+            android:name=".screening.Eat26"
             android:exported="false"
             android:theme="@style/Theme.Material3.Light.NoActionBar">
             <meta-data

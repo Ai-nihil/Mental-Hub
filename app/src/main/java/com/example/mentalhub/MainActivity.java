@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mentalhub.psychoeducation.LessonActivity;
+import com.example.mentalhub.screening.Eat26;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser user;
     Button logoutButton, playNowBtn, eat26, psychoeducationBtn, checkProgressBtn;
     TextView textView;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
         else {
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference();
             // Gets display name of the user
             if (user.getDisplayName() != null) {
                 textView.setText(user.getDisplayName());
@@ -51,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(user.getEmail());
             }
 
-            // When user opens the MainActivity they will instantly subscribe to the notification
+            // When user opens the MainActivity they will be asked to subscribe to the notification
             FirebaseMessaging.getInstance().subscribeToTopic("MentalHubNotification")
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

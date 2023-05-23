@@ -16,10 +16,10 @@ public class Utility {
                 .document(currentUser.getUid()).collection("my_journal");
     }
 
-    public static CollectionReference getCollectionReferenceForQuiz() {
+    public static CollectionReference getCollectionReferenceForResults() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        return FirebaseFirestore.getInstance().collection("quiz")
-                .document(currentUser.getUid()).collection("my_quiz");
+        return FirebaseFirestore.getInstance().collection("result")
+                .document(currentUser.getUid()).collection("my_result");
     }
 
     public static String timeStampToString(Timestamp timestamp) {

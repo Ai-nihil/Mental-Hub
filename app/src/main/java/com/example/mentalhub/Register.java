@@ -17,17 +17,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Objects;
 
 public class Register extends AppCompatActivity {
 
     EditText editTextName, editTextUsername, editTextEmail, editTextPassword;
     Button registerButton;
     FirebaseAuth mAuth;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     ProgressBar progressBar;
     TextView textView;
 
@@ -47,6 +56,9 @@ public class Register extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +96,29 @@ public class Register extends AppCompatActivity {
                                         // If sign in succeeds, display a message to the user.
                                         Log.d(TAG, "createUserWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Toast.makeText(Register.this, "Authentication Successful.",
-                                                Toast.LENGTH_SHORT).show();
+                                        HashMap<String, Object> hashMap = new HashMap<>();
+                                        hashMap.put("name", name);
+                                        hashMap.put("email", email);
+                                        hashMap.put("password", password);
+                                        hashMap.put("userId", user.getUid());
+                                        assert user != null;
+                                        databaseReference.child("Users")
+                                                .child(user.getUid())
+                                                .setValue(hashMap)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        Toast.makeText(Register.this, "Authentication Successful.",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(Register.this, "" + e.getMessage(),
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());

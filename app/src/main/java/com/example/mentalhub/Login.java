@@ -160,7 +160,6 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-
                             Users users = new Users();
                             assert user != null;
                             users.setUserId(user.getUid());
