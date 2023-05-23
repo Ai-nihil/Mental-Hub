@@ -155,6 +155,7 @@ public class Login extends AppCompatActivity {
                             users.setName(user.getDisplayName());
                             users.setProfile(Objects.requireNonNull(user.getPhotoUrl()).toString());
 
+                            database.setPersistenceEnabled(true);
                             database.getReference().child("Users")
                                     .child(user.getUid()).setValue(users);
 

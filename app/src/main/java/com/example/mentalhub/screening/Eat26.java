@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -20,6 +21,8 @@ import com.example.mentalhub.models.Journal;
 import com.example.mentalhub.utils.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +37,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Eat26 extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    String userId;
 
     RadioGroup question1, question2, question3, question4, question5, question6, question7, question8,
             question9, question10, question11, question12, question13, question14, question15, question16,
@@ -53,6 +62,9 @@ public class Eat26 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eat26);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         question1 = findViewById(R.id.question1);
         question2 = findViewById(R.id.question2);
@@ -107,8 +119,14 @@ public class Eat26 extends AppCompatActivity {
             }
             if (allQuestionsAnswered) {
                 Toast.makeText(Eat26.this, "Result: " + result,
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
                 //TODO: Add the results into firebase
+                firebaseDatabase = FirebaseDatabase.getInstance();
+                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+                databaseReference = firebaseDatabase.getReference();
+                userId = user.getUid();
+                databaseReference.child("Users").child(user.getUid()).child("result").setValue(result);
+                databaseReference.keepSynced(true);
                 /*
                 Intent intent = new Intent(Eat26.this, Register.class);
                 startActivity(intent);
