@@ -1,16 +1,25 @@
 package com.example.mentalhub;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mentalhub.journal.Journaling;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -20,6 +29,9 @@ public class GameActivity extends AppCompatActivity {
     Button logoutBtn, journalingButton, cognitiveRestructuringButton,
             mindfulnessRelaxationButton, breathingExerciseButton;
     TextView userDetails;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    String userId;
 
 
     @Override
@@ -41,8 +53,26 @@ public class GameActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);
             finish();
-        } else {
-            userDetails.setText(user.getDisplayName());
+        }
+        else {
+            // Gets display name of the user
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference();
+            userId = user.getUid();
+            if (user.getDisplayName() != null) {
+                userDetails.setText(user.getDisplayName());
+            } else {
+                databaseReference.child("Users").child(user.getUid()).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if(!task.isSuccessful()) {
+                            Log.e("firebase", "Error getting data", task.getException());
+                        } else {
+                            userDetails.setText(Objects.requireNonNull(task.getResult().getValue()).toString());
+                        }
+                    }
+                });
+            }
 
             journalingButton.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), Journaling.class);
