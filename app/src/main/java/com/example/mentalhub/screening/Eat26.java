@@ -122,11 +122,9 @@ public class Eat26 extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 //TODO: Add the results into firebase
                 firebaseDatabase = FirebaseDatabase.getInstance();
-                FirebaseDatabase.getInstance().setPersistenceEnabled(true);
                 databaseReference = firebaseDatabase.getReference();
                 userId = user.getUid();
                 databaseReference.child("Users").child(user.getUid()).child("result").setValue(result);
-                databaseReference.keepSynced(true);
                 /*
                 Intent intent = new Intent(Eat26.this, Register.class);
                 startActivity(intent);

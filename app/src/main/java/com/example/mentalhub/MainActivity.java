@@ -61,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             // Gets display name of the user
             firebaseDatabase = FirebaseDatabase.getInstance();
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             databaseReference = firebaseDatabase.getReference();
-            databaseReference.keepSynced(true);
             userId = user.getUid();
             if (user.getDisplayName() != null) {
                 textView.setText(user.getDisplayName());
