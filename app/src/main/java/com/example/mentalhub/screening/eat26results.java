@@ -72,10 +72,10 @@ public class eat26results extends AppCompatActivity {
                                             if (oralControlTask.isSuccessful()) {
                                                 int oralControlScore = Integer.parseInt(String.valueOf(oralControlTask.getResult().getValue()));
 
-                                                if (dietingScore >= bulimiaScore && dietingScore >= oralControlScore) {
+                                                if (bulimiaScore >= dietingScore && bulimiaScore >= oralControlScore) {
                                                     possibleRisk.setText("Bulimia and food preoccupation (EAT-BUL)");
                                                     riskDescription.setText("The preoccupation with thoughts about food and attempts to vomit food eaten during a binge");
-                                                } else if (bulimiaScore >= oralControlScore) {
+                                                } else if (dietingScore >= oralControlScore) {
                                                     possibleRisk.setText("Dietary (EAT-DIET)");
                                                     riskDescription.setText("The preoccupation with being thinner and avoidance of fattening foods");
                                                 } else {
