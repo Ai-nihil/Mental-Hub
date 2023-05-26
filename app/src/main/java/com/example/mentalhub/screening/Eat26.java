@@ -42,16 +42,20 @@ public class Eat26 extends AppCompatActivity {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String userId;
 
     RadioGroup question1, question2, question3, question4, question5, question6, question7, question8,
             question9, question10, question11, question12, question13, question14, question15, question16,
             question17, question18, question19, question20, question21, question22, question23, question24,
             question25, question26;
 
-    int result = 0;
+    int result, dietingPoints, bulimiaPoints, oralControlPoints;
     int radioGroupListSnapShot;
     boolean allQuestionsAnswered = false;
+
+    // Based on EAT26 ARTICLE
+    int[] dietingNumbers = {1, 6, 7, 10, 11, 12, 14, 16, 17, 22, 23, 24, 26};
+    int[] bulimiaNumbers = {3, 4, 9, 18, 21, 25};
+    int[] oralControlNumbers = {2, 5, 8, 13, 15, 19, 20};
 
     Button submitButton;
     List<Integer> arrayList = new ArrayList<>();
@@ -103,34 +107,65 @@ public class Eat26 extends AppCompatActivity {
             arrayList.clear();
             allQuestionsAnswered = true;
             result = 0;
+            dietingPoints = 0;
+            bulimiaPoints = 0;
+            oralControlPoints = 0;
             //An algorithm that will add the weight of all answers and output the value
             // that will be used to determine what the user is at the potential risk of.
             for (int i = 0; i < radioGroupList.size(); i++) {
+                // Gets the radioButton checked in the radioGroup
                 radioGroupListSnapShot = radioGroupList.get(i).getCheckedRadioButtonId();
+                // adds the snapshotted value into the arrayList
                 arrayList.add(radioGroupListSnapShot);
+                // if there is radioGroup which has no radioButton that is checked
                 if (radioGroupListSnapShot == -1) {
                     allQuestionsAnswered = false;
                     Toast.makeText(Eat26.this, "Please answer all the questions",
                             Toast.LENGTH_SHORT).show();
                 } else if (!arrayList.contains(-1)){
+                    // finds the id of the said radioButton
                     radioButtonBuffer = findViewById(radioGroupListSnapShot);
-                    result += Integer.parseInt(String.valueOf(radioButtonBuffer.getTag()));
+                    // gets the tag of the said radioButton
+                    int tagValue = Integer.parseInt(String.valueOf(radioButtonBuffer.getTag()));
+
+                    // adds points to the risk category based on number
+                    if (contains(dietingNumbers, i + 1)) {
+                        dietingPoints += tagValue;
+                    } else if (contains(bulimiaNumbers, i + 1)) {
+                        bulimiaPoints += tagValue;
+                    } else if (contains(oralControlNumbers, i + 1)) {
+                        oralControlPoints += tagValue;
+                    }
+                    // adds the value of the tag to the overall result
+                    result += tagValue;
                 }
             }
+
             if (allQuestionsAnswered) {
                 Toast.makeText(Eat26.this, "Result: " + result,
                         Toast.LENGTH_SHORT).show();
-                //TODO: Add the results into firebase
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference = firebaseDatabase.getReference();
-                userId = user.getUid();
+                // inserts value of result into the database
                 databaseReference.child("Users").child(user.getUid()).child("result").setValue(result);
-                /*
-                Intent intent = new Intent(Eat26.this, Register.class);
+                databaseReference.child("Users").child(user.getUid()).child("bulimiaPoints").setValue(bulimiaPoints);
+                databaseReference.child("Users").child(user.getUid()).child("oralControlPoints").setValue(oralControlPoints);
+                databaseReference.child("Users").child(user.getUid()).child("dietingPoints").setValue(dietingPoints);
+                // Moves to another activity
+                Intent intent = new Intent(Eat26.this, eat26results.class);
                 startActivity(intent);
                 finish();
-                */
             }
         });
+    }
+
+    // Function that is called to compare value
+    public static boolean contains(int[] array, int key) {
+        for (int i : array) {
+            if (i == key) {
+                return true;
+            }
+        }
+        return false;
     }
 }

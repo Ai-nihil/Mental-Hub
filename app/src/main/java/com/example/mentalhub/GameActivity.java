@@ -41,13 +41,14 @@ public class GameActivity extends AppCompatActivity {
 
         // Instantiating variables
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         userDetails = findViewById(R.id.user_details);
         logoutBtn = findViewById(R.id.logout);
         journalingButton = findViewById(R.id.journaling);
         cognitiveRestructuringButton = findViewById(R.id.cognitiveRestructuring);
         mindfulnessRelaxationButton = findViewById(R.id.mindfulnessRelaxation);
         breathingExerciseButton = findViewById(R.id.breathingExercise);
-        user = mAuth.getCurrentUser();
+
         // Sends user to login page if there is no session for user
         if (user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);

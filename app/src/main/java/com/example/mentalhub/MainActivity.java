@@ -10,8 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mentalhub.screening.Eat26;
+import com.example.mentalhub.screening.*;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     String userId;
-    Button logoutButton, playNowBtn, eat26, psychoeducationBtn, checkProgressBtn;
+    Button logoutButton, playNowBtn, eat26, eat26ResultButton, psychoeducationBtn, checkProgressBtn;
     TextView textView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         logoutButton = findViewById(R.id.logout);
         eat26 = findViewById(R.id.eat26assessment);
+        eat26ResultButton = findViewById(R.id.eat26Results);
         psychoeducationBtn = findViewById(R.id.psychoeducation);
         checkProgressBtn = findViewById(R.id.checkProgress);
         textView = findViewById(R.id.user_details);
@@ -111,6 +114,24 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            eat26ResultButton.setOnClickListener((View v) -> {
+                {
+                    Intent intent = new Intent(getApplicationContext(), eat26results.class);
+                    startActivity(intent);
+                }
+            });
+
+            // Hides the EAT26RESULTBUTTON if the user has yet to take the eat26 assessment
+            databaseReference.child("Users").child(user.getUid()).child("result").get().addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+                @Override
+                public void onSuccess(DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        eat26ResultButton.setVisibility(View.GONE);
+                    }
+                }
+            });
+
         }
         // Button to log out the user
         logoutButton.setOnClickListener((View v) -> {
