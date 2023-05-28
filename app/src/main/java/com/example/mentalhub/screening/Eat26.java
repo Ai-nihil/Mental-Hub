@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.mentalhub.R;
 import com.example.mentalhub.Register;
+import com.example.mentalhub.Users;
 import com.example.mentalhub.journal.JournalDetailsActivity;
 import com.example.mentalhub.models.Journal;
 import com.example.mentalhub.utils.Utility;
@@ -147,6 +148,8 @@ public class Eat26 extends AppCompatActivity {
                 firebaseDatabase = FirebaseDatabase.getInstance();
                 databaseReference = firebaseDatabase.getReference();
                 // inserts value of result into the database
+                FirebaseUser user = mAuth.getCurrentUser();
+                assert user != null;
                 databaseReference.child("Users").child(user.getUid()).child("result").setValue(result);
                 databaseReference.child("Users").child(user.getUid()).child("bulimiaPoints").setValue(bulimiaPoints);
                 databaseReference.child("Users").child(user.getUid()).child("oralControlPoints").setValue(oralControlPoints);

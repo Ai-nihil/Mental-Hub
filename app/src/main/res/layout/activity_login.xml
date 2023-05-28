@@ -82,6 +82,7 @@
         android:background="@drawable/mybutton"
         android:drawableLeft="@drawable/google"
         android:padding="4dp"
+        android:visibility="gone"
         android:text=" Sign in with google"
         android:textSize="16sp" />
 

@@ -1,5 +1,7 @@
 package com.example.mentalhub;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mentalhub.screening.*;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -127,7 +130,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     if (!dataSnapshot.exists()) {
-                        eat26ResultButton.setVisibility(View.GONE);
+                        eat26ResultButton.setVisibility(View.INVISIBLE);
+                    } else {
+                        eat26ResultButton.setVisibility(View.VISIBLE);
                     }
                 }
             });
