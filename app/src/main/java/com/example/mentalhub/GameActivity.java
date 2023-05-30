@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mentalhub.cognitive.Cognitive;
+import com.example.mentalhub.cognitive.Tutorial;
 import com.example.mentalhub.journal.Journaling;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -77,6 +79,11 @@ public class GameActivity extends AppCompatActivity {
 
             journalingButton.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), Journaling.class);
+                startActivity(intent);
+            });
+
+            cognitiveRestructuringButton.setOnClickListener((View v) -> {
+                Intent intent = new Intent(getApplicationContext(), Tutorial.class);
                 startActivity(intent);
             });
 
