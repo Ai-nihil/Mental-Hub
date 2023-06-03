@@ -1,0 +1,192 @@
+Index: app/src/main/java/com/example/mentalhub/GameActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.mentalhub;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\n\r\nimport com.example.mentalhub.journal.Journaling;\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.auth.FirebaseUser;\r\n\r\npublic class GameActivity extends AppCompatActivity {\r\n\r\n    // Global declaration of variables\r\n    FirebaseAuth mAuth;\r\n    FirebaseUser user;\r\n    Button logoutBtn, journalingButton, cognitiveRestructuringButton,\r\n            mindfulnessRelaxationButton, breathingExerciseButton;\r\n    TextView userDetails;\r\n\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_game);\r\n\r\n        // Instantiating variables\r\n        mAuth = FirebaseAuth.getInstance();\r\n        userDetails = findViewById(R.id.user_details);\r\n        logoutBtn = findViewById(R.id.logout);\r\n        journalingButton = findViewById(R.id.journaling);\r\n        cognitiveRestructuringButton = findViewById(R.id.cognitiveRestructuring);\r\n        mindfulnessRelaxationButton = findViewById(R.id.mindfulnessRelaxation);\r\n        breathingExerciseButton = findViewById(R.id.breathingExercise);\r\n        user = mAuth.getCurrentUser();\r\n        // Sends user to login page if there is no session for user\r\n        if (user == null) {\r\n            Intent intent = new Intent(getApplicationContext(), Login.class);\r\n            startActivity(intent);\r\n            finish();\r\n        } else {\r\n            userDetails.setText(user.getDisplayName());\r\n\r\n            journalingButton.setOnClickListener((View v) -> {\r\n                Intent intent = new Intent(getApplicationContext(), Journaling.class);\r\n                startActivity(intent);\r\n            });\r\n\r\n            // Button to log out the user\r\n            logoutBtn.setOnClickListener((View v) -> {\r\n                {\r\n                    FirebaseAuth.getInstance().signOut();\r\n                    Intent intent = new Intent(getApplicationContext(), Login.class);\r\n                    startActivity(intent);\r\n                    finish();\r\n                }\r\n            });\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/mentalhub/GameActivity.java b/app/src/main/java/com/example/mentalhub/GameActivity.java
+--- a/app/src/main/java/com/example/mentalhub/GameActivity.java	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/app/src/main/java/com/example/mentalhub/GameActivity.java	(date 1685362609291)
+@@ -8,6 +8,8 @@
+ import android.widget.Button;
+ import android.widget.TextView;
+ 
++import com.example.mentalhub.cognitive.Cognitive;
++import com.example.mentalhub.cognitive.Tutorial;
+ import com.example.mentalhub.journal.Journaling;
+ import com.google.firebase.auth.FirebaseAuth;
+ import com.google.firebase.auth.FirebaseUser;
+@@ -48,6 +50,11 @@
+                 Intent intent = new Intent(getApplicationContext(), Journaling.class);
+                 startActivity(intent);
+             });
++
++            cognitiveRestructuringButton.setOnClickListener((View v) -> {
++                Intent intent = new Intent(getApplicationContext(), Tutorial.class);
++                startActivity(intent);
++            });
+ 
+             // Button to log out the user
+             logoutBtn.setOnClickListener((View v) -> {
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ /dev/null	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\">\r\n\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n\r\n    <application\r\n        android:allowBackup=\"true\"\r\n        android:dataExtractionRules=\"@xml/data_extraction_rules\"\r\n        android:fullBackupContent=\"@xml/backup_rules\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/Theme.Material3.Light.NoActionBar\"\r\n        tools:targetApi=\"31\">\r\n        <activity\r\n            android:name=\".quiz.QuizResults\"\r\n            android:exported=\"true\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".quiz.QuizActivity\"\r\n            android:exported=\"true\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".quiz.Quiz\"\r\n            android:exported=\"true\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".QuizOrLesson\"\r\n            android:exported=\"false\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".psychoeducation.LessonActivity\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".GameActivity\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".journal.JournalDetailsActivity\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".journal.Journaling\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".Eat26\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".Register\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".SplashScreen\"\r\n            android:exported=\"true\"\r\n            android:theme=\"@style/SplashScreen\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n        </activity>\r\n        <activity\r\n            android:name=\".Login\"\r\n            android:exported=\"true\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n        <activity\r\n            android:name=\".MainActivity\"\r\n            android:exported=\"false\"\r\n            android:theme=\"@style/Theme.Material3.Light.NoActionBar\">\r\n            <meta-data\r\n                android:name=\"android.app.lib_name\"\r\n                android:value=\"\" />\r\n        </activity>\r\n\r\n        <service\r\n            android:name=\".MyFirebaseMessagingService\"\r\n            android:exported=\"false\">\r\n            <intent-filter>\r\n                <action android:name=\"com.google.firebase.MESSAGE_EVENT\" />\r\n            </intent-filter>\r\n        </service>\r\n    </application>\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+--- a/app/src/main/AndroidManifest.xml	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/app/src/main/AndroidManifest.xml	(date 1685363401059)
+@@ -74,6 +74,10 @@
+                 android:name="android.app.lib_name"
+                 android:value="" />
+         </activity>
++        <activity android:name=".cognitive.Cognitive"
++            android:exported="false"
++            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
++
+         <activity
+             android:name=".Eat26"
+             android:exported="false"
+@@ -124,6 +128,9 @@
+                 <action android:name="com.google.firebase.MESSAGE_EVENT" />
+             </intent-filter>
+         </service>
++        <activity android:name=".cognitive.Tutorial">
++
++        </activity>
+     </application>
+ 
+ </manifest>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Mental Hub</string>\r\n    <string name=\"title\">Give your journal a title</string>\r\n    <string name=\"delete\">Delete</string>\r\n    <string name=\"cbtTitle\">Intro to CBT: Why Thoughts Matter</string>\r\n    <string name=\"mindfulnessTitle\">The Benefits of Mindfulness</string>\r\n    <string name=\"journaltitle\">Journal Title</string>\r\n    <string name=\"firebase_database_url\">https://mentalhub-4fd78-default-rtdb.asia-southeast1.firebasedatabase.app/</string>\r\n    <string name=\"timestamp\">Date Created</string>\r\n    <string name=\"tutorialText\">Mental Hub is here to guide you through the application. If you are having a hard time navigating the application click the tutorial image.</string>\r\n    <string name=\"journalhint\">This can be journal content that can be long</string>\r\n    <string name=\"date\">What is the date today?</string>\r\n    <string name=\"content\">How are you? Write everything that happened to you here today.</string>\r\n    <string name=\"eat26\">Eat-26</string>\r\n    <string name=\"submit\">submit</string>\r\n    <string name=\"always\">Always</string>\r\n    <string name=\"usually\">Usually</string>\r\n    <string name=\"often\">Often</string>\r\n    <string name=\"sometimes\">Sometimes</string>\r\n    <string name=\"rarely\">Rarely</string>\r\n    <string name=\"never\">Never</string>\r\n    <string name=\"relax\">Relax and Play...</string>\r\n    <string name=\"journaling\">Journaling</string>\r\n    <string name=\"cognitive_Restruc\">Cognitive Restructuring</string>\r\n    <string name=\"breathing\">Breathing</string>\r\n    <string name=\"mindfulness\">Mindfulness and Relaxation</string>\r\n    <string name=\"problem_solving\">Problem Solving</string>\r\n    <string name=\"eat26Assessment\">EAT26 Assessment</string>\r\n    <string name=\"checkProgress\">Check Progress</string>\r\n    <string name=\"playNow\">Play Now</string>\r\n    <string name=\"AddNewNote\">Add New Journal Entry:</string>\r\n    <string name=\"myJournal\">My Journal</string>\r\n    <string name=\"psychoeducation\">Psycho education</string>\r\n    <string name=\"askUser\">How are you feeling today?</string>\r\n    <string name=\"question1\">I am terrified of being overweight</string>\r\n    <string name=\"question2\">Avoid eating when I am hungry</string>\r\n    <string name=\"question3\">Find myself preoccupied with food</string>\r\n    <string name=\"question4\">Have gone on eating binges where I felt that I may not be able to stop</string>\r\n    <string name=\"question5\">Cut my food into small pieces</string>\r\n    <string name=\"question6\">Aware of the calorie content of foods that I eat</string>\r\n    <string name=\"question7\">Particularly avoid food with a high carbohydrates content (i.e. bread, rice, potatoes, etc.)</string>\r\n    <string name=\"question8\">Feel that others would prefer if I ate more</string>\r\n    <string name=\"question9\">Vomit after I have eaten</string>\r\n    <string name=\"question10\">Feel extremely guilty after eating</string>\r\n    <string name=\"question11\">Am preoccupied with a desire to be thinner</string>\r\n    <string name=\"question12\">Think about burning calories when I exercise</string>\r\n    <string name=\"question13\">Other people think that I am too thin</string>\r\n    <string name=\"question14\">Am preoccupied with the thought of having fat on my body</string>\r\n    <string name=\"question15\">Take longer than others to eat my meals</string>\r\n    <string name=\"question16\">Avoid foods with sugar in them</string>\r\n    <string name=\"question17\">Eat diet foods</string>\r\n    <string name=\"question18\">Feel that food controls my life</string>\r\n    <string name=\"question19\">Display self-control around food</string>\r\n    <string name=\"question20\">Feel that others pressure me to eat</string>\r\n    <string name=\"question21\">Give too much time and thought about food</string>\r\n    <string name=\"question22\">Feel uncomfortable eating sweets</string>\r\n    <string name=\"question23\">Engage in dieting behaviour</string>\r\n    <string name=\"question24\">Like my stomach to be empty</string>\r\n    <string name=\"question25\">Have the impulse to vomit after meals</string>\r\n    <string name=\"question26\">Enjoy trying new rich foods</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"option_1\">Option 1</string>\r\n    <string name=\"questions_will_be_shown_here\">Questions will be shown here</string>\r\n    <string name=\"option_2\">option 2</string>\r\n    <string name=\"option_3\">option 3</string>\r\n    <string name=\"option_4\">option 4</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/app/src/main/res/values/strings.xml	(date 1685435008448)
+@@ -65,4 +65,12 @@
+     <string name="option_2">option 2</string>
+     <string name="option_3">option 3</string>
+     <string name="option_4">option 4</string>
++    <string name="a_desc">Lorem ipsum dolor sit amet. Id enim rerum et omnis voluptas in perferendis quia vel quos culpa vel eius sapiente sit sequi sunt. Qui exercitationem minus et consectetur molestiae qui quia dolores 33 nihil illo ut earum illo sit architecto quia. Ab consectetur cumque ut galisum expedita ut modi laboriosam. Qui explicabo natus et voluptas asperiores est delectus totam et dolor accusantium eum laboriosam quos.</string>
++    <string name="b_desc">Lorem ipsum dolor sit amet. Id enim rerum et omnis voluptas in perferendis quia vel quos culpa vel eius sapiente sit sequi sunt. Qui exercitationem minus et consectetur molestiae qui quia dolores 33 nihil illo ut earum illo sit architecto quia. Ab consectetur cumque ut galisum expedita ut modi laboriosam. Qui explicabo natus et voluptas asperiores est delectus totam et dolor accusantium eum laboriosam quos.</string>
++    <string name="c_desc">Lorem ipsum dolor sit amet. Id enim rerum et omnis voluptas in perferendis quia vel quos culpa vel eius sapiente sit sequi sunt. Qui exercitationem minus et consectetur molestiae qui quia dolores 33 nihil illo ut earum illo sit architecto quia. Ab consectetur cumque ut galisum expedita ut modi laboriosam. Qui explicabo natus et voluptas asperiores est delectus totam et dolor accusantium eum laboriosam quos.</string>
++    <string name="d_desc">Lorem ipsum dolor sit amet. Id enim rerum et omnis voluptas in perferendis quia vel quos culpa vel eius sapiente sit sequi sunt. Qui exercitationem minus et consectetur molestiae qui quia dolores 33 nihil illo ut earum illo sit architecto quia. Ab consectetur cumque ut galisum expedita ut modi laboriosam. Qui explicabo natus et voluptas asperiores est delectus totam et dolor accusantium eum laboriosam quos.</string>
++    <string name="e_desc">Lorem ipsum dolor sit amet. Id enim rerum et omnis voluptas in perferendis quia vel quos culpa vel eius sapiente sit sequi sunt. Qui exercitationem minus et consectetur molestiae qui quia dolores 33 nihil illo ut earum illo sit architecto quia. Ab consectetur cumque ut galisum expedita ut modi laboriosam. Qui explicabo natus et voluptas asperiores est delectus totam et dolor accusantium eum laboriosam quos.</string>
++
++
++
+ </resources>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"11\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/.idea/misc.xml	(date 1684560247340)
+@@ -1,10 +1,4 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/build/classes" />
+-  </component>
+-  <component name="ProjectType">
+-    <option name="id" value="Android" />
+-  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- Base application theme. -->\r\n    <style name=\"Theme.MentalHub\" parent=\"Theme.MaterialComponents.DayNight.NoActionBar\">\r\n        <!-- Primary brand color. -->\r\n        <item name=\"colorPrimary\">@color/purple_500</item>\r\n        <item name=\"colorPrimaryVariant\">@color/purple_700</item>\r\n        <item name=\"colorOnPrimary\">@color/white</item>\r\n        <!-- Secondary brand color. -->\r\n        <item name=\"colorSecondary\">@color/teal_200</item>\r\n        <item name=\"colorSecondaryVariant\">@color/teal_700</item>\r\n        <item name=\"colorOnSecondary\">@color/black</item>\r\n        <!-- Status bar color. -->\r\n        <item name=\"android:statusBarColor\">?attr/colorPrimaryVariant</item>\r\n        <!-- Customize your theme here. -->\r\n    </style>\r\n\r\n    <!--splashscreen-->\r\n    <style name=\"SplashScreen\" parent=\"Theme.MaterialComponents.DayNight.NoActionBar\">\r\n        <item name=\"android:windowBackground\">@drawable/background_splashscreen</item>\r\n        <item name=\"android:statusBarColor\" tools:targetApi=\"l\">?attr/colorPrimary</item>\r\n    </style>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/themes.xml b/app/src/main/res/values/themes.xml
+--- a/app/src/main/res/values/themes.xml	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/app/src/main/res/values/themes.xml	(date 1685360928742)
+@@ -19,4 +19,19 @@
+         <item name="android:windowBackground">@drawable/background_splashscreen</item>
+         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+     </style>
++
++    <!-- Base application theme. -->
++    <style name="Theme.ViewPager2_" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
++        <!-- Primary brand color. -->
++        <item name="colorPrimary">@color/purple_200</item>
++        <item name="colorPrimaryVariant">@color/purple_700</item>
++        <item name="colorOnPrimary">@color/black</item>
++        <!-- Secondary brand color. -->
++        <item name="colorSecondary">@color/teal_200</item>
++        <item name="colorSecondaryVariant">@color/teal_200</item>
++        <item name="colorOnSecondary">@color/black</item>
++        <!-- Status bar color. -->
++        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
++        <!-- Customize your theme here. -->
++    </style>
+ </resources>
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/.idea/gradle.xml	(date 1684558326292)
+@@ -7,6 +7,7 @@
+         <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="Embedded JDK" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\r\n    id 'com.android.application'\r\n    id 'com.google.gms.google-services'\r\n}\r\n\r\nandroid {\r\n    namespace 'com.example.mentalhub'\r\n    compileSdk 33\r\n\r\n    defaultConfig {\r\n        applicationId \"com.example.mentalhub\"\r\n        minSdk 22\r\n        targetSdk 32\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n\r\n    implementation 'androidx.appcompat:appcompat:1.6.1'\r\n    implementation 'com.google.android.material:material:1.9.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\r\n    implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'\r\n    implementation platform('com.google.firebase:firebase-bom:31.5.0')\r\n    implementation 'com.google.firebase:firebase-firestore'\r\n    implementation 'com.google.firebase:firebase-messaging'\r\n    implementation 'com.google.firebase:firebase-database'\r\n    implementation 'com.google.firebase:firebase-auth'\r\n    implementation 'com.google.android.gms:play-services-auth:20.5.0'\r\n    implementation 'com.github.bumptech.glide:glide:4.15.1'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.5'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision d1a7ce713ea53caed02f1d66ef7a5b947d9bb7cc)
++++ b/app/build.gradle	(date 1684560264550)
+@@ -45,4 +45,11 @@
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
++    implementation fileTree(dir: 'libs', include: ['*.jar'])
++    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
++    testImplementation 'junit:junit:4.12'
++    androidTestImplementation 'com.android.support.test:runner:1.0.2'
++    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
++
++
+ }
+\ No newline at end of file
