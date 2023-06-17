@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mentalhub.screening.*;
+import com.example.mentalhub.progressChecker.*;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -121,6 +122,13 @@ public class MainActivity extends AppCompatActivity {
             eat26ResultButton.setOnClickListener((View v) -> {
                 {
                     Intent intent = new Intent(getApplicationContext(), eat26results.class);
+                    startActivity(intent);
+                }
+            });
+
+            checkProgressBtn.setOnClickListener((View v) -> {
+                {
+                    Intent intent = new Intent(getApplicationContext(), progressActivity.class);
                     startActivity(intent);
                 }
             });

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mentalhub.cognitive.Cognitive;
+import com.example.mentalhub.ProblemSolving.Bulimia.*;
 import com.example.mentalhub.cognitive.Tutorial;
 import com.example.mentalhub.journal.Journaling;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser user;
     Button logoutBtn, journalingButton, cognitiveRestructuringButton,
-            mindfulnessRelaxationButton, breathingExerciseButton;
+            mindfulnessRelaxationButton, breathingExerciseButton, problemSolvingButton;
     TextView userDetails;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -50,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
         cognitiveRestructuringButton = findViewById(R.id.cognitiveRestructuring);
         mindfulnessRelaxationButton = findViewById(R.id.mindfulnessRelaxation);
         breathingExerciseButton = findViewById(R.id.breathingExercise);
+        problemSolvingButton = findViewById(R.id.problemSolving);
 
         // Sends user to login page if there is no session for user
         if (user == null) {
@@ -84,6 +86,11 @@ public class GameActivity extends AppCompatActivity {
 
             cognitiveRestructuringButton.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), Tutorial.class);
+                startActivity(intent);
+            });
+
+            problemSolvingButton.setOnClickListener((View v) -> {
+                Intent intent = new Intent(getApplicationContext(), Bulimia.class);
                 startActivity(intent);
             });
 

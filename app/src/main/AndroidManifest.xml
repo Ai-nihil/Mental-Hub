@@ -15,6 +15,13 @@
         android:theme="@style/Theme.Material3.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ProblemSolving.Bulimia.Bulimia"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".progressChecker.progressActivity"
             android:exported="false">
             <meta-data
@@ -72,10 +79,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".cognitive.Cognitive"
+        <activity
+            android:name=".cognitive.Cognitive"
             android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar"/>
-
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
         <activity
             android:name=".journal.JournalDetailsActivity"
             android:exported="false"
@@ -142,9 +149,8 @@
                 <action android:name="com.google.firebase.MESSAGE_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name=".cognitive.Tutorial">
 
-        </activity>
+        <activity android:name=".cognitive.Tutorial"></activity>
     </application>
 
 </manifest>

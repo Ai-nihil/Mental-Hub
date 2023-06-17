@@ -6,4 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".progressChecker.progressActivity">
 
+    <com.mikhaellopez.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgressBar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="344dp"
+        app:cpb_background_progressbar_color="#f2f2f2"
+        app:cpb_background_progressbar_width="20dp"
+        app:cpb_progress_direction="to_right"
+        app:cpb_progress_max="2500"
+        app:cpb_progressbar_color="@color/pink_100"
+        app:cpb_progressbar_width="15dp"
+        app:cpb_round_border="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@+id/circularProgressBar"
+        app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
+        app:layout_constraintTop_toTopOf="@+id/circularProgressBar" />
+
+    <TextView
+        android:id="@+id/maxPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/ 2500"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/circularProgressBar"
+        app:layout_constraintStart_toStartOf="@+id/circularProgressBar"
+        app:layout_constraintTop_toBottomOf="@+id/points" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
