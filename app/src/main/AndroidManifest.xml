@@ -142,6 +142,12 @@
                 android:value="" />
         </activity>
 
+        <activity
+            android:name="com.example.mentalhub.relaxation.DirtGame"
+            android:label="Dirt Game">
+        </activity>
+
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

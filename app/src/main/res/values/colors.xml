@@ -12,4 +12,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="logo_color">#BDE0FE</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="quote_yellow">#FFFF00</color>
 </resources>

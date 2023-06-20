@@ -14,6 +14,7 @@ import com.example.mentalhub.cognitive.Cognitive;
 import com.example.mentalhub.ProblemSolving.Bulimia.*;
 import com.example.mentalhub.cognitive.Tutorial;
 import com.example.mentalhub.journal.Journaling;
+import com.example.mentalhub.relaxation.DirtGame;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -85,12 +86,17 @@ public class GameActivity extends AppCompatActivity {
             });
 
             cognitiveRestructuringButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), Tutorial.class);
+                Intent intent = new Intent(getApplicationContext(), Cognitive.class);
                 startActivity(intent);
             });
 
             problemSolvingButton.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), Bulimia.class);
+                startActivity(intent);
+            });
+
+            mindfulnessRelaxationButton.setOnClickListener((View v) -> {
+                Intent intent = new Intent(getApplicationContext(), DirtGame.class);
                 startActivity(intent);
             });
 
