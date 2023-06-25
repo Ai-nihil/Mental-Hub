@@ -100,6 +100,11 @@ public class GameActivity extends AppCompatActivity {
                 startActivity(intent);
             });
 
+            breathingExerciseButton.setOnClickListener((View v) -> {
+                Intent intent = new Intent(getApplicationContext(), breathing.class);
+                startActivity(intent);
+            });
+
             // Button to log out the user
             logoutBtn.setOnClickListener((View v) -> {
                 {
