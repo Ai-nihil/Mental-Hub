@@ -91,7 +91,7 @@ public class GameActivity extends AppCompatActivity {
             });
 
             problemSolvingButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), Bulimia.class);
+                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                 startActivity(intent);
             });
 

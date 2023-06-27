@@ -4,6 +4,7 @@ import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Rect;
@@ -65,23 +66,23 @@ public class DirtGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relax);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         rootLayout = findViewById(R.id.rootLayout);
         scoreTextView = findViewById(R.id.scoreTextView);
-        windowImageView = findViewById(R.id.windowImageView);
+       // windowImageView = findViewById(R.id.windowImageView);
         levelTextView = findViewById(R.id.levelTextView);
 
         dirtList = new ArrayList<>();
 
         score = 0;
         highScore = loadHighScore();
-        scoreTextView.setText("Score: " + totalScore + " High Score: " + highScore);
+        scoreTextView.setText("Score: " + totalScore + "     High Score: " + highScore);
 
         dirtImageView = new ImageView(this);
         dirtImageView.setImageResource(R.drawable.dirt);
 
-        dirtWidth = 500;
-        dirtHeight = 500;
+        dirtWidth = 800;
+        dirtHeight = 800;
 
         rootLayout.setOnTouchListener(new View.OnTouchListener() {
             private float startX;
@@ -230,7 +231,7 @@ public class DirtGame extends AppCompatActivity {
         quoteTextView = new TextView(this);
         quoteTextView.setText(quote);
         quoteTextView.setTextSize(30);
-        quoteTextView.setTextColor(getResources().getColor(R.color.quote_yellow));
+        quoteTextView.setTextColor(getResources().getColor(R.color.white));
         quoteTextView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
         quoteTextView.setPadding(20, 20, 20, 20);
         quoteTextView.setTypeface(null, Typeface.BOLD);
@@ -251,7 +252,7 @@ public class DirtGame extends AppCompatActivity {
             @Override
             public void run() {
                 removeInspirationalQuote();
-                scoreTextView.setText("Score: " + totalScore + " High Score: " + highScore);
+                scoreTextView.setText("Score: " + totalScore + "    High Score: " + highScore);
             }
         }, 7000);
     }
@@ -304,12 +305,12 @@ public class DirtGame extends AppCompatActivity {
                 displayInspirationalQuote();
             }
             totalScore += 10;
-            scoreTextView.setText("Score: " + totalScore + " High Score: " + highScore);
+            scoreTextView.setText("Score: " + totalScore + "    High Score: " + highScore);
 
             if (totalScore > highScore) {
                 highScore = totalScore;
                 saveHighScore(highScore);
-                scoreTextView.setText("Score: " + totalScore + " High Score: " + highScore);
+                scoreTextView.setText("Score: " + totalScore + "    High Score: " + highScore);
             }
         }
     }

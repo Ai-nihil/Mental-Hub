@@ -153,6 +153,13 @@
             android:name="com.example.mentalhub.relaxation.DirtGame"
             android:label="Dirt Game">
         </activity>
+        <activity
+            android:name=".ProblemSolving.Bulimia.MenuActivity"
+            android:exported="false">
+            <meta-data
+                android:name="ProblemSolving.Bulimia"
+                android:value="" />
+        </activity>
 
 
         <service
