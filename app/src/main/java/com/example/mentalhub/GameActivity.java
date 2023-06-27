@@ -92,7 +92,7 @@ public class GameActivity extends AppCompatActivity {
             });
 
             problemSolvingButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), Dieting.class);
+                Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
                 startActivity(intent);
             });
 

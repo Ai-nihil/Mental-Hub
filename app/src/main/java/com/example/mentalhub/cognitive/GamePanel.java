@@ -28,6 +28,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private boolean gameOver = false;
     private boolean gameStarted = false;
     private Handler handler;
+
+    private Bitmap backgroundImage;
     public GamePanel(Context context){
 
         super(context);
@@ -63,6 +65,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder){
+        backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.balloon_bg);
 
         handler = new Handler();
 
@@ -182,8 +185,14 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas){
 
         super.draw(canvas);
-        //background color
-        canvas.drawColor(Color.rgb(255, 255,255));
+
+        if (backgroundImage != null) {
+
+            Rect srcRect = new Rect(0, 0, backgroundImage.getWidth(), backgroundImage.getHeight());
+            Rect destRect = new Rect(0, 0, canvas.getWidth(), canvas.getHeight());
+            canvas.drawBitmap(backgroundImage, srcRect, destRect, null);
+        }
+        //canvas.drawColor(Color.rgb(255, 255,255));
 
         user.draw(canvas);
 
@@ -194,7 +203,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             Paint textPaint = new Paint();
             textPaint.setColor(Color.BLACK);
             textPaint.setTextSize(50);
-            String text = "Pop the Unhealthy FoodS";
+            String text = "Pop the Unhealthy Foods";
             float textWidth = textPaint.measureText(text);
             canvas.drawText(text, (getWidth() - textWidth) / 2, getHeight() / 2, textPaint);
         }

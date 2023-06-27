@@ -1,0 +1,42 @@
+<!-- item_card.xml -->
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dirt"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardUseCompatPadding="true">
+
+    <!-- Customize the content of each card here -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/mybutton"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Example content for each card -->
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lobster_regular"
+            android:gravity="center"
+            android:text="Card Title"
+            android:textColor="@color/white"
+            android:textSize="34sp" /> <!-- Center the text horizontally -->
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="center"
+            android:text="Card Description"
+            android:textSize="16sp" /> <!-- Center the text horizontally -->
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
