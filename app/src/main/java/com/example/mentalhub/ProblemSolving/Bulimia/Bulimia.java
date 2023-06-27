@@ -53,7 +53,7 @@ public class Bulimia extends AppCompatActivity {
             choiceButtonText1 = String.valueOf(choiceButton1.getText());
             switch(choiceButtonText1) {
                 case "Don't Seek Professional Help and hide the struggles":
-                    badEndingTemplate();
+                    removeChoiceButton();
                     break;
                 case "Struggle with Academics":
                     break;
@@ -66,13 +66,13 @@ public class Bulimia extends AppCompatActivity {
             choiceButtonText2 = String.valueOf(choiceButton2.getText());
             switch(choiceButtonText2) {
                 case "Seek Professional Help":
-                    badEndingTemplate();
+                    removeChoiceButton();
                     break;
             }
         });
     }
 
-void badEndingTemplate() {
+void removeChoiceButton() {
         //Removes all choices to give way to the text
         //Replace background of ImageView with a more appropriate image
         //Set tag values on the image to retrieve them later

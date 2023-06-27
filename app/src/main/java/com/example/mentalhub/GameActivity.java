@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.mentalhub.ProblemSolving.Dieting.Dieting;
 import com.example.mentalhub.cognitive.Cognitive;
 import com.example.mentalhub.ProblemSolving.Bulimia.*;
 import com.example.mentalhub.cognitive.Tutorial;
@@ -91,7 +92,7 @@ public class GameActivity extends AppCompatActivity {
             });
 
             problemSolvingButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), Bulimia.class);
+                Intent intent = new Intent(getApplicationContext(), Dieting.class);
                 startActivity(intent);
             });
 

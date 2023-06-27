@@ -17,7 +17,7 @@
     <!--splashscreen-->
     <style name="SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@drawable/background_splashscreen</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor">@color/transparent</item>
     </style>
 
     <!-- Base application theme. -->

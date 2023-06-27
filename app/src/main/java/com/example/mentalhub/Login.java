@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +39,7 @@ import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
+    private long mLastClickTime = 0;
     EditText editTextEmail, editTextPassword;
     Button loginButton, googleLoginBtn;
     FirebaseAuth mAuth;
@@ -83,6 +85,10 @@ public class Login extends AppCompatActivity {
         });
 
         loginButton.setOnClickListener((v) -> {
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 String email, password;
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());

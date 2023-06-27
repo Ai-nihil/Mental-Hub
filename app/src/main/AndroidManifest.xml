@@ -12,8 +12,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Material3.Light.NoActionBar"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".ProblemSolving.Dieting.Dieting"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".breathing"
             android:exported="false">
@@ -72,52 +79,45 @@
         </activity>
         <activity
             android:name=".psychoeducation.LessonActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".GameActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".cognitive.Cognitive"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".journal.JournalDetailsActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".journal.Journaling"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".screening.Eat26"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".Register"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -134,26 +134,22 @@
         </activity>
         <activity
             android:name=".Login"
-            android:exported="true"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Material3.Light.NoActionBar">
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.example.mentalhub.relaxation.DirtGame"
             android:label="Dirt Game">
         </activity>
-
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -163,7 +159,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".cognitive.Tutorial"></activity>
+        <activity android:name=".cognitive.Tutorial" />
     </application>
 
 </manifest>
