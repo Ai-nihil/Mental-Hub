@@ -28,13 +28,11 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         menuAdapter = new CustomMenuAdapter(getMenuItems(), this);
 
-
         recyclerView.setAdapter(menuAdapter);
     }
 
     private List<MenuItem> getMenuItems() {
         List<MenuItem> menuItems = new ArrayList<>();
-
 
         menuItems.add(new MenuItem("Bulimia", "Description for Bulimia"));
         menuItems.add(new MenuItem("Dieting", "Description for Dieting"));

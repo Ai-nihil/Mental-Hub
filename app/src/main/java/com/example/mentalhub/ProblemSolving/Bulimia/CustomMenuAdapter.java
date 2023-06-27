@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mentalhub.ProblemSolving.Dieting.Dieting;
 import com.example.mentalhub.R;
 
 import java.util.List;
@@ -67,7 +68,7 @@ public class CustomMenuAdapter extends RecyclerView.Adapter<CustomMenuAdapter.Me
                     intent = new Intent(context, Bulimia.class);
                     break;
                 case 1:
-                    intent = new Intent(context, Bulimia.class);
+                    intent = new Intent(context, Dieting.class);
                     break;
                 case 2:
                     intent = new Intent(context, Bulimia.class);
