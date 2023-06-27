@@ -166,7 +166,7 @@ public class Dieting extends AppCompatActivity {
                     currentResourceImg = 18 - 1;
                     break;
                 case "Join a support group to help others and get helped by others":
-                    currentResourceImg = 21 - 1;
+                    currentResourceImg = 22 - 1;
             }
         });
 
@@ -183,6 +183,9 @@ public class Dieting extends AppCompatActivity {
                     break;
                 case "Reflect upon one's actions and focus on changing the mindset":
                     currentResourceImg = 6 - 1;
+                    break;
+                case "Spend some time with her friends":
+                    currentResourceImg = 13 - 1;
                     break;
                 case "Seek professional help":
                     currentResourceImg = 16 - 1;
@@ -229,6 +232,7 @@ public class Dieting extends AppCompatActivity {
                 dietingBgImgView.setImageResource(R.drawable.dieting4);
                 choiceButton1.setText("Focus more attention on one's weight");
                 choiceButton2.setText("Seek professional help");
+                choiceButton3.setText("Spend some time with her friends");
                 break;
             case 5:
                 dietingBgImgView.setImageResource(R.drawable.dieting5);
@@ -292,6 +296,7 @@ public class Dieting extends AppCompatActivity {
                 break;
             case 19:
                 dietingBgImgView.setImageResource(R.drawable.dieting19);
+                currentResourceImg = 20;
                 break;
             case 20:
                 dietingBgImgView.setImageResource(R.drawable.dieting20);
@@ -306,17 +311,17 @@ public class Dieting extends AppCompatActivity {
                 break;
             case 23:
                 dietingBgImgView.setImageResource(R.drawable.dieting23);
-                currentResourceImg = 26;
+                currentResourceImg = 27;
                 break;
             case 24:
                 dietingBgImgView.setImageResource(R.drawable.dieting24);
-                currentResourceImg = 26;
+                currentResourceImg = 27;
                 break;
             case 25:
                 dietingBgImgView.setImageResource(R.drawable.dieting25);
                 break;
-            case 26:
-                dietingBgImgView.setImageResource(R.drawable.dieting26);
+            case 27:
+                dietingBgImgView.setImageResource(R.drawable.dieting27);
                 break;
         }
     }
