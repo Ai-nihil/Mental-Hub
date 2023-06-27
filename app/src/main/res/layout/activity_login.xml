@@ -9,7 +9,6 @@
     android:background="@drawable/background"
     tools:context=".Login">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
@@ -36,7 +35,7 @@
         android:hint="E-mail"
         android:autofillHints="emailAddress"
         android:drawableLeft="@drawable/ic_baseline_email_24"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/textView3"
