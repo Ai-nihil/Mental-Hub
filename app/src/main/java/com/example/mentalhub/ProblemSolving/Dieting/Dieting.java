@@ -79,18 +79,24 @@ public class Dieting extends AppCompatActivity {
             //Makes the eye and choice invisible
             if (choiceHasBeenMade) {
                 currentResourceImg++;
-                //Iterate through the tagWithChoice array
-                for (int i = 0; i < tagWithChoice.size(); i++) {
-                    //If there is a match execute code where choice and eye button becomes visible
-                    if (currentResourceImg == tagWithChoice.get(i)) {
-                        makeEyeButtonVisible();
-                    }
-                }
+                //Makes the eye button become visible
+                makeEyeButtonVisible();
                 // Returns all options into not selected
                 deselectOptions();
                 // Clears the texts
                 clearButtonText();
-                // Switch case for when no button is needed to be clicked
+                // Switch case for changing the screen
+                changeCurrentScreen();
+                // Makes the button invisible first then
+                makeChoiceButtonInvisible();
+                // makes Choice button visible
+                makeChoiceButtonVisible();
+            } else {
+                // Returns all options into not selected
+                deselectOptions();
+                // Clears the texts
+                clearButtonText();
+                // Switch case for changing the screen
                 changeCurrentScreen();
                 // Makes the button invisible first then
                 makeChoiceButtonInvisible();
@@ -125,6 +131,17 @@ public class Dieting extends AppCompatActivity {
                 case "Focus on changing one's mindset":
                     currentResourceImg = 9 - 1;
                     break;
+                case "Avoid seeking professional help":
+                    currentResourceImg = 15 - 1;
+                    break;
+                case "Seek Professional help":
+                    currentResourceImg = 21 - 1;
+                    break;
+                case "Apply what she learned to herself":
+                    currentResourceImg = 21 - 1;
+                    break;
+                case "Continue changing the mindset":
+                    currentResourceImg = 23 - 1;
             }
         });
 
@@ -143,7 +160,13 @@ public class Dieting extends AppCompatActivity {
                     currentResourceImg = 8 - 1;
                     break;
                 case "Invite her friends out for some pizza":
-                    currentResourceImg = 3 - 1;
+                    currentResourceImg = 13 - 1;
+                    break;
+                case "Ignore her feelings":
+                    currentResourceImg = 18 - 1;
+                    break;
+                case "Join a support group to help others and get helped by others":
+                    currentResourceImg = 21 - 1;
             }
         });
 
@@ -159,8 +182,13 @@ public class Dieting extends AppCompatActivity {
                     currentResourceImg = 3 - 1;
                     break;
                 case "Reflect upon one's actions and focus on changing the mindset":
-                    currentResourceImg = 7 - 1;
+                    currentResourceImg = 6 - 1;
                     break;
+                case "Seek professional help":
+                    currentResourceImg = 16 - 1;
+                    break;
+                case "Follow one's passion and hobbies":
+                    currentResourceImg = 24 - 1;
             }
         });
 
@@ -175,13 +203,15 @@ public class Dieting extends AppCompatActivity {
                 case "Reflect upon one's actions":
                     currentResourceImg = 5 - 1;
                     break;
+                case "Eat healthier":
+                    currentResourceImg = 17 - 1;
             }
         });
     }
 
     @SuppressLint("SetTextI18n")
     private void changeCurrentScreen() {
-        // Switch case for when no button is needed to be clicked
+        // Switch case changing the current screen
         switch (currentResourceImg) {
             case 2:
                 dietingBgImgView.setImageResource(R.drawable.dieting2);
@@ -206,15 +236,19 @@ public class Dieting extends AppCompatActivity {
                 choiceButton2.setText("Seek professional help");
                 break;
             case 6:
+                currentResourceImg = 9;
                 dietingBgImgView.setImageResource(R.drawable.dieting6);
                 break;
             case 7:
+                currentResourceImg = 10;
                 dietingBgImgView.setImageResource(R.drawable.dieting7);
                 break;
             case 8:
+                currentResourceImg = 11;
                 dietingBgImgView.setImageResource(R.drawable.dieting8);
                 break;
             case 9:
+                currentResourceImg = 12;
                 dietingBgImgView.setImageResource(R.drawable.dieting9);
                 break;
             case 10:
@@ -227,22 +261,34 @@ public class Dieting extends AppCompatActivity {
                 dietingBgImgView.setImageResource(R.drawable.dieting12);
                 break;
             case 13:
+                currentResourceImg = 14;
                 dietingBgImgView.setImageResource(R.drawable.dieting13);
                 break;
             case 14:
                 dietingBgImgView.setImageResource(R.drawable.dieting14);
+                choiceButton1.setText("Avoid seeking professional help");
+                choiceButton3.setText("Seek professional help");
+                choiceButton4.setText("Eat healthier");
                 break;
             case 15:
                 dietingBgImgView.setImageResource(R.drawable.dieting15);
+                choiceButton1.setText("Seek Professional help");
+                choiceButton2.setText("Ignore her feelings");
                 break;
             case 16:
                 dietingBgImgView.setImageResource(R.drawable.dieting16);
+                choiceButton1.setText("Apply what she learned to herself");
+                choiceButton2.setText("Join a support group to help others and get helped by others");
                 break;
             case 17:
                 dietingBgImgView.setImageResource(R.drawable.dieting17);
+                choiceButton1.setText("Continue changing the mindset");
+                choiceButton2.setText("Join a support group to help others and get helped by others");
+                choiceButton3.setText("Follow one's passion and hobbies");
                 break;
             case 18:
                 dietingBgImgView.setImageResource(R.drawable.dieting18);
+                currentResourceImg = 19;
                 break;
             case 19:
                 dietingBgImgView.setImageResource(R.drawable.dieting19);
@@ -252,15 +298,19 @@ public class Dieting extends AppCompatActivity {
                 break;
             case 21:
                 dietingBgImgView.setImageResource(R.drawable.dieting21);
+                currentResourceImg = 25;
                 break;
             case 22:
                 dietingBgImgView.setImageResource(R.drawable.dieting22);
+                currentResourceImg = 25;
                 break;
             case 23:
                 dietingBgImgView.setImageResource(R.drawable.dieting23);
+                currentResourceImg = 26;
                 break;
             case 24:
                 dietingBgImgView.setImageResource(R.drawable.dieting24);
+                currentResourceImg = 26;
                 break;
             case 25:
                 dietingBgImgView.setImageResource(R.drawable.dieting25);
