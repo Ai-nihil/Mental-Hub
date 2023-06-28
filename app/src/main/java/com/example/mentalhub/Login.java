@@ -49,6 +49,8 @@ public class Login extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -175,5 +177,13 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            startActivity(new Intent(Login.this, MainActivity.class));
+        }
     }
 }

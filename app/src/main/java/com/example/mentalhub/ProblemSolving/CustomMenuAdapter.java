@@ -1,4 +1,4 @@
-package com.example.mentalhub.ProblemSolving.Bulimia;
+package com.example.mentalhub.ProblemSolving;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mentalhub.ProblemSolving.Bulimia.Bulimia;
 import com.example.mentalhub.ProblemSolving.Dieting.Dieting;
 import com.example.mentalhub.R;
 

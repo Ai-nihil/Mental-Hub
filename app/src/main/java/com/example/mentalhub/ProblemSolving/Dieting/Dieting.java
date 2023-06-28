@@ -32,8 +32,6 @@ public class Dieting extends AppCompatActivity {
     Boolean eyeStateIsOpen = true;
     Boolean choiceHasBeenMade = true;
 
-    List<Integer> tagWithChoice = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,16 +49,6 @@ public class Dieting extends AppCompatActivity {
         choiceButton2.setVisibility(View.INVISIBLE);
         choiceButton3.setVisibility(View.INVISIBLE);
         choiceButton4.setVisibility(View.INVISIBLE);
-
-        //add value on tagWithChoice array
-        tagWithChoice.add(2);
-        tagWithChoice.add(3);
-        tagWithChoice.add(4);
-        tagWithChoice.add(5);
-        tagWithChoice.add(14);
-        tagWithChoice.add(15);
-        tagWithChoice.add(16);
-        tagWithChoice.add(17);
 
         //Set phone default to landscape
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

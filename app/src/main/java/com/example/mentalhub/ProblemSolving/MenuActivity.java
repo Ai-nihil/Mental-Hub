@@ -1,12 +1,10 @@
-package com.example.mentalhub.ProblemSolving.Bulimia;
+package com.example.mentalhub.ProblemSolving;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.mentalhub.ProblemSolving.Bulimia.CustomMenuAdapter;
 
 
 import com.example.mentalhub.R;
@@ -34,9 +32,9 @@ public class MenuActivity extends AppCompatActivity {
     private List<MenuItem> getMenuItems() {
         List<MenuItem> menuItems = new ArrayList<>();
 
-        menuItems.add(new MenuItem("Bulimia", "Description for Bulimia"));
-        menuItems.add(new MenuItem("Dieting", "Description for Dieting"));
-        menuItems.add(new MenuItem("Oral Control", "Description for Oral Control"));
+        menuItems.add(new MenuItem("Bulimia", "The preoccupation with thoughts about food and attempts to vomit food eaten during a binge"));
+        menuItems.add(new MenuItem("Dieting", "The preoccupation with being thinner and avoidance of fattening foods"));
+        menuItems.add(new MenuItem("Oral Control", "Attempts to maintain self-control while eating and the perceived pressure from others to gain weight"));
 
         return menuItems;
     }

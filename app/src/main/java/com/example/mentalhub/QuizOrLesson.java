@@ -54,9 +54,6 @@ public class QuizOrLesson extends AppCompatActivity {
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference();
             userId = user.getUid();
-            if (user.getDisplayName() != null) {
-                userDetails.setText(user.getDisplayName());
-            } else {
                 databaseReference.child("Users").child(user.getUid()).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -67,7 +64,6 @@ public class QuizOrLesson extends AppCompatActivity {
                         }
                     }
                 });
-            }
 
             quizImg.setOnClickListener((View v) -> {
                 {

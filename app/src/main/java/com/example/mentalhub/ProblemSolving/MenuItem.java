@@ -1,4 +1,4 @@
-package com.example.mentalhub.ProblemSolving.Bulimia;
+package com.example.mentalhub.ProblemSolving;
 
 public class MenuItem {
 

@@ -151,7 +151,7 @@
             android:label="Dirt Game">
         </activity>
         <activity
-            android:name=".ProblemSolving.Bulimia.MenuActivity"
+            android:name=".ProblemSolving.MenuActivity"
             android:exported="false">
             <meta-data
                 android:name="ProblemSolving.Bulimia"

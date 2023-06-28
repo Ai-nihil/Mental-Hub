@@ -70,9 +70,6 @@ public class MainActivity extends AppCompatActivity {
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference();
             userId = user.getUid();
-            if (user.getDisplayName() != null) {
-                textView.setText(user.getDisplayName());
-            } else {
                 databaseReference.child("Users").child(user.getUid()).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -83,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
 
             // When user opens the MainActivity they will be asked to subscribe to the notification
             FirebaseMessaging.getInstance().subscribeToTopic("MentalHubNotification")
@@ -156,5 +152,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(MainActivity.this, Login.class));
+        }
     }
 }

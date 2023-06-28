@@ -10,10 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mentalhub.ProblemSolving.Dieting.Dieting;
+import com.example.mentalhub.ProblemSolving.MenuActivity;
 import com.example.mentalhub.cognitive.Cognitive;
-import com.example.mentalhub.ProblemSolving.Bulimia.*;
-import com.example.mentalhub.cognitive.Tutorial;
 import com.example.mentalhub.journal.Journaling;
 import com.example.mentalhub.relaxation.DirtGame;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,9 +64,6 @@ public class GameActivity extends AppCompatActivity {
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference();
             userId = user.getUid();
-            if (user.getDisplayName() != null) {
-                userDetails.setText(user.getDisplayName());
-            } else {
                 databaseReference.child("Users").child(user.getUid()).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -79,7 +74,6 @@ public class GameActivity extends AppCompatActivity {
                         }
                     }
                 });
-            }
 
             journalingButton.setOnClickListener((View v) -> {
                 Intent intent = new Intent(getApplicationContext(), Journaling.class);
