@@ -3,6 +3,7 @@ package com.example.mentalhub.ProblemSolving.Dieting;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.mentalhub.ProblemSolving.Bulimia.Bulimia;
+import com.example.mentalhub.ProblemSolving.MenuActivity;
 import com.example.mentalhub.R;
 
 import java.util.ArrayList;
@@ -31,6 +34,7 @@ public class Dieting extends AppCompatActivity {
 
     Boolean eyeStateIsOpen = true;
     Boolean choiceHasBeenMade = true;
+    Boolean end = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,29 +71,22 @@ public class Dieting extends AppCompatActivity {
             //Makes the eye and choice invisible
             if (choiceHasBeenMade) {
                 currentResourceImg++;
-                //Makes the eye button become visible
                 makeEyeButtonVisible();
-                // Returns all options into not selected
-                deselectOptions();
-                // Clears the texts
-                clearButtonText();
-                // Switch case for changing the screen
-                changeCurrentScreen();
-                // Makes the button invisible first then
-                makeChoiceButtonInvisible();
+            }
+            // Returns all options into not selected
+            deselectOptions();
+            // Clears the texts
+            clearButtonText();
+            // Switch case for changing the screen
+            changeCurrentScreen();
+            // Makes the button invisible first then
+            makeChoiceButtonInvisible();
+            if (eyeStateIsOpen) {
                 // makes Choice button visible
                 makeChoiceButtonVisible();
-            } else {
-                // Returns all options into not selected
-                deselectOptions();
-                // Clears the texts
-                clearButtonText();
-                // Switch case for changing the screen
-                changeCurrentScreen();
-                // Makes the button invisible first then
-                makeChoiceButtonInvisible();
-                // makes Choice button visible
-                makeChoiceButtonVisible();
+            }
+            if (end) {
+                startActivity(new Intent(Dieting.this, MenuActivity.class));
             }
             //Sets choice has been made back to false
             choiceHasBeenMade = false;
@@ -202,6 +199,7 @@ public class Dieting extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void changeCurrentScreen() {
+        end = false;
         // Switch case changing the current screen
         switch (currentResourceImg) {
             case 2:
@@ -245,12 +243,15 @@ public class Dieting extends AppCompatActivity {
                 break;
             case 10:
                 dietingBgImgView.setImageResource(R.drawable.dieting10);
+                end = true;
                 break;
             case 11:
                 dietingBgImgView.setImageResource(R.drawable.dieting11);
+                end = true;
                 break;
             case 12:
                 dietingBgImgView.setImageResource(R.drawable.dieting12);
+                end = true;
                 break;
             case 13:
                 currentResourceImg = 14;
@@ -288,6 +289,7 @@ public class Dieting extends AppCompatActivity {
                 break;
             case 20:
                 dietingBgImgView.setImageResource(R.drawable.dieting20);
+                end = true;
                 break;
             case 21:
                 dietingBgImgView.setImageResource(R.drawable.dieting21);
@@ -307,9 +309,11 @@ public class Dieting extends AppCompatActivity {
                 break;
             case 25:
                 dietingBgImgView.setImageResource(R.drawable.dieting25);
+                end = true;
                 break;
             case 27:
                 dietingBgImgView.setImageResource(R.drawable.dieting27);
+                end = true;
                 break;
         }
     }

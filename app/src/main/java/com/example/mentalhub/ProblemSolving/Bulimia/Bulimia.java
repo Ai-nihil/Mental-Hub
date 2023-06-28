@@ -3,6 +3,7 @@ package com.example.mentalhub.ProblemSolving.Bulimia;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.mentalhub.ProblemSolving.MenuActivity;
 import com.example.mentalhub.R;
 
 public class Bulimia extends AppCompatActivity {
@@ -28,6 +30,7 @@ public class Bulimia extends AppCompatActivity {
 
     Boolean eyeStateIsOpen = true;
     Boolean choiceHasBeenMade = true;
+    Boolean end = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +77,13 @@ public class Bulimia extends AppCompatActivity {
             changeCurrentScreen();
             // Makes the button invisible first then
             makeChoiceButtonInvisible();
-            // makes Choice button visible
-            makeChoiceButtonVisible();
+            if (eyeStateIsOpen) {
+                // makes Choice button visible
+                makeChoiceButtonVisible();
+            }
+            if (end) {
+                startActivity(new Intent(Bulimia.this, MenuActivity.class));
+            }
             //Sets choice has been made back to false
             choiceHasBeenMade = false;
         });
@@ -154,7 +162,7 @@ public class Bulimia extends AppCompatActivity {
                     currentResourceImg = 21 - 1;
                     break;
                 case "Seek professional help":
-                    currentResourceImg = 30 - 1;
+                    currentResourceImg = 15 - 1;
                     break;
                 case "Keep turning to food for comfort":
                     currentResourceImg = 27 - 1;
@@ -192,6 +200,7 @@ public class Bulimia extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void changeCurrentScreen() {
+        end = false;
         // Switch case changing the current screen
         switch (currentResourceImg) {
             case 2:
@@ -201,9 +210,11 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 3:
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia3);
+                currentResourceImg = 4;
                 break;
             case 4:
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia4);
+                currentResourceImg = 6;
                 break;
             case 5:
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia5);
@@ -212,6 +223,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 6:
                 //TODO: exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia6);
                 break;
             case 7:
@@ -220,6 +232,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 8:
                 //TODO: exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia8);
                 break;
             case 9:
@@ -245,6 +258,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 14:
                 //TODO: exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia14);
                 break;
             case 15:
@@ -283,6 +297,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 22:
                 //TODO: exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia22);
                 break;
             case 23:
@@ -291,6 +306,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 24:
                 //TODO: exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia24);
                 break;
             case 25:
@@ -314,6 +330,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 29:
                 //TODO: exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia29);
                 break;
             case 30:
@@ -326,6 +343,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 32:
                 //TODO: Exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia32);
                 break;
             case 33:
@@ -334,6 +352,7 @@ public class Bulimia extends AppCompatActivity {
                 break;
             case 34:
                 //TODO: Exit
+                end = true;
                 bulimiaBgImgView.setImageResource(R.drawable.bulimia34);
                 break;
         }
