@@ -31,8 +31,19 @@ import android.text.Layout;
 import android.widget.TextView;
 
 import com.example.mentalhub.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class DirtGame extends AppCompatActivity {
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    int mindPoints = 10;
+
 
     private RelativeLayout rootLayout;
     private TextView scoreTextView;
@@ -66,6 +77,10 @@ public class DirtGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relax);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         rootLayout = findViewById(R.id.rootLayout);
         scoreTextView = findViewById(R.id.scoreTextView);
@@ -224,6 +239,7 @@ public class DirtGame extends AppCompatActivity {
     }
 
     private void displayInspirationalQuote() {
+        mindPoints = 10;
         String quote = quotes[new Random().nextInt(quotes.length)];
 
         removeInspirationalQuote();
@@ -238,6 +254,28 @@ public class DirtGame extends AppCompatActivity {
         quoteTextView.setGravity(Gravity.CENTER);
 
         quoteTextView.setShadowLayer(10f, 0f, 0f, getResources().getColor(android.R.color.black));
+
+        //Gets score and assigns to mindPoints in Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+        // Gets value from mindPoints
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+
+        databaseReference.child("Users").child(user.getUid()).child("mindPoints").get().addOnCompleteListener(recordedMindScore -> {
+            if (recordedMindScore.isSuccessful()) {
+                if (recordedMindScore.getResult().getValue() == null) {
+                    // Child "mindPoints" does not exist, create it with the initial value of quizPoints
+                    databaseReference.child("Users").child(user.getUid()).child("mindPoints").setValue(mindPoints);
+                } else {
+                    int existingMindPoints = Integer.parseInt(String.valueOf(recordedMindScore.getResult().getValue()));
+                    mindPoints = existingMindPoints + mindPoints;
+                    // Update the child "mindPoints" with the new value
+                    databaseReference.child("Users").child(user.getUid()).child("mindPoints").setValue(mindPoints);
+                }
+            }
+        });
 
         RelativeLayout.LayoutParams quoteLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,

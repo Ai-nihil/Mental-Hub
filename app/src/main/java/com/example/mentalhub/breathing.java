@@ -88,6 +88,7 @@ public class breathing extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     startBreathingExercise();
                 } else {
+                    breathingPoints = 10;
                     Toast.makeText(breathing.this, "Congratulations, you've finished the breathing exercise!",
                             Toast.LENGTH_SHORT).show();
                     cycleCount = 0;

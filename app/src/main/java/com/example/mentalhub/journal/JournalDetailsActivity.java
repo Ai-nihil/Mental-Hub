@@ -25,11 +25,24 @@ import com.example.mentalhub.utils.Utility;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Calendar;
 
 public class JournalDetailsActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    int journalPoints = 5;
+    int bonusStreak = 0;
+    int bonusPoints = 50;
 
     // Creating global variables
     private EditText datePht;
@@ -44,6 +57,9 @@ public class JournalDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_details);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         // Initializing variables
         datePht = findViewById(R.id.note_date);
@@ -139,6 +155,10 @@ public class JournalDetailsActivity extends AppCompatActivity {
     }
 
     void saveNote() {
+        //Adds count to the bonus streak
+        bonusStreak++;
+        journalPoints = 5;
+
         String date = datePht.getText().toString();
         String noteTitle = titleEditText.getText().toString();
         String noteContent = contentEditText.getText().toString();
@@ -161,6 +181,46 @@ public class JournalDetailsActivity extends AppCompatActivity {
 
         saveJournalToFirebase(journal);
 
+        //Gets score and assigns to quizPoints in Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+        // Gets value from quizPoints into quizBuffer
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+        if (bonusStreak < 7) {
+            // Adds points to journalPoints
+            databaseReference.child("Users").child(user.getUid()).child("journalPoints").get().addOnCompleteListener(recordedJournalScore -> {
+                if (recordedJournalScore.isSuccessful()) {
+                    if (recordedJournalScore.getResult().getValue() == null) {
+                        // Child "journalPoints" does not exist, create it with the initial value of journalPoints
+                        databaseReference.child("Users").child(user.getUid()).child("journalPoints").setValue(journalPoints);
+                    } else {
+                        int existingJournalPoints = Integer.parseInt(String.valueOf(recordedJournalScore.getResult().getValue()));
+                        journalPoints = existingJournalPoints + journalPoints;
+                        // Update the child "journalPoints" with the new value
+                        databaseReference.child("Users").child(user.getUid()).child("journalPoints").setValue(journalPoints);
+                    }
+                }
+            });
+        } else {
+            // Adds bonus points
+            bonusStreak = 0;
+            // Adds points to journalPoints
+            databaseReference.child("Users").child(user.getUid()).child("journalPoints").get().addOnCompleteListener(recordedJournalScore -> {
+                if (recordedJournalScore.isSuccessful()) {
+                    if (recordedJournalScore.getResult().getValue() == null) {
+                        // Child "journalPoints" does not exist, create it with the initial value of journalPoints
+                        databaseReference.child("Users").child(user.getUid()).child("journalPoints").setValue(journalPoints);
+                    } else {
+                        int existingJournalPoints = Integer.parseInt(String.valueOf(recordedJournalScore.getResult().getValue()));
+                        journalPoints = existingJournalPoints + journalPoints + bonusPoints;
+                        // Update the child "journalPoints" with the new value
+                        databaseReference.child("Users").child(user.getUid()).child("journalPoints").setValue(journalPoints);
+                    }
+                }
+            });
+        }
 
     }
 

@@ -15,8 +15,20 @@ import android.view.SurfaceView;
 import android.os.Handler;
 import android.widget.Toast;
 import com.example.mentalhub.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
+
+    FirebaseAuth mAuth;
+    FirebaseUser userFirebase;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    int cognitivePoints = 0;
+    boolean pointsAdd = true;
 
     private MainThread thread;
     private Player user;
@@ -30,6 +42,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private Handler handler;
 
     private Bitmap backgroundImage;
+
     public GamePanel(Context context){
 
         super(context);
@@ -110,7 +123,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     //Creates a new fruitManager and resets the location of the user
     public void resetGame(){
-
         userPoint = new Point(150,150);
         user.update(userPoint);
 
@@ -128,10 +140,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
                 //Reset the game if ended
                 if(gameOver){
-
                     resetGame();
                     gameOver = false;
-
                 }
 
                 break;
@@ -153,6 +163,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
         if(!gameOver ){
+
+            // Sets the point system to true when the game is not yet over
+            pointsAdd = true;
 
             //Move the user to the new point
             user.update(userPoint);
@@ -209,7 +222,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         //Set gameover screen
-        if(gameOver){
+        if(gameOver) {
 
             BitmapFactory bf = new BitmapFactory();
 
@@ -257,6 +270,34 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             //highScore
             canvas.drawText(text3, x3, y3 + 400, p);
 
+            // The score of foodManager is placed into cognitive points
+            cognitivePoints = foodManager.getScore();
+
+            mAuth = FirebaseAuth.getInstance();
+            userFirebase = mAuth.getCurrentUser();
+
+            //Gets score and assigns to cognitivePoints in Firebase
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference();
+            if(pointsAdd) {
+                // Gets value from cognitivePoints
+                FirebaseUser userFirebase = mAuth.getCurrentUser();
+                assert user != null;
+                databaseReference.child("Users").child(userFirebase.getUid()).child("cognitivePoints").get().addOnCompleteListener(recorededCognitivePoints -> {
+                    if (recorededCognitivePoints.isSuccessful()) {
+                        if (recorededCognitivePoints.getResult().getValue() == null) {
+                            // Child "cognitivePoints" does not exist, create it with the initial value of quizPoints
+                            databaseReference.child("Users").child(userFirebase.getUid()).child("cognitivePoints").setValue(cognitivePoints);
+                        } else {
+                            int existingQuizPoints = Integer.parseInt(String.valueOf(recorededCognitivePoints.getResult().getValue()));
+                            cognitivePoints = existingQuizPoints + cognitivePoints;
+                            // Update the child "cognitivePoints" with the new value
+                            databaseReference.child("Users").child(userFirebase.getUid()).child("cognitivePoints").setValue(cognitivePoints);
+                        }
+                    }
+                });
+            }
+            pointsAdd = false;
         }
 
     }

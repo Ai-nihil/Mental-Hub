@@ -8,11 +8,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.mentalhub.MainActivity;
 import com.example.mentalhub.QuizOrLesson;
 import com.example.mentalhub.R;
-import com.example.mentalhub.VPAdapter;
-import com.example.mentalhub.ViewPagerItem;
+import com.example.mentalhub.cognitive.VPAdapter;
+import com.example.mentalhub.cognitive.ViewPagerItem;
 
 import java.util.ArrayList;
 

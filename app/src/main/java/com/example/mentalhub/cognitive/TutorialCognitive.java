@@ -8,17 +8,14 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.mentalhub.MainActivity;
 import com.example.mentalhub.R;
-import com.example.mentalhub.VPAdapter;
-import com.example.mentalhub.ViewPagerItem;
 
 import java.util.ArrayList;
 
 public class TutorialCognitive extends AppCompatActivity implements View.OnClickListener {
 
     ViewPager2 viewPager2;
-    ArrayList<com.example.mentalhub.ViewPagerItem> viewPagerItemArrayList;
+    ArrayList<com.example.mentalhub.cognitive.ViewPagerItem> viewPagerItemArrayList;
     Button openActivityButton;
 
     @Override
@@ -42,11 +39,11 @@ public class TutorialCognitive extends AppCompatActivity implements View.OnClick
         viewPagerItemArrayList = new ArrayList<>();
 
         for (int i = 0; i < images.length; i++) {
-            com.example.mentalhub.ViewPagerItem viewPagerItem = new ViewPagerItem(images[i]);
+            com.example.mentalhub.cognitive.ViewPagerItem viewPagerItem = new ViewPagerItem(images[i]);
             viewPagerItemArrayList.add(viewPagerItem);
         }
 
-        com.example.mentalhub.VPAdapter vpAdapter = new VPAdapter(viewPagerItemArrayList);
+        com.example.mentalhub.cognitive.VPAdapter vpAdapter = new VPAdapter(viewPagerItemArrayList);
 
         viewPager2.setAdapter(vpAdapter);
         viewPager2.setClipToPadding(false);

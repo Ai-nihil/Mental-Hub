@@ -15,7 +15,7 @@
         app:cpb_background_progressbar_color="#f2f2f2"
         app:cpb_background_progressbar_width="20dp"
         app:cpb_progress_direction="to_right"
-        app:cpb_progress_max="2500"
+        app:cpb_progress_max="10000"
         app:cpb_progressbar_color="@color/pink_100"
         app:cpb_progressbar_width="15dp"
         app:cpb_round_border="false"
