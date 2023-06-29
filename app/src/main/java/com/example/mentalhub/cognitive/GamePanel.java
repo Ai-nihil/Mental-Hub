@@ -46,7 +46,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         user.update(userPoint);
 
         //Instantiate the fruit-managing class
-         foodManager = new FoodManager(200, Constants.SCREEN_HEIGHT - 325, 325, Color.argb(0,255,255,255));
+        foodManager = new FoodManager(200, Constants.SCREEN_HEIGHT - 325, 325, Color.argb(0,255,255,255));
 
         setFocusable(true);
 
@@ -152,30 +152,30 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         //Game is continuing
 
 
-                if(!gameOver ){
+        if(!gameOver ){
 
-                    //Move the user to the new point
-                    user.update(userPoint);
+            //Move the user to the new point
+            user.update(userPoint);
 
-                    //Update the foodManager
-                    boolean x = foodManager.update();
+            //Update the foodManager
+            boolean x = foodManager.update();
 
-                    //Check if three foods have been missed
-                    if (x) {
+            //Check if three foods have been missed
+            if (x) {
 
-                        gameOver = true;
+                gameOver = true;
 
-                    }
+            }
 
-                    boolean y = foodManager.collisionDetection(user);
+            boolean y = foodManager.collisionDetection(user);
 
-                    //Check if bomb has been hit
-                    if (y) {
+            //Check if bomb has been hit
+            if (y) {
 
-                        gameOver = true;
+                gameOver = true;
 
-                    }
-                }
+            }
+        }
 
 
 
@@ -201,7 +201,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         if (!gameStarted) {
             //
             Paint textPaint = new Paint();
-            textPaint.setColor(Color.BLACK);
+            textPaint.setColor(Color.WHITE);
             textPaint.setTextSize(50);
             String text = "Pop the Unhealthy Foods";
             float textWidth = textPaint.measureText(text);

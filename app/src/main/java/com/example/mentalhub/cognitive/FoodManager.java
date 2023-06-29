@@ -17,14 +17,14 @@ public class FoodManager {
     //Used to assign images to the  food rectangles
     private static BitmapFactory bf = new BitmapFactory();
 
-    private static Bitmap FOOD_IMAGE1 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.food);
-    private static Bitmap FOOD_IMAGE2 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.food);
-    private static Bitmap FOOD_IMAGE3 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.food);
-    private static Bitmap FOOD_IMAGE4 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.food);
-    private static Bitmap FOOD_IMAGE5 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.food);
-    private static Bitmap FOOD_IMAGE6 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.food);
+    private static Bitmap FOOD_IMAGE1 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.f1);
+    private static Bitmap FOOD_IMAGE2 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.f2);
+    private static Bitmap FOOD_IMAGE3 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.f3);
+    private static Bitmap FOOD_IMAGE4 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.f4);
+    private static Bitmap FOOD_IMAGE5 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.f5);
+    private static Bitmap FOOD_IMAGE6 = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.h1);
 
-    private static Bitmap BOMB_IMAGE = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.android1);
+    private static Bitmap BOMB_IMAGE = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.h1);
 
     //Instantiate sound clips
     //private static MediaPlayer BOMB_NOISE = MediaPlayer.create(Constants.CURRENT_CONTEXT, R.raw.bomb);
@@ -244,14 +244,14 @@ public class FoodManager {
         //Represents score
         Paint p = new Paint();
         p.setTextSize(50);
-        p.setColor(Color.BLACK);
+        p.setColor(Color.WHITE);
         canvas.drawText("Score: " + score, 50, 50 + p.descent() - p.ascent(), p);
 
 
 
         Paint pH = new Paint();
         pH.setTextSize(50);
-        pH.setColor(Color.BLACK);
+        pH.setColor(Color.WHITE);
         canvas.drawText("High Score: " + highScore, Constants.SCREEN_WIDTH - 350, 50 + pH.descent() - pH.ascent(), pH);
 
 
