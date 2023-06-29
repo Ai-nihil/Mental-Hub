@@ -87,6 +87,7 @@ public class Dieting extends AppCompatActivity {
             }
             if (end) {
                 startActivity(new Intent(Dieting.this, MenuActivity.class));
+                finish();
             }
             //Sets choice has been made back to false
             choiceHasBeenMade = false;

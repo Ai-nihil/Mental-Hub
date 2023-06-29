@@ -12,17 +12,27 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.mentalhub.R;
 import com.example.mentalhub.models.QuestionsLists;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuizResults extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
     ImageView congratulationsIcon, failureIcon;
     TextView successTextView, failureTextView, correctAnswersSuccess, correctAnswersFail;
     int userGrade;
     int numOfQuestions;
     int passingGrade;
+    int quizPoints;
     String congratulationsIconImage = "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-congratulations-label-png.png";
     String failureIconImage = "https://www.westfield.ma.edu/PersonalPages/draker/edcom/final/webprojects/sp18/sectiona/solarq/tryagain.png";
     Button startNewQuizBtn;
@@ -50,6 +60,15 @@ public class QuizResults extends AppCompatActivity {
         // Gets the value of the user's grade and the passing grade
         passingGrade = getNumberOfQuestions / 2;
         userGrade = getCorrectAnswers;
+
+        quizPoints = 5 * userGrade;
+        // Database reference
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        // inserts value of result into the database
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
+        databaseReference.child("Users").child(user.getUid()).child("quizPoints").setValue(quizPoints);
 
         // set correct and incorrect answers to TextViews
         correctAnswersSuccess.setText("Correct Answers : " + getCorrectAnswers + " / " + getNumberOfQuestions);

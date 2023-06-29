@@ -303,6 +303,7 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void changeNextQuestion() {
 
         // increment currentQuestionPosition by 1 for next question

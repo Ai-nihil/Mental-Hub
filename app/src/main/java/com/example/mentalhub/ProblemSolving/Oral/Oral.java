@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 
 
+import com.example.mentalhub.ProblemSolving.Dieting.Dieting;
 import com.example.mentalhub.ProblemSolving.MenuActivity;
 import com.example.mentalhub.R;
 
@@ -25,7 +26,7 @@ public class Oral extends AppCompatActivity {
     private long mLastClickTime = 0;
     int currentResourceImg = 1;
 
-    ImageView dietingBgImgView, eyeIcon;
+    ImageView oralBgImgView, eyeIcon;
 
     Button choiceButton1, choiceButton2, choiceButton3, choiceButton4;
 
@@ -46,7 +47,7 @@ public class Oral extends AppCompatActivity {
         setContentView(R.layout.activity_oral);
 
         eyeIcon = findViewById(R.id.eye);
-        dietingBgImgView = findViewById(R.id.dietingBg1);
+        oralBgImgView = findViewById(R.id.dietingBg1);
         choiceButton1 = findViewById(R.id.choice1);
         choiceButton2 = findViewById(R.id.choice2);
         choiceButton3 = findViewById(R.id.choice3);
@@ -77,7 +78,7 @@ public class Oral extends AppCompatActivity {
         eyeIcon.bringToFront();
 
         // OnClickListener for the imageview
-        dietingBgImgView.setOnClickListener((v) -> {
+        oralBgImgView.setOnClickListener((v) -> {
             //TODO: Add tag values for each image to switch between them
             //Algorithm to prevent double click
             if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
@@ -87,29 +88,23 @@ public class Oral extends AppCompatActivity {
             //Makes the eye and choice invisible
             if (choiceHasBeenMade) {
                 currentResourceImg++;
-                //Makes the eye button become visible
                 makeEyeButtonVisible();
-                // Returns all options into not selected
-                deselectOptions();
-                // Clears the texts
-                clearButtonText();
-                // Switch case for changing the screen
-                changeCurrentScreen();
-                // Makes the button invisible first then
-                makeChoiceButtonInvisible();
+            }
+            // Returns all options into not selected
+            deselectOptions();
+            // Clears the texts
+            clearButtonText();
+            // Switch case for changing the screen
+            changeCurrentScreen();
+            // Makes the button invisible first then
+            makeChoiceButtonInvisible();
+            if (eyeStateIsOpen) {
                 // makes Choice button visible
                 makeChoiceButtonVisible();
-            } else {
-                // Returns all options into not selected
-                deselectOptions();
-                // Clears the texts
-                clearButtonText();
-                // Switch case for changing the screen
-                changeCurrentScreen();
-                // Makes the button invisible first then
-                makeChoiceButtonInvisible();
-                // makes Choice button visible
-                makeChoiceButtonVisible();
+            }
+            if (end) {
+                startActivity(new Intent(Oral.this, MenuActivity.class));
+                finish();
             }
             //Sets choice has been made back to false
             choiceHasBeenMade = false;
@@ -249,31 +244,31 @@ public class Oral extends AppCompatActivity {
         switch (currentResourceImg) {
 
             case 2:
-                dietingBgImgView.setImageResource(R.drawable.start);
+                oralBgImgView.setImageResource(R.drawable.start);
                 choiceButton2.setText("Consult a Therapist");
                 choiceButton3.setText("Work on it yourself");
                 break;
             case 3:
-                dietingBgImgView.setImageResource(R.drawable.oralconsult);
+                oralBgImgView.setImageResource(R.drawable.oralconsult);
                 choiceButton2.setText("Challenge: Temptation");
                 choiceButton3.setText("Challenge: Emotional Eating");
 
                 break;
             case 4:
-                dietingBgImgView.setImageResource(R.drawable.oral_temptations);
+                oralBgImgView.setImageResource(R.drawable.oral_temptations);
                 choiceButton2.setText("Ignore Therapist's advice");
                 choiceButton3.setText("Implement Therapist's advice");
 
                 break;
             case 5:
                 currentResourceImg = 6;
-                dietingBgImgView.setImageResource(R.drawable.oral_temptationb2);
+                oralBgImgView.setImageResource(R.drawable.oral_temptationb2);
 
 
                 break;
             case 6:
 
-                dietingBgImgView.setImageResource(R.drawable.oral_temptationbending);
+                oralBgImgView.setImageResource(R.drawable.oral_temptationbending);
                 end = true;
                 break;
             case 7:
@@ -282,93 +277,93 @@ public class Oral extends AppCompatActivity {
                 break;
             case 8:
 
-                dietingBgImgView.setImageResource(R.drawable.oral_yourself);
+                oralBgImgView.setImageResource(R.drawable.oral_yourself);
                 choiceButton2.setText("Try to change based on gut feeling");
                 choiceButton3.setText("Do extensive research on how to change");
                 break;
 
             case 9:
 
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfb1);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfb1);
                 choiceButton2.setText("Challenge: Temptation ");
                 choiceButton3.setText("Challenge: Self-esteem");
 
                 break;
             case 10:
                 currentResourceImg = 12;
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfb21);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfb21);
                 break;
             case 11:
                 currentResourceImg = 12;
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfb22);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfb22);
                 break;
             case 12://end
 
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfbnending);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfbnending);
                 end = true;
                 break;
             case 13:
 
 
-                 dietingBgImgView.setImageResource(R.drawable.oral_emotional);
+                 oralBgImgView.setImageResource(R.drawable.oral_emotional);
                 choiceButton2.setText("Fast Improvement");
                 choiceButton3.setText("Patience and Discipline");
                 break;
             case 14:
                 currentResourceImg = 15;
-                 dietingBgImgView.setImageResource(R.drawable.oral_emotionalb2);
+                 oralBgImgView.setImageResource(R.drawable.oral_emotionalb2);
 
                 break;
             case 15://end
 
-                dietingBgImgView.setImageResource(R.drawable.oral_emotionalbending);
+                oralBgImgView.setImageResource(R.drawable.oral_emotionalbending);
                 end = true;
 
                 break;
             case 16:
                 currentResourceImg = 17;
-                 dietingBgImgView.setImageResource(R.drawable.oral_emotionalg2);
+                 oralBgImgView.setImageResource(R.drawable.oral_emotionalg2);
 
                 break;
             case 17://end
 
-                  dietingBgImgView.setImageResource(R.drawable.oral_emotionalgending);
+                  oralBgImgView.setImageResource(R.drawable.oral_emotionalgending);
                 end = true;
 
                 break;
             case 18:
                 currentResourceImg = 19;
-                  dietingBgImgView.setImageResource(R.drawable.oral_temptationg2);
+                  oralBgImgView.setImageResource(R.drawable.oral_temptationg2);
                 break;
             case 19:
 
-                 dietingBgImgView.setImageResource(R.drawable.oral_temptationgending);
+                 oralBgImgView.setImageResource(R.drawable.oral_temptationgending);
                 end = true;
 
                 break;
             case 20:
-                dietingBgImgView.setImageResource(R.drawable.oral_yourself);
+                oralBgImgView.setImageResource(R.drawable.oral_yourself);
                 choiceButton2.setText("Challenge: Overeating");
                 choiceButton3.setText("Challenge: Nutrition");
                 break;
             case 21:
                 currentResourceImg = 23;
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfg22);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfg22);
 
                 break;
             case 22:
                 currentResourceImg = 23;
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfg21);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfg21);
 
                 break;
             case 23:
                 currentResourceImg = 24;
-                dietingBgImgView.setImageResource(R.drawable.oral_yourselfg3);
+                oralBgImgView.setImageResource(R.drawable.oral_yourselfg3);
 
                 break;
             case 24:
 
-               dietingBgImgView.setImageResource(R.drawable.oral_yourselfgending);
+               oralBgImgView.setImageResource(R.drawable.oral_yourselfgending);
 
                 end = true;
                 break;

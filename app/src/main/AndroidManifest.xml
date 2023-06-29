@@ -15,6 +15,13 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".Warning"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ProblemSolving.Dieting.Dieting"
             android:exported="false">
             <meta-data
@@ -148,9 +155,8 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.example.mentalhub.relaxation.DirtGame"
-            android:label="Dirt Game">
-        </activity>
+            android:name=".relaxation.DirtGame"
+            android:label="Dirt Game"></activity>
         <activity
             android:name=".ProblemSolving.MenuActivity"
             android:exported="false">

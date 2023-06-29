@@ -83,6 +83,7 @@ public class Bulimia extends AppCompatActivity {
             }
             if (end) {
                 startActivity(new Intent(Bulimia.this, MenuActivity.class));
+                finish();
             }
             //Sets choice has been made back to false
             choiceHasBeenMade = false;
