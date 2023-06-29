@@ -10,16 +10,29 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mentalhub.ProblemSolving.Bulimia.Bulimia;
 import com.example.mentalhub.ProblemSolving.MenuActivity;
+import com.example.mentalhub.ProblemSolving.Oral.Oral;
 import com.example.mentalhub.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Dieting extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    int problemSolvingPoints = 10;
 
     private long mLastClickTime = 0;
     int currentResourceImg = 1;
@@ -41,6 +54,9 @@ public class Dieting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dieting);
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
         eyeIcon = findViewById(R.id.eye);
         dietingBgImgView = findViewById(R.id.dietingBg1);
         choiceButton1 = findViewById(R.id.choice1);
@@ -53,6 +69,14 @@ public class Dieting extends AppCompatActivity {
         choiceButton2.setVisibility(View.INVISIBLE);
         choiceButton3.setVisibility(View.INVISIBLE);
         choiceButton4.setVisibility(View.INVISIBLE);
+
+        //Gets score and assigns to breathingPoints in Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
+        // Gets value from breathingPoints into quizBuffer
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
 
         //Set phone default to landscape
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -86,6 +110,23 @@ public class Dieting extends AppCompatActivity {
                 makeChoiceButtonVisible();
             }
             if (end) {
+                // Adds problemSolvingPoints to the user with the current UID
+                databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").get().addOnCompleteListener(recordedProblemSolvingScore -> {
+                    if (recordedProblemSolvingScore.isSuccessful()) {
+                        if (recordedProblemSolvingScore.getResult().getValue() == null) {
+                            // Child "problemSolvingPoints" does not exist, create it with the initial value of quizPoints
+                            databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").setValue(problemSolvingPoints);
+                        } else {
+                            int existingProblemSolvingPoints = Integer.parseInt(String.valueOf(recordedProblemSolvingScore.getResult().getValue()));
+                            //Adds value of problemSolvingPoints with problemSolvingPoints
+                            problemSolvingPoints += existingProblemSolvingPoints;
+                            // Update the child "problemSolvingPoints" with the new value
+                            databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").setValue(problemSolvingPoints);
+                        }
+                    }
+                });
+                Toast.makeText(Dieting.this, "You have found an ending!",
+                        Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Dieting.this, MenuActivity.class));
                 finish();
             }

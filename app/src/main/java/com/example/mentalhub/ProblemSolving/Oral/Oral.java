@@ -10,18 +10,29 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-
-import com.example.mentalhub.ProblemSolving.Dieting.Dieting;
 import com.example.mentalhub.ProblemSolving.MenuActivity;
 import com.example.mentalhub.R;
+import com.example.mentalhub.breathing;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Oral extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    int problemSolvingPoints = 10;
 
     private long mLastClickTime = 0;
     int currentResourceImg = 1;
@@ -37,14 +48,15 @@ public class Oral extends AppCompatActivity {
     Boolean eyeStateIsOpen = true;
     Boolean choiceHasBeenMade = true;
 
-    List<Integer> tagWithChoice = new ArrayList<>();
-
     Boolean end = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oral);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         eyeIcon = findViewById(R.id.eye);
         oralBgImgView = findViewById(R.id.dietingBg1);
@@ -59,17 +71,13 @@ public class Oral extends AppCompatActivity {
         choiceButton3.setVisibility(View.INVISIBLE);
         choiceButton4.setVisibility(View.INVISIBLE);
 
+        //Gets score and assigns to breathingPoints in Firebase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
-
-        //add value on tagWithChoice array
-        tagWithChoice.add(4);
-        tagWithChoice.add(3);
-        tagWithChoice.add(4);
-        tagWithChoice.add(5);
-        tagWithChoice.add(14);
-        tagWithChoice.add(15);
-        tagWithChoice.add(16);
-        tagWithChoice.add(17);
+        // Gets value from breathingPoints into quizBuffer
+        FirebaseUser user = mAuth.getCurrentUser();
+        assert user != null;
 
         //Set phone default to landscape
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -103,6 +111,23 @@ public class Oral extends AppCompatActivity {
                 makeChoiceButtonVisible();
             }
             if (end) {
+                // Adds problemSolvingPoints to the user with the current UID
+                databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").get().addOnCompleteListener(recordedProblemSolvingScore -> {
+                    if (recordedProblemSolvingScore.isSuccessful()) {
+                        if (recordedProblemSolvingScore.getResult().getValue() == null) {
+                            // Child "problemSolvingPoints" does not exist, create it with the initial value of quizPoints
+                            databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").setValue(problemSolvingPoints);
+                        } else {
+                            int existingProblemSolvingPoints = Integer.parseInt(String.valueOf(recordedProblemSolvingScore.getResult().getValue()));
+                            //Adds value of problemSolvingPoints with problemSolvingPoints
+                            problemSolvingPoints += existingProblemSolvingPoints;
+                            // Update the child "problemSolvingPoints" with the new value
+                            databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").setValue(problemSolvingPoints);
+                        }
+                    }
+                });
+                Toast.makeText(Oral.this, "You have found an ending!",
+                        Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(Oral.this, MenuActivity.class));
                 finish();
             }

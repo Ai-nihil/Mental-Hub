@@ -9,7 +9,7 @@ import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 public class progressActivity extends AppCompatActivity{
 
-    int maxPoints = 100;
+    int maxPoints = 1000;
     int previousPoints = 0;
     CircularProgressBar circularProgressBar;
 

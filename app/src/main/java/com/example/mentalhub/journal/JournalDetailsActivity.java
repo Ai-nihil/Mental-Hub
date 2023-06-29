@@ -160,6 +160,8 @@ public class JournalDetailsActivity extends AppCompatActivity {
         journal.setTimestamp(Timestamp.now());
 
         saveJournalToFirebase(journal);
+
+
     }
 
     void saveJournalToFirebase(Journal journal) {

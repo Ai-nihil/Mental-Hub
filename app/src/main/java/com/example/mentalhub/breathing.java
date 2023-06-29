@@ -6,10 +6,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class breathing extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser user;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    // This is the added points for each completed breathing
+    int breathingPoints = 10;
+
     private static final long START_TIME_IN_MILLIS = 4000;
 
     private TextView timerTextView;
@@ -27,6 +42,9 @@ public class breathing extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.breathing);
 
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+
         timerTextView = findViewById(R.id.timerTextView);
         breathingImage = findViewById(R.id.breathingImage);
         startButton = findViewById(R.id.startButton);
@@ -40,10 +58,10 @@ public class breathing extends AppCompatActivity {
     }
 
     private void startBreathingExercise() {
-        phase = 17;
+        phase = 16;
         startButton.setEnabled(false); // Disable the button during the exercise
 
-        countDownTimer = new CountDownTimer(17 * 1000L, intervalInMillis) {
+        countDownTimer = new CountDownTimer(16 * 1000L, intervalInMillis) {
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
@@ -66,14 +84,39 @@ public class breathing extends AppCompatActivity {
                 // Breathing exercise finished
                 cycleCount++;
                 if (cycleCount < 6) {
+                    Toast.makeText(breathing.this, "Cycle: " + cycleCount + " / " + "6",
+                            Toast.LENGTH_SHORT).show();
                     startBreathingExercise();
                 } else {
+                    Toast.makeText(breathing.this, "Congratulations, you've finished the breathing exercise!",
+                            Toast.LENGTH_SHORT).show();
                     cycleCount = 0;
                     startButton.setEnabled(true); // Enable the button after all cycles are completed
+                    //Gets score and assigns to breathingPoints in Firebase
+                    firebaseDatabase = FirebaseDatabase.getInstance();
+                    databaseReference = firebaseDatabase.getReference();
+
+                    // Gets value from breathingPoints into quizBuffer
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    assert user != null;
+
+                    databaseReference.child("Users").child(user.getUid()).child("breathingPoints").get().addOnCompleteListener(recordedBreathingScore -> {
+                        if (recordedBreathingScore.isSuccessful()) {
+                            if (recordedBreathingScore.getResult().getValue() == null) {
+                                // Child "breathingPoints" does not exist, create it with the initial value of quizPoints
+                                databaseReference.child("Users").child(user.getUid()).child("breathingPoints").setValue(breathingPoints);
+                            } else {
+                                int existingBreathingPoints = Integer.parseInt(String.valueOf(recordedBreathingScore.getResult().getValue()));
+                                //Adds value of existingBreathingPoints with breathingPoints
+                                breathingPoints += existingBreathingPoints;
+                                // Update the child "breathingPoints" with the new value
+                                databaseReference.child("Users").child(user.getUid()).child("breathingPoints").setValue(breathingPoints);
+                            }
+                        }
+                    });
                 }
             }
         };
-
         countDownTimer.start();
     }
 

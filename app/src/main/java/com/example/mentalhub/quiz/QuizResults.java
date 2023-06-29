@@ -27,8 +27,7 @@ public class QuizResults extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
-    int quizPoints;
-    int quizBuffer = 0;
+    int quizPoints = 0;
 
     ImageView congratulationsIcon, failureIcon;
     TextView successTextView, failureTextView, correctAnswersSuccess, correctAnswersFail;
@@ -66,6 +65,9 @@ public class QuizResults extends AppCompatActivity {
         passingGrade = getNumberOfQuestions / 2;
         userGrade = getCorrectAnswers;
 
+        // Multiplies the value of userGrade by 5 to get the quizPoints
+        quizPoints = userGrade * 5;
+
         //Gets score and assigns to quizPoints in Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -74,13 +76,10 @@ public class QuizResults extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
 
-        // Multiplies the value of userGrade by 5 to get the quizPoints
-        quizPoints = userGrade * 5;
-
         databaseReference.child("Users").child(user.getUid()).child("quizPoints").get().addOnCompleteListener(recordedQuizScore -> {
             if (recordedQuizScore.isSuccessful()) {
                 if (recordedQuizScore.getResult().getValue() == null) {
-                    // Child "quizPoints" does not exist, create it with the initial value of quizBuffer
+                    // Child "quizPoints" does not exist, create it with the initial value of quizPoints
                     databaseReference.child("Users").child(user.getUid()).child("quizPoints").setValue(quizPoints);
                 } else {
                     int existingQuizPoints = Integer.parseInt(String.valueOf(recordedQuizScore.getResult().getValue()));
