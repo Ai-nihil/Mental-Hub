@@ -27,12 +27,14 @@ public class QuizResults extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
+    int quizPoints;
+    int quizBuffer = 0;
+
     ImageView congratulationsIcon, failureIcon;
     TextView successTextView, failureTextView, correctAnswersSuccess, correctAnswersFail;
     int userGrade;
     int numOfQuestions;
     int passingGrade;
-    int quizPoints;
     String congratulationsIconImage = "https://www.psdstamps.com/wp-content/uploads/2022/04/grunge-congratulations-label-png.png";
     String failureIconImage = "https://www.westfield.ma.edu/PersonalPages/draker/edcom/final/webprojects/sp18/sectiona/solarq/tryagain.png";
     Button startNewQuizBtn;
@@ -41,6 +43,9 @@ public class QuizResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_results);
+
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         failureIcon = findViewById(R.id.failureIcon);
         failureTextView = findViewById(R.id.failureTextView);
@@ -61,14 +66,30 @@ public class QuizResults extends AppCompatActivity {
         passingGrade = getNumberOfQuestions / 2;
         userGrade = getCorrectAnswers;
 
-        quizPoints = 5 * userGrade;
-        // Database reference
+        //Gets score and assigns to quizPoints in Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-        // inserts value of result into the database
+
+        // Gets value from quizPoints into quizBuffer
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
-        databaseReference.child("Users").child(user.getUid()).child("quizPoints").setValue(quizPoints);
+
+        // Multiplies the value of userGrade by 5 to get the quizPoints
+        quizPoints = userGrade * 5;
+
+        databaseReference.child("Users").child(user.getUid()).child("quizPoints").get().addOnCompleteListener(recordedQuizScore -> {
+            if (recordedQuizScore.isSuccessful()) {
+                if (recordedQuizScore.getResult().getValue() == null) {
+                    // Child "quizPoints" does not exist, create it with the initial value of quizBuffer
+                    databaseReference.child("Users").child(user.getUid()).child("quizPoints").setValue(quizPoints);
+                } else {
+                    int existingQuizPoints = Integer.parseInt(String.valueOf(recordedQuizScore.getResult().getValue()));
+                    quizPoints = existingQuizPoints + quizPoints;
+                    // Update the child "quizPoints" with the new value
+                    databaseReference.child("Users").child(user.getUid()).child("quizPoints").setValue(quizPoints);
+                }
+            }
+        });
 
         // set correct and incorrect answers to TextViews
         correctAnswersSuccess.setText("Correct Answers : " + getCorrectAnswers + " / " + getNumberOfQuestions);
