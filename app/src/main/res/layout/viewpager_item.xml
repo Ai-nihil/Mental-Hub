@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     android:layout_marginHorizontal="16dp">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="cursive"
-        android:text="Tutorial"
-        android:textColor="@color/black"
-        android:textSize="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -41,15 +27,15 @@
 
     <ImageView
         android:id="@+id/ivimage"
-        android:layout_width="384dp"
-        android:layout_height="411dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="390dp"
+        android:layout_height="650dp"
+        android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
         android:src="@drawable/a"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/coggirl" />
 
     <RelativeLayout
@@ -58,36 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="188dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.09">
+        app:layout_constraintEnd_toStartOf="parent">
 
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tvHeading"
-        android:layout_width="188dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="332dp"
-        android:layout_marginEnd="68dp"
-        android:text="Text"
-        android:textColor="@color/white"
-        android:textSize="26dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ivimage" />
-
-    <TextView
-        android:id="@+id/tvDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:text="@string/a_desc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivimage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

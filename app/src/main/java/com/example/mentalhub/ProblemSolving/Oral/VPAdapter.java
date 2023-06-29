@@ -1,4 +1,4 @@
-package com.example.mentalhub.cognitive;
+package com.example.mentalhub.ProblemSolving.Oral;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mentalhub.R;
-import com.example.mentalhub.cognitive.ViewPagerItem;
+import com.example.mentalhub.ProblemSolving.Oral.ViewPagerItem;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,5 @@
 package com.example.mentalhub;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,26 +8,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.mentalhub.psychoeducation.TutorialEducation;
 import com.example.mentalhub.screening.*;
 import com.example.mentalhub.progressChecker.*;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    ImageView tutorial ;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         checkProgressBtn = findViewById(R.id.checkProgress);
         textView = findViewById(R.id.user_details);
         playNowBtn = findViewById(R.id.playNow);
+        tutorial = findViewById(R.id.imageView4);
+
+
+
         // Sends user to login page if there is no session for user
         if (user == null) {
             Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
             psychoeducationBtn.setOnClickListener((View v) -> {
                 {
-                    Intent intent = new Intent(getApplicationContext(), QuizOrLesson.class);
+                    Intent intent = new Intent(getApplicationContext(), TutorialEducation.class);
                     startActivity(intent);
                 }
             });
@@ -121,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            tutorial.setOnClickListener((View v) -> {
+                {
+                    Intent intent = new Intent(getApplicationContext(), Tutorial.class);
+                    startActivity(intent);
+                }
+            });
+
 
             checkProgressBtn.setOnClickListener((View v) -> {
                 {
@@ -142,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
             });
 
         }
+
         // Button to log out the user
         logoutButton.setOnClickListener((View v) -> {
             {

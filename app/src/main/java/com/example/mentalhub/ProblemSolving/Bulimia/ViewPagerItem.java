@@ -1,4 +1,4 @@
-package com.example.mentalhub.cognitive;
+package com.example.mentalhub.ProblemSolving.Bulimia;
 
 public class ViewPagerItem {
 

@@ -173,7 +173,15 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".cognitive.Tutorial" />
+        <activity android:name=".cognitive.TutorialCognitive" />
+        <activity android:name=".psychoeducation.TutorialEducation" />
+        <activity android:name=".TutorialBreathing" />
+        <activity android:name=".relaxation.TutorialRelaxation" />
+        <activity android:name=".Tutorial" />
+        <activity android:name=".ProblemSolving.Bulimia.TutorialBulimia" />
+        <activity android:name=".ProblemSolving.Dieting.TutorialDieting" />
+        <activity android:name=".ProblemSolving.Oral.TutorialOral" />
+        <activity android:name=".journal.TutorialJournal" />
     </application>
 
 </manifest>

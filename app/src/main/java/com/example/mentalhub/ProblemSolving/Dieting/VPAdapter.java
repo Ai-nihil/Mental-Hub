@@ -1,4 +1,4 @@
-package com.example.mentalhub.cognitive;
+package com.example.mentalhub.ProblemSolving.Dieting;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mentalhub.R;
-import com.example.mentalhub.cognitive.ViewPagerItem;
+
 
 import java.util.ArrayList;
+import com.example.mentalhub.ProblemSolving.Dieting.ViewPagerItem;
+
 
 public class VPAdapter extends RecyclerView.Adapter<VPAdapter.ViewHolder> {
 

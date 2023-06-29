@@ -1,4 +1,4 @@
-package com.example.mentalhub.cognitive;
+package com.example.mentalhub.psychoeducation;
 
 public class ViewPagerItem {
 

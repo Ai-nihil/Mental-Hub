@@ -12,8 +12,11 @@ import android.widget.TextView;
 
 import com.example.mentalhub.ProblemSolving.MenuActivity;
 import com.example.mentalhub.cognitive.Cognitive;
+import com.example.mentalhub.cognitive.TutorialCognitive;
 import com.example.mentalhub.journal.Journaling;
+import com.example.mentalhub.journal.TutorialJournal;
 import com.example.mentalhub.relaxation.DirtGame;
+import com.example.mentalhub.relaxation.TutorialRelaxation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,12 +79,12 @@ public class GameActivity extends AppCompatActivity {
                 });
 
             journalingButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), Journaling.class);
+                Intent intent = new Intent(getApplicationContext(), TutorialJournal.class);
                 startActivity(intent);
             });
 
             cognitiveRestructuringButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), Cognitive.class);
+                Intent intent = new Intent(getApplicationContext(), TutorialCognitive.class);
                 startActivity(intent);
             });
 
@@ -91,12 +94,12 @@ public class GameActivity extends AppCompatActivity {
             });
 
             mindfulnessRelaxationButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), DirtGame.class);
+                Intent intent = new Intent(getApplicationContext(), TutorialRelaxation.class);
                 startActivity(intent);
             });
 
             breathingExerciseButton.setOnClickListener((View v) -> {
-                Intent intent = new Intent(getApplicationContext(), breathing.class);
+                Intent intent = new Intent(getApplicationContext(), TutorialBreathing.class);
                 startActivity(intent);
             });
 

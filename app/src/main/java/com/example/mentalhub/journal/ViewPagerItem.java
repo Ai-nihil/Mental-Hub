@@ -1,4 +1,4 @@
-package com.example.mentalhub.cognitive;
+package com.example.mentalhub.journal;
 
 public class ViewPagerItem {
 
