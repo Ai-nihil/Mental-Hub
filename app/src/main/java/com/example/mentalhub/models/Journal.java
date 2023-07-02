@@ -6,6 +6,7 @@ public class Journal {
     String title;
     String date;
     String content;
+    String emotion;
     Timestamp timestamp;
 
     public Journal() {
@@ -25,6 +26,14 @@ public class Journal {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEmotion() {
+        return emotion;
+    }
+
+    public void setEmotion(String emotion) {
+        this.emotion = emotion;
     }
 
     public String getContent() {

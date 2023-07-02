@@ -2,9 +2,6 @@ package com.example.mentalhub.journal;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -16,8 +13,13 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mentalhub.R;
 import com.example.mentalhub.models.Journal;
@@ -44,6 +46,10 @@ public class JournalDetailsActivity extends AppCompatActivity {
     int bonusStreak = 0;
     int bonusPoints = 50;
 
+    RadioGroup emotions;
+    RadioButton emotion;
+    RadioButton amazing, happy, neutral, sad, angry;
+
     // Creating global variables
     private EditText datePht;
     EditText titleEditText, contentEditText;
@@ -69,10 +75,48 @@ public class JournalDetailsActivity extends AppCompatActivity {
         saveNoteBtn = findViewById(R.id.save_note_btn);
         deleteJournalBtn = findViewById(R.id.delete_note_text_view_btn);
 
+        // emotions radio group
+        emotions = (RadioGroup) findViewById(R.id.note_emotion_group);
+        amazing = findViewById(R.id.amazing);
+        happy = findViewById(R.id.happy);
+        neutral = findViewById(R.id.neutral);
+        sad = findViewById(R.id.sad);
+        angry = findViewById(R.id.angry);
+
         // receive data
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
         docId = getIntent().getStringExtra("docId");
+
+        emotions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Get the checked radio button
+                int radioButtonID = emotions.getCheckedRadioButtonId();
+                emotion = (RadioButton) emotions.findViewById(radioButtonID);
+                String tagText = emotion.getTag().toString();
+
+                deselectAllRadioButton();
+
+                switch (tagText) {
+                    case "angry":
+                        angry.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.angry));
+                        break;
+                    case "sad":
+                        sad.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.sad));
+                        break;
+                    case "neutral":
+                        neutral.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.neutral));
+                        break;
+                    case "happy":
+                        happy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.happy));
+                        break;
+                    case "amazing":
+                        amazing.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.amazing));
+                        break;
+                }
+            }
+        });
 
         if (docId != null && !docId.isEmpty()) {
             isEditMode = true;
@@ -162,10 +206,15 @@ public class JournalDetailsActivity extends AppCompatActivity {
         String date = datePht.getText().toString();
         String noteTitle = titleEditText.getText().toString();
         String noteContent = contentEditText.getText().toString();
+        String noteEmotion = emotion.getText().toString();
 
         if (noteTitle == null || noteTitle.isEmpty()) {
             Log.w(TAG, "saveNote:failure");
             titleEditText.setError("Title is required");
+            return;
+        } else if (noteEmotion == null) {
+            Log.w(TAG, "saveNote:failure");
+            Toast.makeText(JournalDetailsActivity.this, "Please select today's emotion", Toast.LENGTH_SHORT).show();
             return;
         } else if (date == null || date.isEmpty()) {
             Log.w(TAG, "saveNote:failure");
@@ -177,6 +226,7 @@ public class JournalDetailsActivity extends AppCompatActivity {
         journal.setTitle(noteTitle);
         journal.setContent(noteContent);
         journal.setDate(date);
+        journal.setEmotion(noteEmotion);
         journal.setTimestamp(Timestamp.now());
 
         saveJournalToFirebase(journal);
@@ -275,5 +325,13 @@ public class JournalDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void deselectAllRadioButton() {
+        angry.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.angry_bw));
+        sad.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.sad_bw));
+        neutral.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.neutral_bw));
+        happy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.happy_bw));
+        amazing.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.amazed_bw));
     }
 }

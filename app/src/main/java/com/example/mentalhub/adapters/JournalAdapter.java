@@ -36,6 +36,7 @@ public class JournalAdapter extends FirestoreRecyclerAdapter<Journal, JournalAda
             intent.putExtra("title", journal.getTitle());
             intent.putExtra("content", journal.getContent());
 
+
             // Gets the snapshot of the current position of what was clicked
             String docId = this.getSnapshots().getSnapshot(position).getId();
             intent.putExtra("docId", docId);

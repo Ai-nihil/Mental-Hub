@@ -23,8 +23,6 @@ public class progressActivity extends AppCompatActivity {
 
     int quizPoints = 0, breathingPoints = 0, mindPoints = 0, cognitivePoints = 0, journalPoints = 0, problemSolvingPoints = 0;
 
-    int maxPoints = 10000;
-    int previousPoints = 0;
     int combinedPoints = 0;
     CircularProgressBar circularProgressBar;
 

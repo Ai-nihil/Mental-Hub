@@ -9,7 +9,6 @@ This application features:
   5. Breathing Exercise
   6. Problem Solving
   7. Eat-26 Assessment
-  8. Psychoeducation
-  9. Progress Monitoring
+  8. Progress Monitoring
   
 This application is made for the partial completion of our thesis in our university.
