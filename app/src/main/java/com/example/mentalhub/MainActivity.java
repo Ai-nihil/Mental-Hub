@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         logoutButton = findViewById(R.id.logout);
-        eat26 = findViewById(R.id.eat26assessment);
+        eat26 = findViewById(R.id.patientProgress);
         eat26ResultButton = findViewById(R.id.eat26Results);
         psychoeducationBtn = findViewById(R.id.psychoeducation);
         checkProgressBtn = findViewById(R.id.checkProgress);
         textView = findViewById(R.id.user_details);
-        playNowBtn = findViewById(R.id.playNow);
+        playNowBtn = findViewById(R.id.IDK);
         tutorial = findViewById(R.id.imageView4);
 
 

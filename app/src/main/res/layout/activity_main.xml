@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.264" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/playNow"
+        android:id="@+id/IDK"
         android:layout_width="150dp"
         android:layout_height="113dp"
         android:layout_marginBottom="44dp"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toTopOf="@+id/checkProgress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.682"
-        app:layout_constraintStart_toEndOf="@+id/eat26assessment" />
+        app:layout_constraintStart_toEndOf="@+id/patientProgress" />
 
     <TextView
         android:id="@+id/textView6"
@@ -86,7 +86,7 @@
         app:srcCompat="@drawable/patient" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/eat26assessment"
+        android:id="@+id/patientProgress"
         android:layout_width="150dp"
         android:layout_height="113dp"
         android:layout_marginBottom="44dp"

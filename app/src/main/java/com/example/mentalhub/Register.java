@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,16 +35,13 @@ public class Register extends AppCompatActivity {
 
     EditText editTextName, editTextUsername, editTextEmail, editTextPassword;
     Button registerButton;
+    RadioGroup radioGroup;
     FirebaseAuth mAuth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     ProgressBar progressBar;
     TextView textView;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +54,7 @@ public class Register extends AppCompatActivity {
         registerButton = findViewById(R.id.registerButton);
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.loginNow);
+        radioGroup = findViewById(R.id.radioGroup);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -76,6 +75,17 @@ public class Register extends AppCompatActivity {
                 username = String.valueOf(editTextUsername.getText());
                 email = String.valueOf(editTextEmail.getText());
                 password = String.valueOf(editTextPassword.getText());
+
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                String userType;
+                if (selectedId == R.id.radioButtonUser) {
+                    userType = "patient";
+                } else if (selectedId == R.id.radioButtonPsychologist) {
+                    userType = "psychologist";
+                } else {
+                    // Handle case when no radio button is selected
+                    return;
+                }
 
                 if (TextUtils.isEmpty(name)) {
                     editTextName.setError("Enter your name");
@@ -101,6 +111,10 @@ public class Register extends AppCompatActivity {
                                         hashMap.put("email", email);
                                         hashMap.put("password", password);
                                         hashMap.put("userId", user.getUid());
+
+                                        // Store the user type in the database
+                                        hashMap.put("userType", userType);
+
                                         assert user != null;
                                         databaseReference.child("Users")
                                                 .child(user.getUid())
@@ -128,7 +142,6 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                 }
-
             }
         });
     }

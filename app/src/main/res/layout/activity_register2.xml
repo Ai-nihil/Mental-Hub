@@ -21,63 +21,60 @@
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-
         android:textSize="22dp"
         android:text="NAME:" />
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/customizededittext"
-            android:inputType="textPersonName"
-            android:drawableLeft="@drawable/ic_baseline_person_24"
-            android:hint="Name" />
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/customizededittext"
+        android:inputType="textPersonName"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:hint="Name" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-
         android:textSize="22dp"
         android:text="USERNAME:" />
 
-        <EditText
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/customizededittext"
-            android:inputType="textPersonName"
-            android:drawableLeft="@drawable/ic_baseline_person_outline_24"
-            android:hint="Username" />
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/customizededittext"
+        android:inputType="textPersonName"
+        android:drawableLeft="@drawable/ic_baseline_person_outline_24"
+        android:hint="Username" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-
         android:textSize="22dp"
         android:text="EMAIL ADDRESS:" />
 
-        <EditText
-            android:id="@+id/emailAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:ems="10"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:background="@drawable/customizededittext"
-            android:inputType="textEmailAddress"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
-            android:hint="JohnSmith@example.com" />
+    <EditText
+        android:id="@+id/emailAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:background="@drawable/customizededittext"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:hint="JohnSmith@example.com" />
 
     <TextView
         android:id="@+id/textView5"
@@ -87,17 +84,39 @@
         android:textSize="22dp"
         android:text="PASSWORD:" />
 
-        <EditText
-            android:id="@+id/password"
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/customizededittext"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonUser"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/customizededittext"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Password"
-            android:inputType="textPassword" />
+            android:layout_height="wrap_content"
+            android:text="Patient"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioButtonPsychologist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Psychologist" />
+
+    </RadioGroup>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -122,4 +141,5 @@
         android:text="Already have an account?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>

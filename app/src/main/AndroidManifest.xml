@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+
         <activity
             android:name=".Warning"
             android:exported="false">
@@ -156,7 +157,7 @@
         </activity>
         <activity
             android:name=".relaxation.DirtGame"
-            android:label="Dirt Game"></activity>
+            android:label="Dirt Game" />
         <activity
             android:name=".ProblemSolving.MenuActivity"
             android:exported="false">
@@ -173,6 +174,8 @@
             </intent-filter>
         </service>
 
+
+
         <activity android:name=".cognitive.TutorialCognitive" />
         <activity android:name=".psychoeducation.TutorialEducation" />
         <activity android:name=".TutorialBreathing" />
@@ -182,6 +185,36 @@
         <activity android:name=".ProblemSolving.Dieting.TutorialDieting" />
         <activity android:name=".ProblemSolving.Oral.TutorialOral" />
         <activity android:name=".journal.TutorialJournal" />
+        <activity
+            android:name=".PsychologistSide.PatientView"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".PsychologistSide.PsychologistActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PsychologistSide.progressActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PsychologistSide.PatientDataActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
     </application>
 
 </manifest>

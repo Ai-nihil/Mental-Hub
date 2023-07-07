@@ -19,21 +19,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mentalhub.PsychologistSide.PsychologistActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.GoogleSignatureVerifier;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -48,6 +51,8 @@ public class Login extends AppCompatActivity {
     TextView textView;
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
+
+    boolean ispatient;
 
 
     @Override
@@ -106,21 +111,52 @@ public class Login extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     progressBar.setVisibility(View.GONE);
                                     if (task.isSuccessful()) {
-                                        // Sign in success, update UI with the signed-in user's information
-                                        Toast.makeText(Login.this, "Login Success!.",
-                                                Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(intent);
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        if (user != null) {
+                                            String userId = user.getUid();
+                                            DatabaseReference userRef = database.getReference().child("Users").child(userId);
+                                            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists()) {
+                                                        String userType = snapshot.child("userType").getValue(String.class);
+                                                        if (userType != null && (userType.equals("psychologist") || userType.equals("patient"))) {
+                                                            Toast.makeText(Login.this, "Login Success!.", Toast.LENGTH_SHORT).show();
+                                                            if (userType.equals("psychologist")) {
+                                                                ispatient =false;
+                                                                Intent intent = new Intent(Login.this, PsychologistActivity.class);
+                                                                startActivity(intent);
+                                                            } else if (userType.equals("patient")) {
+                                                                ispatient =true;
+                                                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                                                startActivity(intent);
+                                                            }
+                                                            finish();
+                                                        } else {
+                                                            Toast.makeText(Login.this, "Invalid user type.", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(Login.this, "User data not found.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
 
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+                                                    Log.e(TAG, "onCancelled: ", error.toException());
+                                                    Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                        } else {
+                                            Toast.makeText(Login.this, "User not found.", Toast.LENGTH_SHORT).show();
+                                        }
                                     } else {
-                                        // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
-                                        Toast.makeText(Login.this, "Login failed.",
-                                                Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
-            }
+
+                }
         });
     }
 
@@ -165,8 +201,14 @@ public class Login extends AppCompatActivity {
                             database.getReference().child("Users")
                                     .child(user.getUid()).setValue(users);
 
-                            Intent intent = new Intent(Login.this, MainActivity.class);
-                            startActivity(intent);
+                            if(ispatient){
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                Intent intent = new Intent(Login.this, PsychologistActivity.class);
+                                startActivity(intent);
+                            }
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -182,7 +224,14 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            startActivity(new Intent(Login.this, MainActivity.class));
+            if(ispatient){
+                Intent intent = new Intent(Login.this, MainActivity.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(Login.this, PsychologistActivity.class);
+                startActivity(intent);
+            }
         }
     }
 }
