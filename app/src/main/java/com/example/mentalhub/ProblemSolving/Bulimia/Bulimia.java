@@ -1,7 +1,5 @@
 package com.example.mentalhub.ProblemSolving.Bulimia;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -12,9 +10,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.example.mentalhub.ProblemSolving.MenuActivity;
-import com.example.mentalhub.ProblemSolving.Oral.Oral;
 import com.example.mentalhub.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -104,6 +103,7 @@ public class Bulimia extends AppCompatActivity {
             if (eyeStateIsOpen) {
                 // makes Choice button visible
                 makeChoiceButtonVisible();
+                makeEyeButtonVisible();
             }
             if (end) {
                 // Adds problemSolvingPoints to the user with the current UID

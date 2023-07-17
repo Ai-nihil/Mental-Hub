@@ -1,7 +1,5 @@
 package com.example.mentalhub.ProblemSolving.Dieting;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -12,18 +10,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.example.mentalhub.ProblemSolving.Bulimia.Bulimia;
 import com.example.mentalhub.ProblemSolving.MenuActivity;
-import com.example.mentalhub.ProblemSolving.Oral.Oral;
 import com.example.mentalhub.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Dieting extends AppCompatActivity {
 
@@ -108,6 +103,7 @@ public class Dieting extends AppCompatActivity {
             if (eyeStateIsOpen) {
                 // makes Choice button visible
                 makeChoiceButtonVisible();
+                makeEyeButtonVisible();
             }
             if (end) {
                 // Adds problemSolvingPoints to the user with the current UID

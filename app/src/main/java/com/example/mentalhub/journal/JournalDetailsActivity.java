@@ -55,9 +55,10 @@ public class JournalDetailsActivity extends AppCompatActivity {
     EditText titleEditText, contentEditText;
     ImageButton saveNoteBtn;
     TextView pageTitleTextView;
-    String title, content, docId;
+    String title, content, docId, storedEmotion;
     boolean isEditMode = false;
     Button deleteJournalBtn;
+    String tagText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,34 +88,16 @@ public class JournalDetailsActivity extends AppCompatActivity {
         title = getIntent().getStringExtra("title");
         content = getIntent().getStringExtra("content");
         docId = getIntent().getStringExtra("docId");
+        storedEmotion = getIntent().getStringExtra("storedEmotion");
 
         emotions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Get the checked radio button
                 int radioButtonID = emotions.getCheckedRadioButtonId();
-                emotion = (RadioButton) emotions.findViewById(radioButtonID);
-                String tagText = emotion.getTag().toString();
-
-                deselectAllRadioButton();
-
-                switch (tagText) {
-                    case "angry":
-                        angry.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.angry));
-                        break;
-                    case "sad":
-                        sad.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.sad));
-                        break;
-                    case "neutral":
-                        neutral.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.neutral));
-                        break;
-                    case "happy":
-                        happy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.happy));
-                        break;
-                    case "amazing":
-                        amazing.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.amazing));
-                        break;
-                }
+                emotion = emotions.findViewById(radioButtonID);
+                tagText = emotion.getTag().toString();
+                getRadioButtonTagEmotion(tagText);
             }
         });
 
@@ -129,6 +112,7 @@ public class JournalDetailsActivity extends AppCompatActivity {
         if (isEditMode) {
             pageTitleTextView.setText("Update Your Journal");
             deleteJournalBtn.setVisibility(View.VISIBLE);
+            getRadioButtonTagEmotion(storedEmotion);
         }
 
         // Sets the date to current time when creating or updating journal
@@ -206,7 +190,7 @@ public class JournalDetailsActivity extends AppCompatActivity {
         String date = datePht.getText().toString();
         String noteTitle = titleEditText.getText().toString();
         String noteContent = contentEditText.getText().toString();
-        String noteEmotion = emotion.getText().toString();
+        String noteEmotion = tagText;
 
         if (noteTitle == null || noteTitle.isEmpty()) {
             Log.w(TAG, "saveNote:failure");
@@ -333,5 +317,27 @@ public class JournalDetailsActivity extends AppCompatActivity {
         neutral.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.neutral_bw));
         happy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.happy_bw));
         amazing.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.amazed_bw));
+    }
+
+    private void getRadioButtonTagEmotion(String textOfTag) {
+        deselectAllRadioButton();
+
+        switch (textOfTag) {
+            case "angry":
+                angry.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.angry));
+                break;
+            case "sad":
+                sad.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.sad));
+                break;
+            case "neutral":
+                neutral.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.neutral));
+                break;
+            case "happy":
+                happy.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.happy));
+                break;
+            case "amazing":
+                amazing.setCompoundDrawablesWithIntrinsicBounds(null, null, null, getResources().getDrawable(R.drawable.amazing));
+                break;
+        }
     }
 }

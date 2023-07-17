@@ -2,10 +2,6 @@ package com.example.mentalhub;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +14,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mentalhub.PsychologistSide.PsychologistActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
 
-    boolean ispatient;
+    boolean ispatient = true;
 
 
     @Override
@@ -123,11 +123,11 @@ public class Login extends AppCompatActivity {
                                                         if (userType != null && (userType.equals("psychologist") || userType.equals("patient"))) {
                                                             Toast.makeText(Login.this, "Login Success!.", Toast.LENGTH_SHORT).show();
                                                             if (userType.equals("psychologist")) {
-                                                                ispatient =false;
+                                                                ispatient = false;
                                                                 Intent intent = new Intent(Login.this, PsychologistActivity.class);
                                                                 startActivity(intent);
-                                                            } else if (userType.equals("patient")) {
-                                                                ispatient =true;
+                                                            } else {
+                                                                ispatient = true;
                                                                 Intent intent = new Intent(Login.this, MainActivity.class);
                                                                 startActivity(intent);
                                                             }
@@ -201,14 +201,14 @@ public class Login extends AppCompatActivity {
                             database.getReference().child("Users")
                                     .child(user.getUid()).setValue(users);
 
+                            Intent intent;
                             if(ispatient){
-                                Intent intent = new Intent(Login.this, MainActivity.class);
-                                startActivity(intent);
+                                intent = new Intent(Login.this, MainActivity.class);
                             }
                             else {
-                                Intent intent = new Intent(Login.this, PsychologistActivity.class);
-                                startActivity(intent);
+                                intent = new Intent(Login.this, PsychologistActivity.class);
                             }
+                            startActivity(intent);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -224,14 +224,14 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
+            Intent intent;
             if(ispatient){
-                Intent intent = new Intent(Login.this, MainActivity.class);
-                startActivity(intent);
+                intent = new Intent(Login.this, MainActivity.class);
             }
             else {
-                Intent intent = new Intent(Login.this, PsychologistActivity.class);
-                startActivity(intent);
+                intent = new Intent(Login.this, PsychologistActivity.class);
             }
+            startActivity(intent);
         }
     }
 }

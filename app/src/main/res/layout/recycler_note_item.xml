@@ -16,6 +16,16 @@
         android:textColor="@color/black"
         android:textSize="18sp"
         android:layout_marginVertical="4dp"/>
+    <RadioButton
+        android:id="@+id/journal_emotion_radiobutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:button="@null"
+        android:gravity="center"
+        android:tag="emotion"
+        android:text="Emotion:"/>
     <TextView
         android:id="@+id/journal_content_text_view"
         android:layout_width="match_parent"

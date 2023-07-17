@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,12 +31,31 @@ public class JournalAdapter extends FirestoreRecyclerAdapter<Journal, JournalAda
         holder.titleTextView.setText(journal.getTitle());
         holder.contentTextView.setText(journal.getContent());
         holder.dateTextView.setText(journal.getDate());
+        holder.emotion.setText(journal.getEmotion());
+
+        switch (journal.getEmotion()) {
+            case "amazing":
+                holder.emotion.setButtonDrawable(R.drawable.amazing);
+                break;
+            case "happy":
+                holder.emotion.setButtonDrawable(R.drawable.happy);
+                break;
+            case "neutral":
+                holder.emotion.setButtonDrawable(R.drawable.neutral);
+                break;
+            case "sad":
+                holder.emotion.setButtonDrawable(R.drawable.sad);
+                break;
+            case "angry":
+                holder.emotion.setButtonDrawable(R.drawable.angry);
+                break;
+        }
 
         holder.itemView.setOnClickListener((v) -> {
             Intent intent = new Intent(context, JournalDetailsActivity.class);
             intent.putExtra("title", journal.getTitle());
             intent.putExtra("content", journal.getContent());
-
+            intent.putExtra("storedEmotion", journal.getEmotion());
 
             // Gets the snapshot of the current position of what was clicked
             String docId = this.getSnapshots().getSnapshot(position).getId();
@@ -54,12 +74,14 @@ public class JournalAdapter extends FirestoreRecyclerAdapter<Journal, JournalAda
     class JournalViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleTextView, contentTextView, dateTextView;
+        RadioButton emotion;
 
         public JournalViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.journal_title_text_view);
             contentTextView = itemView.findViewById(R.id.journal_content_text_view);
             dateTextView = itemView.findViewById(R.id.journal_date_text_view);
+            emotion = itemView.findViewById(R.id.journal_emotion_radiobutton);
         }
     }
 }
