@@ -58,10 +58,10 @@ public class breathing extends AppCompatActivity {
     }
 
     private void startBreathingExercise() {
-        phase = 16;
+        phase = 17;
         startButton.setEnabled(false); // Disable the button during the exercise
 
-        countDownTimer = new CountDownTimer(16 * 1000L, intervalInMillis) {
+        countDownTimer = new CountDownTimer(17 * 1000L, intervalInMillis) {
             @Override
             public void onTick(long millisUntilFinished) {
                 mTimeLeftInMillis = millisUntilFinished;
