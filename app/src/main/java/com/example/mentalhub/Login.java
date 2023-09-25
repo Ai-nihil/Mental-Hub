@@ -2,10 +2,17 @@ package com.example.mentalhub;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,10 +21,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mentalhub.PsychologistSide.PsychologistActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -44,7 +47,7 @@ public class Login extends AppCompatActivity {
 
     private long mLastClickTime = 0;
     EditText editTextEmail, editTextPassword;
-    Button loginButton, googleLoginBtn;
+    Button loginButton, googleLoginBtn, forgotPasswordButton;
     FirebaseAuth mAuth;
     FirebaseDatabase database;
     ProgressBar progressBar;
@@ -52,8 +55,7 @@ public class Login extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
 
-    boolean ispatient = true;
-
+    boolean ispatient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,96 +69,104 @@ public class Login extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         textView = findViewById(R.id.registerNow);
         googleLoginBtn = findViewById(R.id.googleLogin);
+        forgotPasswordButton = findViewById(R.id.forgotPasswordButton);
 
         // Single Sign On Google.
         progressDialog = new ProgressDialog(Login.this);
         progressDialog.setTitle("Creating Account");
         progressDialog.setMessage("We are creating your account");
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
+       // GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       //         .requestIdToken(getString(R.string.default_web_client_id))
+       //         .requestEmail()
+      //          .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        googleLoginBtn.setOnClickListener((v) -> {
-            signIn();
-        });
+    //    googleLoginBtn.setOnClickListener((v) -> {
+    //        signIn();
+    //    });
 
         textView.setOnClickListener((v) -> {
-                Intent intent = new Intent(getApplicationContext(), Register.class);
-                startActivity(intent);
-                finish();
+            Intent intent = new Intent(getApplicationContext(), Register.class);
+            startActivity(intent);
+            finish();
         });
 
         loginButton.setOnClickListener((v) -> {
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000){
-                    return;
-                }
-                mLastClickTime = SystemClock.elapsedRealtime();
-                String email, password;
-                email = String.valueOf(editTextEmail.getText());
-                password = String.valueOf(editTextPassword.getText());
+            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                return;
+            }
+            mLastClickTime = SystemClock.elapsedRealtime();
+            String email, password;
+            email = String.valueOf(editTextEmail.getText());
+            password = String.valueOf(editTextPassword.getText());
 
-                if (TextUtils.isEmpty(email)) {
-                    editTextEmail.setError("Enter your email");
-                } else if (TextUtils.isEmpty(password)) {
-                    editTextPassword.setError("Enter your password");
-                } else {
-                    progressBar.setVisibility(View.VISIBLE);
-                    mAuth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    progressBar.setVisibility(View.GONE);
-                                    if (task.isSuccessful()) {
-                                        FirebaseUser user = mAuth.getCurrentUser();
-                                        if (user != null) {
-                                            String userId = user.getUid();
-                                            DatabaseReference userRef = database.getReference().child("Users").child(userId);
-                                            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    if (snapshot.exists()) {
-                                                        String userType = snapshot.child("userType").getValue(String.class);
-                                                        if (userType != null && (userType.equals("psychologist") || userType.equals("patient"))) {
-                                                            Toast.makeText(Login.this, "Login Success!.", Toast.LENGTH_SHORT).show();
-                                                            if (userType.equals("psychologist")) {
-                                                                ispatient = false;
-                                                                Intent intent = new Intent(Login.this, PsychologistActivity.class);
-                                                                startActivity(intent);
-                                                            } else {
-                                                                ispatient = true;
-                                                                Intent intent = new Intent(Login.this, MainActivity.class);
-                                                                startActivity(intent);
-                                                            }
-                                                            finish();
-                                                        } else {
-                                                            Toast.makeText(Login.this, "Invalid user type.", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(email)) {
+                editTextEmail.setError("Enter your email");
+            } else if (TextUtils.isEmpty(password)) {
+                editTextPassword.setError("Enter your password");
+            } else {
+                progressBar.setVisibility(View.VISIBLE);
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        String userId = user.getUid();
+                                        DatabaseReference userRef = database.getReference().child("Users").child(userId);
+                                        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                if (snapshot.exists()) {
+                                                    String userType = snapshot.child("userType").getValue(String.class);
+                                                    if (userType != null && (userType.equals("psychologist") || userType.equals("patient"))) {
+                                                        Toast.makeText(Login.this, "Login Success!.", Toast.LENGTH_SHORT).show();
+                                                        if (userType.equals("psychologist")) {
+                                                            ispatient = false;
+                                                            Intent intent = new Intent(Login.this, PsychologistActivity.class);
+                                                            startActivity(intent);
+                                                        } else if (userType.equals("patient")) {
+                                                            ispatient = true;
+                                                            Intent intent = new Intent(Login.this, MainActivity.class);
+                                                            startActivity(intent);
                                                         }
+                                                        finish();
                                                     } else {
-                                                        Toast.makeText(Login.this, "User data not found.", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(Login.this, "Invalid user type.", Toast.LENGTH_SHORT).show();
                                                     }
+                                                } else {
+                                                    Toast.makeText(Login.this, "User data not found.", Toast.LENGTH_SHORT).show();
                                                 }
+                                            }
 
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-                                                    Log.e(TAG, "onCancelled: ", error.toException());
-                                                    Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-                                        } else {
-                                            Toast.makeText(Login.this, "User not found.", Toast.LENGTH_SHORT).show();
-                                        }
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+                                                Log.e(TAG, "onCancelled: ", error.toException());
+                                                Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     } else {
-                                        Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
-                                        Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login.this, "User not found.", Toast.LENGTH_SHORT).show();
                                     }
+                                } else {
+                                    Log.w(TAG, "signInWithEmailAndPassword:failure", task.getException());
+                                    Toast.makeText(Login.this, "Login failed.", Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            }
+                        });
 
-                }
+            }
+        });
+
+        forgotPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showForgotPasswordDialog();
+            }
         });
     }
 
@@ -201,14 +211,13 @@ public class Login extends AppCompatActivity {
                             database.getReference().child("Users")
                                     .child(user.getUid()).setValue(users);
 
-                            Intent intent;
-                            if(ispatient){
-                                intent = new Intent(Login.this, MainActivity.class);
+                            if (ispatient) {
+                                Intent intent = new Intent(Login.this, MainActivity.class);
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(Login.this, PsychologistActivity.class);
+                                startActivity(intent);
                             }
-                            else {
-                                intent = new Intent(Login.this, PsychologistActivity.class);
-                            }
-                            startActivity(intent);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -219,19 +228,71 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            Intent intent;
-            if(ispatient){
-                intent = new Intent(Login.this, MainActivity.class);
-            }
-            else {
-                intent = new Intent(Login.this, PsychologistActivity.class);
-            }
-            startActivity(intent);
-        }
+
+
+
     }
+
+    private void showForgotPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+        builder.setMessage("Enter your email to reset your password");
+
+        final EditText emailEditText = new EditText(this);
+        emailEditText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(emailEditText);
+
+        builder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String email = emailEditText.getText().toString().trim();
+                if (!TextUtils.isEmpty(email)) {
+                    sendPasswordResetEmail(email);
+                } else {
+                    Toast.makeText(Login.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+
+    private void sendPasswordResetEmail(String email) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login.this, "Password reset email sent. Check your inbox.", Toast.LENGTH_SHORT).show();
+
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                String newPassword = "newPassword123";
+                                String userUID = user.getUid();
+
+
+                                DatabaseReference userRef = database.getReference().child("Users").child(userUID);
+                                userRef.child("password").setValue(newPassword);
+                            }
+                        } else {
+                            Toast.makeText(Login.this, "Failed to send password reset email. Please check your email address.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 }

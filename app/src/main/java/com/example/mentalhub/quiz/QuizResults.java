@@ -17,7 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class QuizResults extends AppCompatActivity {
@@ -76,7 +78,25 @@ public class QuizResults extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date());
+
+        databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("quizPoints").get().addOnCompleteListener(recordedQuizScore -> {
+            if (recordedQuizScore.isSuccessful()) {
+                if (recordedQuizScore.getResult().getValue() == null) {
+                    // Child "quizPoints" does not exist, create it with the initial value of quizPoints
+                    databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("quizPoints").setValue(quizPoints);
+                } else {
+                    int existingQuizPoints = Integer.parseInt(String.valueOf(recordedQuizScore.getResult().getValue()));
+                    quizPoints = existingQuizPoints + quizPoints;
+                    // Update the child "quizPoints" with the new value
+                    databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("quizPoints").setValue(quizPoints);
+                }
+            }
+        });
+
         databaseReference.child("Users").child(user.getUid()).child("quizPoints").get().addOnCompleteListener(recordedQuizScore -> {
+            quizPoints = userGrade * 5;
             if (recordedQuizScore.isSuccessful()) {
                 if (recordedQuizScore.getResult().getValue() == null) {
                     // Child "quizPoints" does not exist, create it with the initial value of quizPoints

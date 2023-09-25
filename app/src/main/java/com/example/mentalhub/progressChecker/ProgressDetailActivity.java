@@ -1,63 +1,45 @@
+// ProgressDetailActivity.java
 package com.example.mentalhub.progressChecker;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mentalhub.PsychologistSide.DateListActivity;
-import com.example.mentalhub.PsychologistSide.PatientDataActivity;
 import com.example.mentalhub.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
-import android.util.Log;
-import android.widget.Toast;
 
-public class progressActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class ProgressDetailActivity extends AppCompatActivity {
+    private TextView progressDetailTextView;
 
     CircularProgressBar circularProgressBar;
     TextView points;
 
-    FirebaseAuth mAuth;
-    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_progress);
-
+        setContentView(R.layout.activity_progress_2);
         circularProgressBar = findViewById(R.id.circularProgressBar);
+
         points = findViewById(R.id.points);
 
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        String userId = user.getUid();
-        Button openProgressButton = findViewById(R.id.ShowProgress);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date());
 
-        openProgressButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Add any logic you need to perform before opening DateListActivity here
-               // String userId = getIntent().getStringExtra("userId");
-                // Create an Intent to open the DateListActivity
-                Intent intent = new Intent(progressActivity.this, DateListActivity.class);
-                intent.putExtra("userId", userId);
-                startActivity(intent);
-            }
-        });
+        // Retrieve the selected user's UID and date from the intent extras
+        String userId = getIntent().getStringExtra("userId");
+        String date = getIntent().getStringExtra("date");
 
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid());
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("progress").child(date);
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -80,19 +62,17 @@ public class progressActivity extends AppCompatActivity {
                     int combinedPoints = quizPoints + breathingPoints + mindPoints + cognitivePoints + journalPoints + problemSolvingPoints;
 
                     updateUI(combinedPoints);
-
-
                 }
             }
 
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(progressActivity.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(progressActivity.this, "Failed to retrieve user data", Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
+    }
     private void updateUI(int combinedPoints) {
         circularProgressBar.setProgressWithAnimation(combinedPoints);
         points.setText(String.valueOf(combinedPoints));

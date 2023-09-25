@@ -23,7 +23,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import android.graphics.text.LineBreaker;
@@ -263,7 +265,25 @@ public class DirtGame extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         assert user != null;
 
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = dateFormat.format(new Date());
+        databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("mindPoints").get().addOnCompleteListener(recordedMindScore -> {
+            if (recordedMindScore.isSuccessful()) {
+                if (recordedMindScore.getResult().getValue() == null) {
+                    // Child "mindPoints" does not exist, create it with the initial value of quizPoints
+                    databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("mindPoints").setValue(mindPoints);
+                } else {
+                    int existingMindPoints = Integer.parseInt(String.valueOf(recordedMindScore.getResult().getValue()));
+                    mindPoints = existingMindPoints + mindPoints;
+                    // Update the child "mindPoints" with the new value
+                    databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("mindPoints").setValue(mindPoints);
+                }
+            }
+        });
+
         databaseReference.child("Users").child(user.getUid()).child("mindPoints").get().addOnCompleteListener(recordedMindScore -> {
+            mindPoints = 10;
             if (recordedMindScore.isSuccessful()) {
                 if (recordedMindScore.getResult().getValue() == null) {
                     // Child "mindPoints" does not exist, create it with the initial value of quizPoints
@@ -276,7 +296,6 @@ public class DirtGame extends AppCompatActivity {
                 }
             }
         });
-
         RelativeLayout.LayoutParams quoteLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT

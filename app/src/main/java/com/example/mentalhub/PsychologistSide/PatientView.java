@@ -66,7 +66,8 @@ public class PatientView extends AppCompatActivity implements UserAdapter.OnItem
     public void onItemClick(User user) {
         Toast.makeText(this, "Clicked user: " + user.getName(), Toast.LENGTH_SHORT).show();
 
-        // Start a new activity to show the selected user's details
+
+        // Start a new activity to show the selected user's details (PatientDataActivity)
         Intent intent = new Intent(this, PatientDataActivity.class);
         intent.putExtra("userId", user.getUserId());
         startActivity(intent);

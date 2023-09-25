@@ -64,6 +64,13 @@
             android:visibility="gone">
 
         </ProgressBar>
+    <Button
+        android:id="@+id/forgotPasswordButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginButton"

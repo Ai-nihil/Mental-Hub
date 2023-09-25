@@ -15,6 +15,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class breathing extends AppCompatActivity {
 
     FirebaseAuth mAuth;
@@ -37,6 +40,8 @@ public class breathing extends AppCompatActivity {
     int secondsRemaining;
     int phase;
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    String currentDate = dateFormat.format(new Date());
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +106,24 @@ public class breathing extends AppCompatActivity {
                     FirebaseUser user = mAuth.getCurrentUser();
                     assert user != null;
 
+                    databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("breathingPoints").get().addOnCompleteListener(recordedBreathingScore -> {
+
+                        if (recordedBreathingScore.isSuccessful()) {
+                            if (recordedBreathingScore.getResult().getValue() == null) {
+                                // Child "breathingPoints" does not exist, create it with the initial value of quizPoints
+                                databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("breathingPoints").setValue(breathingPoints);
+                            } else {
+                                int existingBreathingPoints = Integer.parseInt(String.valueOf(recordedBreathingScore.getResult().getValue()));
+                                //Adds value of existingBreathingPoints with breathingPoints
+                                breathingPoints += existingBreathingPoints;
+                                // Update the child "breathingPoints" with the new value
+                                databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("breathingPoints").setValue(breathingPoints);
+                            }
+                        }
+                    });
+
                     databaseReference.child("Users").child(user.getUid()).child("breathingPoints").get().addOnCompleteListener(recordedBreathingScore -> {
+                        breathingPoints = 10;
                         if (recordedBreathingScore.isSuccessful()) {
                             if (recordedBreathingScore.getResult().getValue() == null) {
                                 // Child "breathingPoints" does not exist, create it with the initial value of quizPoints

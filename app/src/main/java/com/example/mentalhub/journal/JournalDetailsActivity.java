@@ -33,7 +33,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class JournalDetailsActivity extends AppCompatActivity {
 
@@ -224,14 +226,32 @@ public class JournalDetailsActivity extends AppCompatActivity {
         assert user != null;
         if (bonusStreak < 7) {
             // Adds points to journalPoints
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = dateFormat.format(new Date());
+            databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("journalPoints").get().addOnCompleteListener(recordedJournalScore -> {
+                if (recordedJournalScore.isSuccessful()) {
+                    if (recordedJournalScore.getResult().getValue() == null) {
+                        // Child "journalPoints" does not exist, create it with the initial value of journalPoints
+                        databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("journalPoints").setValue(journalPoints);
+                    } else {
+                        int existingJournalPoints = Integer.parseInt(String.valueOf(recordedJournalScore.getResult().getValue()));
+                        journalPoints = existingJournalPoints + journalPoints;
+                        // Update the child "journalPoints" with the new value
+                        databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("journalPoints").setValue(journalPoints);
+                    }
+                }
+            });
+
             databaseReference.child("Users").child(user.getUid()).child("journalPoints").get().addOnCompleteListener(recordedJournalScore -> {
+                journalPoints = 5;
                 if (recordedJournalScore.isSuccessful()) {
                     if (recordedJournalScore.getResult().getValue() == null) {
                         // Child "journalPoints" does not exist, create it with the initial value of journalPoints
                         databaseReference.child("Users").child(user.getUid()).child("journalPoints").setValue(journalPoints);
                     } else {
                         int existingJournalPoints = Integer.parseInt(String.valueOf(recordedJournalScore.getResult().getValue()));
-                        journalPoints = existingJournalPoints + journalPoints;
+                        journalPoints = existingJournalPoints + journalPoints + bonusPoints;
                         // Update the child "journalPoints" with the new value
                         databaseReference.child("Users").child(user.getUid()).child("journalPoints").setValue(journalPoints);
                     }
@@ -240,8 +260,26 @@ public class JournalDetailsActivity extends AppCompatActivity {
         } else {
             // Adds bonus points
             bonusStreak = 0;
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = dateFormat.format(new Date());
             // Adds points to journalPoints
+            databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("journalPoints").get().addOnCompleteListener(recordedJournalScore -> {
+                if (recordedJournalScore.isSuccessful()) {
+                    if (recordedJournalScore.getResult().getValue() == null) {
+                        // Child "journalPoints" does not exist, create it with the initial value of journalPoints
+                        databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("journalPoints").setValue(journalPoints);
+                    } else {
+                        int existingJournalPoints = Integer.parseInt(String.valueOf(recordedJournalScore.getResult().getValue()));
+                        journalPoints = existingJournalPoints + journalPoints + bonusPoints;
+                        // Update the child "journalPoints" with the new value
+                        databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("journalPoints").setValue(journalPoints);
+                    }
+                }
+            });
+
             databaseReference.child("Users").child(user.getUid()).child("journalPoints").get().addOnCompleteListener(recordedJournalScore -> {
+             journalPoints = 5;
                 if (recordedJournalScore.isSuccessful()) {
                     if (recordedJournalScore.getResult().getValue() == null) {
                         // Child "journalPoints" does not exist, create it with the initial value of journalPoints

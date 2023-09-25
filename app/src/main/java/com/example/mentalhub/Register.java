@@ -28,7 +28,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Register extends AppCompatActivity {
@@ -59,6 +62,12 @@ public class Register extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
 
+        // Add an OnClickListener to the "Register" button
+        textView.setOnClickListener((v) -> {
+            // Create an Intent to navigate to the Register activity
+            Intent intent = new Intent(getApplicationContext(), Register.class);
+            startActivity(intent);
+        });
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,6 +148,19 @@ public class Register extends AppCompatActivity {
                                         Toast.makeText(Register.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
+                                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                    String currentDate = dateFormat.format(new Date());
+                                    Map<String, Object> initialPoints = new HashMap<>();
+                                    initialPoints.put("quizPoints", 0);
+                                    initialPoints.put("breathingPoints", 0);
+                                    initialPoints.put("mindPoints", 0);
+                                    initialPoints.put("cognitivePoints", 0);
+                                    initialPoints.put("journalPoints", 0);
+                                    initialPoints.put("problemSolvingPoints", 0);
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    databaseReference.child("Users")
+                                            .child(user.getUid()).child("progress").child(currentDate).setValue(initialPoints);
+
                                 }
                             });
                 }

@@ -215,6 +215,21 @@
                 android:value="" />
         </activity>
 
+        <activity
+            android:name=".PsychologistSide.DateListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PsychologistSide.ProgressDetailActivity"
+            android:exported="false">
+            <!-- Any additional activity configuration -->
+        </activity>
+
+
     </application>
+
 
 </manifest>

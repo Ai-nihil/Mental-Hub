@@ -1,0 +1,58 @@
+<!-- progress_item.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textStyle="bold"/>
+
+    <!-- Breathing Points -->
+    <TextView
+        android:id="@+id/breathingPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breathing Points: 0"/>
+
+    <!-- Cognitive Points -->
+    <TextView
+        android:id="@+id/cognitivePointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cognitive Points: 0"/>
+
+    <!-- Journal Points -->
+    <TextView
+        android:id="@+id/journalPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Journal Points: 0"/>
+
+    <!-- Mind Points -->
+    <TextView
+        android:id="@+id/mindPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mind Points: 0"/>
+
+    <!-- Problem Solving Points -->
+    <TextView
+        android:id="@+id/problemSolvingPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Problem Solving Points: 0"/>
+
+    <!-- Quiz Points -->
+    <TextView
+        android:id="@+id/quizPointsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quiz Points: 0"/>
+
+</LinearLayout>

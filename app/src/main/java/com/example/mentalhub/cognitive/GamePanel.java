@@ -20,12 +20,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     FirebaseAuth mAuth;
     FirebaseUser userFirebase;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    FirebaseDatabase newfirebaseDatabase;
+    DatabaseReference newdatabaseReference;
 
     int cognitivePoints = 0;
     boolean pointsAdd = true;
@@ -43,7 +49,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     private Bitmap backgroundImage;
 
-    public GamePanel(Context context){
+    public GamePanel(Context context) {
 
         super(context);
 
@@ -52,32 +58,28 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         Constants.CURRENT_CONTEXT = context;
 
         //Instantiate player
-        user = new Player(new Rect(100,100,200,200), Color.argb(0, 0, 0,0));
+        user = new Player(new Rect(100, 100, 200, 200), Color.argb(0, 0, 0, 0));
 
         //Instantiate location of the player
-        userPoint = new Point(150,150);
+        userPoint = new Point(150, 150);
         user.update(userPoint);
 
         //Instantiate the fruit-managing class
-        foodManager = new FoodManager(200, Constants.SCREEN_HEIGHT - 325, 325, Color.argb(0,255,255,255));
+        foodManager = new FoodManager(200, Constants.SCREEN_HEIGHT - 325, 325, Color.argb(0, 255, 255, 255));
 
         setFocusable(true);
 
     }
 
 
-
-
-
     @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height){
-
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
 
     }
 
     @Override
-    public void surfaceCreated(SurfaceHolder holder){
+    public void surfaceCreated(SurfaceHolder holder) {
         backgroundImage = BitmapFactory.decodeResource(getResources(), R.drawable.balloon_bg);
 
         handler = new Handler();
@@ -98,18 +100,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void surfaceDestroyed(SurfaceHolder holder){
+    public void surfaceDestroyed(SurfaceHolder holder) {
 
         boolean retry = true;
 
-        while(retry){
+        while (retry) {
 
-            try{
+            try {
 
                 thread.setRunning(false);
                 thread.join();
 
-            }catch(Exception e){
+            } catch (Exception e) {
 
                 e.printStackTrace();
 
@@ -122,8 +124,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     //Creates a new fruitManager and resets the location of the user
-    public void resetGame(){
-        userPoint = new Point(150,150);
+    public void resetGame() {
+        userPoint = new Point(150, 150);
         user.update(userPoint);
 
         //foodManager = new FoodManager(200, 200, 325, Color.argb(0,255,255,255));
@@ -131,15 +133,15 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(MotionEvent event) {
 
-        switch(event.getAction()){
+        switch (event.getAction()) {
 
             //User has tapped
             case MotionEvent.ACTION_DOWN:
 
                 //Reset the game if ended
-                if(gameOver){
+                if (gameOver) {
                     resetGame();
                     gameOver = false;
                 }
@@ -149,7 +151,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             //User has moved their finger, update the location of the rect
             case MotionEvent.ACTION_MOVE:
 
-                userPoint.set((int)event.getX(), (int)event.getY());
+                userPoint.set((int) event.getX(), (int) event.getY());
 
         }
 
@@ -157,12 +159,12 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    public void update(){
+    public void update() {
 
         //Game is continuing
 
 
-        if(!gameOver ){
+        if (!gameOver) {
 
             // Sets the point system to true when the game is not yet over
             pointsAdd = true;
@@ -191,11 +193,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         }
 
 
-
     }
 
     @Override
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
 
         super.draw(canvas);
 
@@ -222,13 +223,13 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         }
 
         //Set gameover screen
-        if(gameOver) {
+        if (gameOver) {
 
             BitmapFactory bf = new BitmapFactory();
 
             Bitmap gOverImg = bf.decodeResource(Constants.CURRENT_CONTEXT.getResources(), R.drawable.gameover);
 
-            if(highScore < foodManager.getScore()){
+            if (highScore < foodManager.getScore()) {
 
                 SharedPreferences.Editor editor = Constants.PREF.edit();
                 editor.putInt("key", foodManager.getScore());
@@ -279,11 +280,31 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
             //Gets score and assigns to cognitivePoints in Firebase
             firebaseDatabase = FirebaseDatabase.getInstance();
             databaseReference = firebaseDatabase.getReference();
-            if(pointsAdd) {
+            if (pointsAdd) {
                 // Gets value from cognitivePoints
-                FirebaseUser userFirebase = mAuth.getCurrentUser();
+                FirebaseUser user = mAuth.getCurrentUser();
+
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String currentDate = dateFormat.format(new Date());
                 assert user != null;
+                databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("cognitivePoints").get().addOnCompleteListener(recorededCognitivePoints -> {
+                    if (recorededCognitivePoints.isSuccessful()) {
+                        if (recorededCognitivePoints.getResult().getValue() == null) {
+                            // Child "cognitivePoints" does not exist, create it with the initial value of quizPoints
+                            databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("cognitivePoints").setValue(cognitivePoints);
+                        } else {
+                            int existingQuizPoints = Integer.parseInt(String.valueOf(recorededCognitivePoints.getResult().getValue()));
+                            cognitivePoints = existingQuizPoints + cognitivePoints;
+                            // Update the child "cognitivePoints" with the new value
+                            databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("cognitivePoints").setValue(cognitivePoints);
+                        }
+
+                    }
+                });
+
                 databaseReference.child("Users").child(userFirebase.getUid()).child("cognitivePoints").get().addOnCompleteListener(recorededCognitivePoints -> {
+                    cognitivePoints = foodManager.getScore();
                     if (recorededCognitivePoints.isSuccessful()) {
                         if (recorededCognitivePoints.getResult().getValue() == null) {
                             // Child "cognitivePoints" does not exist, create it with the initial value of quizPoints
@@ -296,10 +317,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
                         }
                     }
                 });
+                pointsAdd = false;
             }
-            pointsAdd = false;
+
         }
 
     }
-
 }

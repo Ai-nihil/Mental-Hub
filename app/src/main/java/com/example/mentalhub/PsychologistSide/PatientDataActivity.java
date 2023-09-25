@@ -1,7 +1,10 @@
 package com.example.mentalhub.PsychologistSide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +44,20 @@ public class PatientDataActivity extends AppCompatActivity {
         journalPoints = findViewById(R.id.journalPoints);
         problemSolvingPoints = findViewById(R.id.problemSolvingPoints);
 
+        Button openDateListButton = findViewById(R.id.openDateListButton);
+
+        openDateListButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Add any logic you need to perform before opening DateListActivity here
+                String userId = getIntent().getStringExtra("userId");
+                // Create an Intent to open the DateListActivity
+                Intent intent = new Intent(PatientDataActivity.this, DateListActivity.class);
+                intent.putExtra("userId", userId);
+                startActivity(intent);
+            }
+        });
+
         String userId = getIntent().getStringExtra("userId");
         Log.d("PatientDataActivity", "Received userId: " + userId); // Log the received userId
 
@@ -58,6 +75,7 @@ public class PatientDataActivity extends AppCompatActivity {
 
                     int combinedPoints = calculateCombinedPoints(quizPointsValue, breathingPointsValue, mindPointsValue, cognitivePointsValue, journalPointsValue, problemSolvingPointsValue);
 
+                    // Update the UI
                     updateUI(combinedPoints, quizPointsValue, breathingPointsValue, mindPointsValue, cognitivePointsValue, journalPointsValue, problemSolvingPointsValue);
                 }
             }
@@ -90,5 +108,4 @@ public class PatientDataActivity extends AppCompatActivity {
         journalPoints.setText("Journal Points: " + (journalPointsValue != null ? journalPointsValue : 0));
         problemSolvingPoints.setText("Problem Solving Points: " + (problemSolvingPointsValue != null ? problemSolvingPointsValue : 0));
     }
-
 }

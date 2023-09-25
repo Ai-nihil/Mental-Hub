@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "425386658654",
+    "firebase_url": "https://mentalhub-4fd78-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "mentalhub-4fd78",
     "storage_bucket": "mentalhub-4fd78.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "425386658654-hi8ukpj921gfusc8hb5e0g47qqskfq6s.apps.googleusercontent.com",
+          "client_id": "425386658654-cm8qiq021cp6nufcqpe7hpl8a5dcrrhh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mentalhub",
+            "certificate_hash": "c48a7debc1147af1d692a0ab0abc4b9893f8e33c"
+          }
+        },
+        {
+          "client_id": "425386658654-ehk0snk6efsl1q7hdi1bfpn5c6msl37r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +36,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "425386658654-hi8ukpj921gfusc8hb5e0g47qqskfq6s.apps.googleusercontent.com",
+              "client_id": "425386658654-ehk0snk6efsl1q7hdi1bfpn5c6msl37r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

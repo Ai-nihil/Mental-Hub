@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Bulimia extends AppCompatActivity {
 
     FirebaseAuth mAuth;
@@ -92,6 +95,8 @@ public class Bulimia extends AppCompatActivity {
                 currentResourceImg++;
                 makeEyeButtonVisible();
             }
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = dateFormat.format(new Date());
             // Returns all options into not selected
             deselectOptions();
             // Clears the texts
@@ -106,8 +111,26 @@ public class Bulimia extends AppCompatActivity {
                 makeEyeButtonVisible();
             }
             if (end) {
+
+
                 // Adds problemSolvingPoints to the user with the current UID
+                databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("problemSolvingPoints").get().addOnCompleteListener(recordedProblemSolvingScore -> {
+                    if (recordedProblemSolvingScore.isSuccessful()) {
+                        if (recordedProblemSolvingScore.getResult().getValue() == null) {
+                            // Child "problemSolvingPoints" does not exist, create it with the initial value of quizPoints
+                            databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("problemSolvingPoints").setValue(problemSolvingPoints);
+                        } else {
+                            int existingProblemSolvingPoints = Integer.parseInt(String.valueOf(recordedProblemSolvingScore.getResult().getValue()));
+                            //Adds value of problemSolvingPoints with problemSolvingPoints
+                            problemSolvingPoints += existingProblemSolvingPoints;
+                            // Update the child "problemSolvingPoints" with the new value
+                            databaseReference.child("Users").child(user.getUid()).child("progress").child(currentDate).child("problemSolvingPoints").setValue(problemSolvingPoints);
+                        }
+                    }
+                });
+
                 databaseReference.child("Users").child(user.getUid()).child("problemSolvingPoints").get().addOnCompleteListener(recordedProblemSolvingScore -> {
+                    int problemSolvingPoints = 10;
                     if (recordedProblemSolvingScore.isSuccessful()) {
                         if (recordedProblemSolvingScore.getResult().getValue() == null) {
                             // Child "problemSolvingPoints" does not exist, create it with the initial value of quizPoints

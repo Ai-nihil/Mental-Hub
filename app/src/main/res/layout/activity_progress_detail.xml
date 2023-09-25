@@ -1,0 +1,18 @@
+<!-- activity_progress_detail.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/progressDetailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Add more TextViews or UI elements to display progress details here -->
+    <!-- Customize this layout as needed for displaying progress data -->
+
+</LinearLayout>
