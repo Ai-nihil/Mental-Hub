@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mentalhub.R;
@@ -29,8 +32,9 @@ public class eat26results extends AppCompatActivity {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String userId;
+    String userId, possibleRiskString;
     TextView possibleRisk, youAreAtRiskOf, riskDescription;
+    Button continueButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +46,18 @@ public class eat26results extends AppCompatActivity {
         possibleRisk = findViewById(R.id.possibleRisk);
         youAreAtRiskOf = findViewById(R.id.youAreAtRiskOf);
         riskDescription = findViewById(R.id.riskDescription);
+        continueButton = findViewById(R.id.continueButton);
 
         // Gets the user's EAT26 results
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
         userId = user.getUid();
+
+        continueButton.setOnClickListener((v) -> {
+            Intent intent = new Intent(eat26results.this, eat26suggestion.class);
+            intent.putExtra("possibleRisk", possibleRiskString);
+            startActivity(intent);
+        });
 
         // Loads image into ImageView without storing locally.
         databaseReference.child("Users").child(userId).child("result").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -74,12 +85,15 @@ public class eat26results extends AppCompatActivity {
 
                                                 if (bulimiaScore >= dietingScore && bulimiaScore >= oralControlScore) {
                                                     possibleRisk.setText("Bulimia and food preoccupation (EAT-BUL)");
+                                                    possibleRiskString = "Bulimia and food preoccupation (EAT-BUL)";
                                                     riskDescription.setText("The preoccupation with thoughts about food and attempts to vomit food eaten during a binge");
                                                 } else if (dietingScore >= oralControlScore) {
                                                     possibleRisk.setText("Dietary (EAT-DIET)");
+                                                    possibleRiskString = "Dietary (EAT-DIET)";
                                                     riskDescription.setText("The preoccupation with being thinner and avoidance of fattening foods");
                                                 } else {
                                                     possibleRisk.setText("Oral Control (EAT-ORAL)");
+                                                    possibleRiskString = "Oral Control (EAT-ORAL)";
                                                     riskDescription.setText("Attempts to maintain self-control while eating and the perceived pressure from others to gain weight");
                                                 }
                                             } else {

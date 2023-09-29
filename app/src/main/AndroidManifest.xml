@@ -14,7 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
-
+        <activity
+            android:name="com.example.mentalhub.screening.CustomListView"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.example.mentalhub.screening.eat26suggestion"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".Warning"
             android:exported="false">
@@ -174,8 +187,6 @@
             </intent-filter>
         </service>
 
-
-
         <activity android:name=".cognitive.TutorialCognitive" />
         <activity android:name=".psychoeducation.TutorialEducation" />
         <activity android:name=".TutorialBreathing" />
@@ -192,7 +203,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".PsychologistSide.PsychologistActivity"
             android:exported="false">
@@ -214,7 +224,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".PsychologistSide.DateListActivity"
             android:exported="false">
@@ -225,11 +234,9 @@
         <activity
             android:name=".PsychologistSide.ProgressDetailActivity"
             android:exported="false">
+
             <!-- Any additional activity configuration -->
         </activity>
-
-
     </application>
-
 
 </manifest>
